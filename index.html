@@ -161,12 +161,20 @@
   .thumbgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;cursor:pointer;display:block}
   .thumbgrid img:hover{opacity:.85}
 
+  /* ---------------- mobile menu (Squarespace style) ---------------- */
+  #menuToggle{display:none}
+  #mobileNav{display:none;height:0;overflow:hidden;transition:height .35s ease;background:#a3a3a3}
+  #mobileNav ul{list-style:none;margin:0;padding:2em 0;text-align:center}
+  #mobileNav a{display:block;color:rgba(255,255,255,.7);font-size:18px;line-height:2.5em;text-decoration:none}
+  #mobileNav a:hover,#mobileNav a.active{color:#fff}
+
   /* ---------------- responsive ---------------- */
   @media (max-width:820px){
     .shell{flex-direction:column}
-    .side{position:static;height:auto;flex:none;padding:30px 24px 6px}
-    nav.main{margin-top:22px;display:flex;flex-wrap:wrap;gap:2px 20px}
-    nav.main a{padding:4px 0}
+    .side{position:relative;height:auto;flex:none;padding:30px 24px 6px}
+    nav.main{display:none}
+    #mobileNav{display:block}
+    #menuToggle{display:inline-block;position:absolute;top:6px;right:4px;padding:20px;font-size:15px;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent}
     .socials{margin-top:20px}
     .gal-caption{margin-top:18px}
     .content{padding:26px 24px 70px}
@@ -183,8 +191,23 @@
   }
 </style>
 
+<div id="mobileNav">
+  <nav aria-label="Mobile">
+    <ul>
+      <li><a href="#hello" data-nav="hello">Hello</a></li>
+      <li><a href="#resume" data-nav="resume">Resume</a></li>
+      <li><a href="#ai" data-nav="ai">AI Creations</a></li>
+      <li><a href="#adventures" data-nav="adventures">Adventures</a></li>
+      <li><a href="#photos" data-nav="photos">Photos</a></li>
+      <li><a href="#doodles" data-nav="doodles">Doodles</a></li>
+      <li><a href="#contact" data-nav="contact">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+
 <div class="shell">
   <aside class="side">
+    <a id="menuToggle">Menu</a>
     <h1 class="brand"><a href="#hello">John Brophy</a></h1>
     <p class="tagline">Builder &amp; Product Leader</p>
     <nav class="main" aria-label="Main">
@@ -807,7 +830,11 @@
 <script>
 (function(){
   var pages = ['hello','resume','ai','adventures','photos','doodles','contact'];
-  var navLinks = document.querySelectorAll('nav.main a');
+  var navLinks = document.querySelectorAll('nav.main a, #mobileNav a');
+  var mobileNav = document.getElementById('mobileNav');
+  document.getElementById('menuToggle').addEventListener('click', function(){
+    mobileNav.style.height = mobileNav.offsetHeight > 0 ? '0px' : mobileNav.scrollHeight + 'px';
+  });
   var galCaption = document.getElementById('galCaption');
   var capTitle = document.getElementById('capTitle');
   var capLoc = document.getElementById('capLoc');
@@ -832,6 +859,7 @@
     navLinks.forEach(function(a){
       a.classList.toggle('active', a.dataset.nav === id);
     });
+    mobileNav.style.height = '0px';
     syncCaption();
     window.scrollTo(0,0);
   }
