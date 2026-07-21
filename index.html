@@ -118,10 +118,11 @@
   .post h2{margin:0;font-size:21px;font-weight:700}
   .post .date{margin:8px 0 22px;font-size:12px;color:var(--soft)}
   .post p{font-size:13px;color:var(--body);margin:0 0 18px}
-  .post img.photo,.post video.photo{display:block;margin:6px auto 14px;width:auto;max-width:min(100%,420px);max-height:48vh}
-  .post img.photo.wide,.post video.photo.wide{width:100%}
-  .post .yt{display:block;margin:6px 0 10px}
+  .post{display:flow-root}
+  .post img.photo,.post video.photo,.post .yt{float:right;width:min(45%,340px);height:auto;margin:6px 0 16px 26px}
+  .post .yt{text-decoration:none}
   .post .yt img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+  .post .yt .cta{margin-top:10px}
   .post .ctas{margin:0 0 18px}
   .post + .post{border-top:1px solid var(--line);margin-top:48px;padding-top:48px}
   .adv-side{flex:0 0 218px}
@@ -200,6 +201,7 @@
     .proj .thumb{flex:none;width:100%;max-width:320px}
     #adventures,#ai2{flex-direction:column}
     .adv-side{flex:none}
+    .post img.photo,.post video.photo,.post .yt{float:none;width:100%;margin:6px 0 14px}
     .gallery .frame{height:60vh}
     .thumbgrid{grid-template-columns:repeat(3,1fr)}
   }
@@ -542,15 +544,14 @@
         <article class="post">
           <h2>New Bike!</h2>
           <p class="date">November 09, 2025</p>
-          <p>I bought a Brompton T-line for commuting in and out of the city.&nbsp; Currently on a journey to make it that little bit lighter. Check out the journey over <a href="https://photos.app.goo.gl/f2fkjAyAvw7PU3Vs5">here</a> and my full weight weenie spreadsheet over <a href="https://docs.google.com/spreadsheets/d/1DwT-mIlCAZLRyAPsgq1tQ53YSAbxw836vvyqcR-R-HI/edit?usp=sharing">here</a> :)</p>
           <img class="photo" src="images/adventures/01-img.jpg" alt="Titanium Brompton T-Line against a white brick wall">
+          <p>I bought a Brompton T-line for commuting in and out of the city.&nbsp; Currently on a journey to make it that little bit lighter. Check out the journey over <a href="https://photos.app.goo.gl/f2fkjAyAvw7PU3Vs5">here</a> and my full weight weenie spreadsheet over <a href="https://docs.google.com/spreadsheets/d/1DwT-mIlCAZLRyAPsgq1tQ53YSAbxw836vvyqcR-R-HI/edit?usp=sharing">here</a> :)</p>
         </article>
         <article class="post" id="post-pa">
           <h2>Bike touring the Pennsylvania Grand Canyon and Centralia.</h2>
           <p class="date">January 20, 2025</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=YgqwuYfVlRA"><img src="https://i.ytimg.com/vi/YgqwuYfVlRA/hqdefault.jpg" alt="Pennsylvania Grand Canyon tour video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>A little video I put together of a tour I did last year with a friend. Watch till the end to find out what happened to the cat.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=YgqwuYfVlRA"><img src="https://i.ytimg.com/vi/YgqwuYfVlRA/hqdefault.jpg" alt="Pennsylvania Grand Canyon tour video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=YgqwuYfVlRA">Watch on YouTube</a></p>
           <p>We roughly followed <a href="https://ridewithgps.com/routes/47556941?privacy_code=xdK3lIfpszBftLP6GD3VrEww2eznGmjE">this route</a>.</p>
         </article>
         <article class="post" id="post-girona">
@@ -563,94 +564,83 @@
         <article class="post" id="post-ny12">
           <h2>12 day bikepacking trip around New York State</h2>
           <p class="date">September 24, 2020</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=V4AqCR70eQU"><img src="https://i.ytimg.com/vi/V4AqCR70eQU/hqdefault.jpg" alt="12 day bikepacking trip around New York State video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>I spent 12 days in September 2020 with 3 friends riding around New York State.&nbsp; We saw the Finger Lakes, the wilderness, Lake George and everything in between. This is hands down the best ride since Japan.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=V4AqCR70eQU"><img src="https://i.ytimg.com/vi/V4AqCR70eQU/hqdefault.jpg" alt="12 day bikepacking trip around New York State video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=V4AqCR70eQU">Watch on YouTube</a></p>
           <p>This was our <a href="https://www.google.com/maps/d/edit?hl=en&amp;ll=43.01607761433858%2C-75.23090950000001&amp;mid=1esvxJ1pEKxB5cFbxl6oSrgkqj6pSv3FS&amp;z=8">route</a>.</p>
         </article>
         <article class="post">
           <h2>NYC to California Hill</h2>
           <p class="date">August 29, 2020</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=4V33MoMTBo8"><img src="https://i.ytimg.com/vi/4V33MoMTBo8/hqdefault.jpg" alt="NYC to California Hill video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>Finally back on the bike and making videos. Feels good.</p>
           <p>We jumped on the train from Grand Central and headed to White Plains. From there we rode the 53 miles or so to a primitive camping spot at California Hill.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=4V33MoMTBo8"><img src="https://i.ytimg.com/vi/4V33MoMTBo8/hqdefault.jpg" alt="NYC to California Hill video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=4V33MoMTBo8">Watch on YouTube</a></p>
           <p>Epic ride. Even with the rain in the morning.</p>
           <p>Route here: <a href="https://ridewithgps.com/routes/33770105">ridewithgps.com/routes/33770105</a></p>
         </article>
         <article class="post">
           <h2>Cuba - A Loop out of Havana</h2>
           <p class="date">June 22, 2020</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=rE64LjhyqOo"><img src="https://i.ytimg.com/vi/rE64LjhyqOo/hqdefault.jpg" alt="Cuba loop out of Havana video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>I managed to sneak in a week long trip to Cuba in the few weeks before the world went crazy with Covid with three friends - Mike, Eli and Sean.&nbsp; We flew from NYC, to Miami and then to Havana.</p>
           <p>It was very easy - we applied for a visa and then ticked 'Support for the Cuban People'.&nbsp; We rode out along the north coast from Havana to Vinales (the tobacco growing region) and then came back along the south coast and then back up to Havana.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=rE64LjhyqOo"><img src="https://i.ytimg.com/vi/rE64LjhyqOo/hqdefault.jpg" alt="Cuba loop out of Havana video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=rE64LjhyqOo">Watch on YouTube</a></p>
           <p>We packed light - no tents and stayed in what the Cubans call 'Casa Particulares'.&nbsp; Which are basically lovely Cuban peoples houses - where they let you stay and cook you dinner.</p>
         </article>
         <article class="post">
           <h2>Shirley Chisholm State Park</h2>
           <p class="date">January 14, 2020</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=AnThuWh0qv0"><img src="https://i.ytimg.com/vi/AnThuWh0qv0/hqdefault.jpg" alt="Shirley Chisholm State Park ride video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>Absolutely loving this new park. We've been riding Greenpoint to Shirley Chisholm State Park a number of times over the last few months. After we go for the greatest Pizza in NYC at New Park Pizza, then we head to Finback brewery in Queens for a few beers on the way home.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=AnThuWh0qv0"><img src="https://i.ytimg.com/vi/AnThuWh0qv0/hqdefault.jpg" alt="Shirley Chisholm State Park ride video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=AnThuWh0qv0">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>The Nutmeg Nor'Easter</h2>
           <p class="date">October 28, 2019</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=u52ViE_axCw"><img src="https://i.ytimg.com/vi/u52ViE_axCw/hqdefault.jpg" alt="The Nutmeg Nor'Easter video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>Blimey. What a ride. We joined <a href="https://www.instagram.com/ultraromance/">Ultra Romance</a> and his crew at the 3rd annual Nutmeg Nor'Easter in Colchester, Connecticut. We stayed on a little farm - camped Friday and Saturday night. It was absolutely epic. Amazing people, amazing weather, amazing bikes, amazing food and absolutely stunning scenery.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=u52ViE_axCw"><img src="https://i.ytimg.com/vi/u52ViE_axCw/hqdefault.jpg" alt="The Nutmeg Nor'Easter video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=u52ViE_axCw">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>Harriman State Park with NYCADV</h2>
           <p class="date">October 07, 2019</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=dP1S2CaKCG8"><img src="https://i.ytimg.com/vi/dP1S2CaKCG8/hqdefault.jpg" alt="Harriman State Park ride video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>A beautiful ride with a great crew of <a href="https://www.meetup.com/nyc-adventure-cycling-club/">NYC ADVers</a>. Come join us sometime. Harriman is my second home in New York.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=dP1S2CaKCG8"><img src="https://i.ytimg.com/vi/dP1S2CaKCG8/hqdefault.jpg" alt="Harriman State Park ride video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=dP1S2CaKCG8">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>Solo two day trip</h2>
           <p class="date">August 12, 2019</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=HG0BWzNXISg"><img src="https://i.ytimg.com/vi/HG0BWzNXISg/hqdefault.jpg" alt="Solo two day trip video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>I made the most of the weekend and put in 3 days of riding Friday / Sat / Sunday. Brooklyn to Harriman State Park on Friday Harriman to Shawangunk State Forest on Saturday Shawangunk to Beacon on Sunday.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=HG0BWzNXISg"><img src="https://i.ytimg.com/vi/HG0BWzNXISg/hqdefault.jpg" alt="Solo two day trip video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=HG0BWzNXISg">Watch on YouTube</a></p>
           <p>150 miles. 8k of elevation. Loved it.</p>
         </article>
         <article class="post">
           <h2>The Appalachian Gravel Growler</h2>
           <p class="date">June 03, 2019</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=xDWEd6JJChE"><img src="https://i.ytimg.com/vi/xDWEd6JJChE/hqdefault.jpg" alt="The Appalachian Gravel Growler video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>My friends and I rode most of the <a href="https://bikepacking.com/routes/appalachian-gravel-growler/">bikepacking.com Appalachian Gravel Growler</a> route at the end of May 2019.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=xDWEd6JJChE"><img src="https://i.ytimg.com/vi/xDWEd6JJChE/hqdefault.jpg" alt="The Appalachian Gravel Growler video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=xDWEd6JJChE">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>Fahnestock State park with NYCADV</h2>
           <p class="date">April 15, 2019</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=NndQ1WJZ1V8"><img src="https://i.ytimg.com/vi/NndQ1WJZ1V8/hqdefault.jpg" alt="Fahnestock State Park ride video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>I joined the NYC ADV crew for another fab weekend in Fahnestock State park. It was a beautiful day / night / morning! We rode a <a href="https://ridewithgps.com/routes/29659743">route</a> I designed.&nbsp; It was a lovely mix of farm lands, country clubs and back roads.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=NndQ1WJZ1V8"><img src="https://i.ytimg.com/vi/NndQ1WJZ1V8/hqdefault.jpg" alt="Fahnestock State Park ride video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=NndQ1WJZ1V8">Watch on YouTube</a></p>
           <p>Yes - that was a sauna in the back of an ambulance. Check out <a href="https://instagram.com/redhotsauna">instagram.com/redhotsauna</a> Tune is Surface Tension by Tomos.</p>
         </article>
         <article class="post">
           <h2>Ninham mountain with NYCADV</h2>
           <p class="date">March 20, 2019</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=ZhzWm5jiwDU"><img src="https://i.ytimg.com/vi/ZhzWm5jiwDU/hqdefault.jpg" alt="Ninham mountain ride video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>I joined the <a href="https://www.meetup.com/nyc-adventure-cycling-club/">NYC ADV</a> meetup crew and rode NYC up to Ninham mountain. It was hella cold but hella fun.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=ZhzWm5jiwDU"><img src="https://i.ytimg.com/vi/ZhzWm5jiwDU/hqdefault.jpg" alt="Ninham mountain ride video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=ZhzWm5jiwDU">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>Japan - Tokyo to Kyoto</h2>
           <p class="date">October 31, 2018</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=blKHn7cbXmo"><img src="https://i.ytimg.com/vi/blKHn7cbXmo/hqdefault.jpg" alt="Japan Tokyo to Kyoto tour video" loading="lazy"><span class="cta">Watch on YouTube</span></a>
           <p>I rode from Tokyo to Kyoto with two friends over 15 days in September 2018.</p>
-          <a class="yt" href="https://www.youtube.com/watch?v=blKHn7cbXmo"><img src="https://i.ytimg.com/vi/blKHn7cbXmo/hqdefault.jpg" alt="Japan Tokyo to Kyoto tour video" loading="lazy"></a>
-          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=blKHn7cbXmo">Watch on YouTube</a></p>
           <p><a href="https://goo.gl/xkUJ8K">Our route</a> took us through the mountains (follow this at your own risk! We didn't really plan it.. there is probably a far better route with less crazy tunnels).</p>
         </article>
         <article class="post">
           <h2>NYC to Montreal</h2>
           <p class="date">August 23, 2017</p>
+          <img class="photo" src="images/adventures/02-montreal.gif" alt="Sunset camp on the way to Montreal">
           <p>Before I got my hands on a go pro I rode solo from NYC to Montreal back in July 2017. It took me 8 days and was absolutely brilliant. I documented the trip on google photos over <a href="https://photos.google.com/u/0/share/AF1QipO60RPSpW_E_Fu8xbQf7qOXfNUDraHVittTcddEjYnfkxFGk6FyoI9sdBhVKfJ2_w?key=YjdGUko1clI5WVdUazF5Njh0eFVPeUFmUWpJc1BB">here</a>.</p>
-          <img class="photo wide" src="images/adventures/02-montreal.gif" alt="Sunset camp on the way to Montreal">
         </article>
       </div>
       <aside class="adv-side">
@@ -810,17 +800,17 @@
         <article class="post">
           <h2>Course Builder</h2>
           <p class="date">June 3, 2026</p>
+          <img class="photo" src="images/ai-creations/02-img.jpg" alt="Course Builder">
           <p>I built a course factory for Claude Code.</p>
           <p>I learn by doing, not by reading. <a href="https://johnbr0phy.github.io/course-builder/">Course Builder</a> generates courses that work that way: every lesson is hands-on, every exercise runs on a real project you bring, and a Claude-powered instructor guides each session, checks your work, and grades your quizzes.</p>
-          <img class="photo" src="images/ai-creations/02-img.jpg" alt="Course Builder">
           <p>Give it a topic, source material, and an audience, and it builds the whole thing: lessons, quizzes, progress tracking, a deployable homepage. Learning by doing, on any subject, for anyone.</p>
           <p>Try it: <a href="https://johnbr0phy.github.io/course-builder/#install">install</a> the skill, pick a topic, and ask Claude to build the course.</p>
         </article>
         <article class="post">
           <h2>Claude Code Workflows Course</h2>
           <p class="date">June 3, 2026</p>
-          <p>I built a hands-on course for learning Claude Code workflows by actually using them.</p>
           <img class="photo" src="images/ai-creations/03-img.jpg" alt="Claude Code Workflows Course">
+          <p>I built a hands-on course for learning Claude Code workflows by actually using them.</p>
           <p>Instead of reading about agent orchestration in theory, you work inside Claude Code, trigger real workflows, inspect the JavaScript harness Claude writes, and watch subagents split up the work.</p>
           <p>The course has 12 sessions, short quizzes, and a capstone where you turn one of your own recurring tasks into a reusable workflow.</p>
           <p>Try it if you want to understand when a task has outgrown a single Claude session, and how to use workflows without wasting compute.</p>
@@ -829,8 +819,8 @@
         <article class="post">
           <h2>LLM-Wiki</h2>
           <p class="date">April 5, 2026</p>
-          <p>Your call transcripts, emails, and docs contain more useful knowledge than you'll ever manually dig out. LLM-Wiki turns that raw material into a structured, queryable wiki &mdash; automatically.</p>
           <img class="photo" src="images/ai-creations/04-img.jpg" alt="LLM-Wiki">
+          <p>Your call transcripts, emails, and docs contain more useful knowledge than you'll ever manually dig out. LLM-Wiki turns that raw material into a structured, queryable wiki &mdash; automatically.</p>
           <p>Automate raw files in. Have Claude auto &ldquo;compile&rdquo; hourly. It updates articles, cross-links everything, and remembers what it's already processed. Ask questions, get sourced answers.</p>
           <p>Inspired by <a href="https://x.com/karpathy/status/2039805659525644595">Andrej Karpathy's LLM-as-compiler idea</a>.</p>
           <p class="ctas"><a class="cta" href="https://github.com/johnbr0phy/llm-wiki">View on GitHub</a></p>
@@ -838,33 +828,33 @@
         <article class="post" id="post-banksy">
           <h2>Banksy Print Tracker</h2>
           <p class="date">March 27, 2026</p>
-          <p>I built a <a href="https://johnbr0phy.github.io/banksy">Banksy Print Tracker site</a> that lists upcoming and completed auction lots for original Banksy prints, with search by print name and the option to view prices in different currencies.</p>
           <img class="photo" src="images/ai-creations/01-img.jpg" alt="Banksy Print Tracker">
+          <p>I built a <a href="https://johnbr0phy.github.io/banksy">Banksy Print Tracker site</a> that lists upcoming and completed auction lots for original Banksy prints, with search by print name and the option to view prices in different currencies.</p>
           <p>It updates automatically every day by checking major auction houses and a realized feed, then refreshes the live site so the data stays current without manual work.</p>
           <p class="ctas"><a class="cta" href="https://johnbr0phy.github.io/banksy">Visit the site</a></p>
         </article>
         <article class="post">
           <h2>AI PM Course</h2>
           <p class="date">February 4, 2026</p>
-          <p>I built this course because I wanted to actually understand AI, not just use it. Most PM resources give you surface-level overviews, but I wanted to know how embeddings work, when to use RAG vs fine-tuning, and how to talk to engineers without faking it.</p>
           <img class="photo" src="images/ai-creations/05-img.jpg" alt="AI PM Course">
+          <p>I built this course because I wanted to actually understand AI, not just use it. Most PM resources give you surface-level overviews, but I wanted to know how embeddings work, when to use RAG vs fine-tuning, and how to talk to engineers without faking it.</p>
           <p>So I made a <a href="https://johnbr0phy.github.io/AIPM/">25-session course that runs inside Claude Code</a>. You learn by doing: Claude walks you through real exercises, and you bring your own product idea so every lesson applies to something you actually care about. By the end, you'll be able to prototype AI features yourself and have real technical conversations about architecture tradeoffs.</p>
           <p>Try it: Install <a href="https://docs.anthropic.com/en/docs/claude-code/overview">Claude Code</a>, clone the <a href="https://github.com/johnbr0phy/AIPM">repo</a>, and say "Let's get started."</p>
         </article>
         <article class="post">
           <h2>OpenClaw Q1 OKRs</h2>
           <p class="date">January 31, 2026</p>
+          <video class="photo" controls preload="none" poster="images/ai-creations/openclaw-poster.jpg" src="videos/openclaw-okr.mp4"></video>
           <p>I gave my <a href="https://x.com/openclaw">@openclaw</a> OKRs in Q1.</p>
           <p>His main goal was to optimize my little DMV test prep site (<a href="https://tigertest.io">tigertest.io</a>) and increase the amount of users that take a practice test - as those users are more likely to give me $10 a month. His long term goal is to make $100k for an Optimus body.</p>
-          <video class="photo wide" controls preload="none" poster="images/ai-creations/openclaw-poster.jpg" src="videos/openclaw-okr.mp4"></video>
           <p>Here is his Q1 OKR presentation (he created the deck and the audio) &lt;3.</p>
           <p>Imagine where this kind of thing will be in a year or two?</p>
         </article>
         <article class="post" id="post-ace">
           <h2>Ace-that-interview.com</h2>
           <p class="date">January 18, 2026</p>
-          <p>I spent 2 days hacking with my brother and this is what fell out the other end.</p>
           <img class="photo" src="images/ai-creations/06-img.jpg" alt="Ace That Interview">
+          <p>I spent 2 days hacking with my brother and this is what fell out the other end.</p>
           <p>Ace That Interview is an interview prep platform for job seekers targeting specific companies. Users search for roles like "Google PM interview prep" and land on tailored pages (e.g., /google/product-manager) with guided prep courses.</p>
           <p>Key features: a modular content system (~20 modules combining to cover hundreds of company/role combinations), AI-generated content from public sources focused on interview psychology, and a story-based UX with progressive disclosure.</p>
           <p>Business model: Testing freemium vs. ~$200 one-time paywall for company-specific content.</p>
@@ -873,8 +863,8 @@
         <article class="post" id="post-tigertest">
           <h2>Tigertest.io</h2>
           <p class="date">December 21, 2025</p>
-          <p>What started as a simple New Jersey DMV practice app for myself evolved into a full platform covering all 50 states.</p>
           <img class="photo" src="images/ai-creations/07-img.jpg" alt="TigerTest.io">
+          <p>What started as a simple New Jersey DMV practice app for myself evolved into a full platform covering all 50 states.</p>
           <p>Using Claude Code, I first updated and improved my original NJ app, then generated 2,000 state-specific questions to complement the existing question bank. From there, I built out TigerTest.io - a completely free practice test platform featuring mastery-based training, four practice tests per state, pass probability tracking, and full user accounts.</p>
           <p>The entire product was built through AI-assisted development.</p>
           <p>2 months after launch and the site has racked up over 50,000 questions being answered.</p>
@@ -883,31 +873,31 @@
         <article class="post">
           <h2>New Parent Qbank</h2>
           <p class="date">December 15, 2025</p>
-          <p>A lightweight web app that presents a series of questions designed to help new or expecting parents reflect on their preferences, priorities, and readiness for parenthood. The interface guides users through each item in a simple, engaging format and then summarizes insights at the end to support self-reflection or discussion between partners.</p>
           <img class="photo" src="images/ai-creations/08-img.jpg" alt="New Parent Qbank">
+          <p>A lightweight web app that presents a series of questions designed to help new or expecting parents reflect on their preferences, priorities, and readiness for parenthood. The interface guides users through each item in a simple, engaging format and then summarizes insights at the end to support self-reflection or discussion between partners.</p>
           <p>I built this in a few hours with Claude Opus 4.5.</p>
           <p class="ctas"><a class="cta" href="https://johnbr0phy.github.io/new-parent-quiz/">Play with the app</a></p>
         </article>
         <article class="post">
           <h2>Family Colouring Book</h2>
           <p class="date">April 2025</p>
-          <p>I decided to create my neice and nephews a coloring book using the latest gpt 4o image creation. With that you can upload a photo of a pesron - and then have it recreate them as a line drawing.</p>
           <img class="photo" src="images/ai-creations/09-img.jpg" alt="Family Colouring Book">
+          <p>I decided to create my neice and nephews a coloring book using the latest gpt 4o image creation. With that you can upload a photo of a pesron - and then have it recreate them as a line drawing.</p>
           <p class="ctas"><a class="cta" href="https://photos.google.com/u/0/share/AF1QipNNVhF9y9_i2KSmXy0yW-97QmP0-D1KidXZvazxUc_2ruhMxNYurr49nSFMKLlMVw?key=d0hfOFNDMHNDT185UjBnUnpDOVk3ajBEbk1kRHRB">View book</a></p>
         </article>
         <article class="post">
           <h2>Turret.fun</h2>
           <p class="date">March 2025</p>
-          <p>A prototype for a website and an app for a game I am developing with my brother Pete.</p>
           <img class="photo" src="images/ai-creations/10-img.jpg" alt="Turret.fun">
+          <p>A prototype for a website and an app for a game I am developing with my brother Pete.</p>
           <p>I built all of this is 3-4 hours.</p>
           <p class="ctas"><a class="cta" href="https://chipper-starlight-c7e09b.netlify.app/">Play with the app</a></p>
         </article>
         <article class="post">
           <h2>NJ Driving Knowledge test Qbank</h2>
           <p class="date">February 2025</p>
-          <p>I moved to Jersey and decided to get my driving lisence. I just built this tool to help me pass the NJ Driving Knowledge test using <a href="https://bolt.new">bolt.new</a>. It took me 4-5 hours.</p>
           <img class="photo" src="images/ai-creations/11-img.jpg" alt="NJ Driving Knowledge test Qbank">
+          <p>I moved to Jersey and decided to get my driving lisence. I just built this tool to help me pass the NJ Driving Knowledge test using <a href="https://bolt.new">bolt.new</a>. It took me 4-5 hours.</p>
           <p>I used ChatGPT and Claude to analyze the 223 page driving manual pdf and come up with 200 hard questions that I split into 4 practice tests. I then built this qbank app to help me master each question. I wrote 0 lines of code. Amazing!</p>
           <p>UPDATE - I shared the app on reddit and it now has over 1200 users.</p>
           <p class="ctas"><a class="cta" href="https://delightful-truffle-b84725.netlify.app/">Play with the app</a></p>
@@ -915,8 +905,8 @@
         <article class="post">
           <h2>A rapid prototype for an interview</h2>
           <p class="date">May 2024</p>
-          <p>I interviewed with <a href="https://stensul.com/">Stensul</a> and as part of the prcoess - they asked me to show how I would think through building a new landing page creation system.</p>
           <img class="photo" src="images/ai-creations/12-img.jpg" alt="Stensul interview prototype">
+          <p>I interviewed with <a href="https://stensul.com/">Stensul</a> and as part of the prcoess - they asked me to show how I would think through building a new landing page creation system.</p>
           <p>UPDATE - I got the job.</p>
           <p>This took me around 2 hours to put together:</p>
           <p class="ctas"><a class="cta" href="https://mellifluous-strudel-f69cd6.netlify.app/">Play with the app</a></p>
