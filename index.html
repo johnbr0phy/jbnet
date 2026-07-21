@@ -104,9 +104,11 @@
   .post h2{margin:0;font-size:21px;font-weight:700}
   .post .date{margin:8px 0 22px;font-size:12px;color:var(--soft)}
   .post p{font-size:13px;color:var(--body);margin:0 0 18px}
-  .post .photo{width:88%;margin:6px auto 12px;aspect-ratio:3/4;max-width:430px}
-  .post .video{width:100%;aspect-ratio:16/9;margin:6px 0 12px}
-  .post .map{width:100%;aspect-ratio:4/3;max-width:520px;margin:6px 0 12px}
+  .post img.photo{display:block;margin:6px auto 14px;width:auto;max-width:100%;max-height:70vh}
+  .post img.photo.wide{width:100%}
+  .post .yt{display:block;margin:6px 0 10px}
+  .post .yt img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+  .post .ctas{margin:0 0 18px}
   .post + .post{border-top:1px solid var(--line);margin-top:48px;padding-top:48px}
   .adv-side{flex:0 0 218px}
   .adv-side h2{margin:0 0 16px;font-size:21px;font-weight:700;line-height:1.3}
@@ -196,7 +198,7 @@
     </nav>
     <div class="socials" aria-label="Social links">
       <a href="https://www.instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 1.8c-3.1 0-3.5 0-4.8.1-1.1.1-1.5.2-1.8.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.3-.3.8-.3 1.8-.1 1.2-.1 1.6-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.5.3 1.8.2.5.4.8.7 1.1.3.3.6.5 1.1.7.3.1.8.3 1.8.3 1.2.1 1.6.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.5-.2 1.8-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.3.3-.8.3-1.8.1-1.2.1-1.6.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.5-.3-1.8-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.3-.1-.8-.3-1.8-.3-1.2-.1-1.6-.1-4.8-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.2-8.3a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg></a>
-      <a href="https://www.youtube.com" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4L15.8 12l-6.3 3.6z"/></svg></a>
+      <a href="https://www.youtube.com/@JohnBr0" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4L15.8 12l-6.3 3.6z"/></svg></a>
       <a href="https://www.linkedin.com" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></svg></a>
       <a href="https://open.spotify.com" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.5 17.3a.7.7 0 0 1-1 .3c-2.8-1.7-6.3-2.1-10.5-1.2a.8.8 0 0 1-.9-.6.8.8 0 0 1 .6-.9c4.6-1 8.5-.6 11.6 1.3.3.2.4.7.2 1.1zm1.5-3.3a.9.9 0 0 1-1.3.3c-3.2-2-8.1-2.6-11.9-1.4a.9.9 0 0 1-1.2-.6.9.9 0 0 1 .6-1.2c4.3-1.3 9.7-.7 13.4 1.6.5.3.6.9.4 1.3zm.1-3.4C15.3 8.3 9 8.1 5.4 9.2a1.1 1.1 0 0 1-1.4-.7 1.1 1.1 0 0 1 .8-1.4c4.2-1.3 11.1-1 15.4 1.5a1.1 1.1 0 0 1 .4 1.5c-.3.5-1 .7-1.5.5z"/></svg></a>
       <a href="https://github.com" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg></a>
@@ -503,37 +505,39 @@
         <article class="post">
           <h2>New Bike!</h2>
           <p class="date">November 09, 2025</p>
-          <p>I bought a Brompton T-line for commuting in and out of the city.&nbsp; Currently on a journey to make it that little bit lighter. Check out the journey over <a href="#adventures">here</a> and my full weight weenie spreadsheet over <a href="#adventures">here</a> :)</p>
+          <p>I bought a Brompton T-line for commuting in and out of the city.&nbsp; Currently on a journey to make it that little bit lighter. Check out the journey over <a href="https://photos.app.goo.gl/f2fkjAyAvw7PU3Vs5">here</a> and my full weight weenie spreadsheet over <a href="https://docs.google.com/spreadsheets/d/1DwT-mIlCAZLRyAPsgq1tQ53YSAbxw836vvyqcR-R-HI/edit?usp=sharing">here</a> :)</p>
           <img class="photo" src="images/adventures/01-img.jpg" alt="Titanium Brompton T-Line against a white brick wall">
         </article>
         <article class="post">
           <h2>Bike touring the Pennsylvania Grand Canyon and Centralia.</h2>
           <p class="date">January 20, 2025</p>
           <p>A little video I put together of a tour I did last year with a friend. Watch till the end to find out what happened to the cat.</p>
-          <div class="ph video"><span>Video &mdash; Pennsylvania Grand Canyon tour</span></div>
-          <p>We roughly followed this route:</p>
-          <div class="ph map"><span>Route map embed</span></div>
+          <a class="yt" href="https://www.youtube.com/watch?v=YgqwuYfVlRA"><img src="https://i.ytimg.com/vi/YgqwuYfVlRA/hqdefault.jpg" alt="Pennsylvania Grand Canyon tour video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=YgqwuYfVlRA">Watch on YouTube</a></p>
+          <p>We roughly followed <a href="https://ridewithgps.com/routes/47556941">this route</a>.</p>
         </article>
         <article class="post">
           <h2>Road biking around Girona</h2>
           <p class="date">May 07, 2024</p>
-          <p>I spent 4 days in Girona putting my new Enve Melee to the test. It really is absolutely beautiful out there. Below is the route of our most crazy day - at the top of the mountain - it was hailing!</p>
-          <div class="ph map"><span>Route map embed</span></div>
-          <p>Read more about our little adventure over <a href="#adventures">here</a>.</p>
+          <p>I spent 4 days in Girona putting my new <a href="https://photos.google.com/u/0/share/AF1QipPk0H81axu-zPwukuTriMYmo5T44Npm01fEpQ7-2oCG7JSZZ2aosi2Me5COYrnKvg?key=a3VjcmxSWHZ3blROZHBaeWxvWFM3WTJueHgtNHBB">Enve Melee</a> to the test. It really is absolutely beautiful out there. Below is the route of our most crazy day - at the top of the mountain - it was hailing!</p>
+          <p class="ctas"><a class="cta" href="https://ridewithgps.com/trips/172257801">View the route on RideWithGPS</a></p>
+          <p>Read more about our little adventure over <a href="https://photos.app.goo.gl/qvDZSzEdrCaLHffo6">here</a>.</p>
         </article>
         <article class="post">
           <h2>12 day bikepacking trip around New York State</h2>
           <p class="date">September 24, 2020</p>
           <p>I spent 12 days in September 2020 with 3 friends riding around New York State.&nbsp; We saw the Finger Lakes, the wilderness, Lake George and everything in between. This is hands down the best ride since Japan.</p>
-          <div class="ph video"><span>Video &mdash; NY State bikepacking trip</span></div>
-          <p>This was our <a href="#adventures">route</a>.</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=V4AqCR70eQU"><img src="https://i.ytimg.com/vi/V4AqCR70eQU/hqdefault.jpg" alt="12 day bikepacking trip around New York State video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=V4AqCR70eQU">Watch on YouTube</a></p>
+          <p>This was our <a href="https://www.google.com/maps/d/edit?hl=en&amp;ll=43.01607761433858%2C-75.23090950000001&amp;mid=1esvxJ1pEKxB5cFbxl6oSrgkqj6pSv3FS&amp;z=8">route</a>.</p>
         </article>
         <article class="post">
           <h2>NYC to California Hill</h2>
           <p class="date">August 29, 2020</p>
           <p>Finally back on the bike and making videos. Feels good.</p>
           <p>We jumped on the train from Grand Central and headed to White Plains. From there we rode the 53 miles or so to a primitive camping spot at California Hill.</p>
-          <div class="ph video"><span>Video &mdash; NYC to California Hill</span></div>
+          <a class="yt" href="https://www.youtube.com/watch?v=4V33MoMTBo8"><img src="https://i.ytimg.com/vi/4V33MoMTBo8/hqdefault.jpg" alt="NYC to California Hill video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=4V33MoMTBo8">Watch on YouTube</a></p>
           <p>Epic ride. Even with the rain in the morning.</p>
           <p>Route here: <a href="https://ridewithgps.com/routes/33770105">ridewithgps.com/routes/33770105</a></p>
         </article>
@@ -542,66 +546,74 @@
           <p class="date">June 22, 2020</p>
           <p>I managed to sneak in a week long trip to Cuba in the few weeks before the world went crazy with Covid with three friends - Mike, Eli and Sean.&nbsp; We flew from NYC, to Miami and then to Havana.</p>
           <p>It was very easy - we applied for a visa and then ticked 'Support for the Cuban People'.&nbsp; We rode out along the north coast from Havana to Vinales (the tobacco growing region) and then came back along the south coast and then back up to Havana.</p>
-          <div class="ph video"><span>Video &mdash; Cuba loop out of Havana</span></div>
+          <a class="yt" href="https://www.youtube.com/watch?v=rE64LjhyqOo"><img src="https://i.ytimg.com/vi/rE64LjhyqOo/hqdefault.jpg" alt="Cuba loop out of Havana video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=rE64LjhyqOo">Watch on YouTube</a></p>
           <p>We packed light - no tents and stayed in what the Cubans call 'Casa Particulares'.&nbsp; Which are basically lovely Cuban peoples houses - where they let you stay and cook you dinner.</p>
         </article>
         <article class="post">
           <h2>Shirley Chisholm State Park</h2>
           <p class="date">January 14, 2020</p>
           <p>Absolutely loving this new park. We've been riding Greenpoint to Shirley Chisholm State Park a number of times over the last few months. After we go for the greatest Pizza in NYC at New Park Pizza, then we head to Finback brewery in Queens for a few beers on the way home.</p>
-          <div class="ph video"><span>Video &mdash; Shirley Chisholm State Park</span></div>
+          <a class="yt" href="https://www.youtube.com/watch?v=AnThuWh0qv0"><img src="https://i.ytimg.com/vi/AnThuWh0qv0/hqdefault.jpg" alt="Shirley Chisholm State Park ride video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=AnThuWh0qv0">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>The Nutmeg Nor'Easter</h2>
           <p class="date">October 28, 2019</p>
-          <p>Blimey. What a ride. We joined Ultra Romance and his crew at the 3rd annual Nutmeg Nor'Easter in Colchester, Connecticut. We stayed on a little farm - camped Friday and Saturday night. It was absolutely epic. Amazing people, amazing weather, amazing bikes, amazing food and absolutely stunning scenery.</p>
-          <div class="ph video"><span>Video &mdash; The Nutmeg Nor'Easter</span></div>
+          <p>Blimey. What a ride. We joined <a href="https://www.instagram.com/ultraromance/">Ultra Romance</a> and his crew at the 3rd annual Nutmeg Nor'Easter in Colchester, Connecticut. We stayed on a little farm - camped Friday and Saturday night. It was absolutely epic. Amazing people, amazing weather, amazing bikes, amazing food and absolutely stunning scenery.</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=u52ViE_axCw"><img src="https://i.ytimg.com/vi/u52ViE_axCw/hqdefault.jpg" alt="The Nutmeg Nor'Easter video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=u52ViE_axCw">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>Harriman State Park with NYCADV</h2>
           <p class="date">October 07, 2019</p>
-          <p>A beautiful ride with a great crew of NYC ADVers. Come join us sometime. Harriman is my second home in New York.</p>
-          <div class="ph video"><span>Video &mdash; Harriman State Park</span></div>
+          <p>A beautiful ride with a great crew of <a href="https://www.meetup.com/NYC-Adventure-Cycling-Club/">NYC ADVers</a>. Come join us sometime. Harriman is my second home in New York.</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=dP1S2CaKCG8"><img src="https://i.ytimg.com/vi/dP1S2CaKCG8/hqdefault.jpg" alt="Harriman State Park ride video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=dP1S2CaKCG8">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>Solo two day trip</h2>
           <p class="date">August 12, 2019</p>
           <p>I made the most of the weekend and put in 3 days of riding Friday / Sat / Sunday. Brooklyn to Harriman State Park on Friday Harriman to Shawangunk State Forest on Saturday Shawangunk to Beacon on Sunday.</p>
-          <div class="ph video"><span>Video &mdash; solo weekend trip</span></div>
+          <a class="yt" href="https://www.youtube.com/watch?v=HG0BWzNXISg"><img src="https://i.ytimg.com/vi/HG0BWzNXISg/hqdefault.jpg" alt="Solo two day trip video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=HG0BWzNXISg">Watch on YouTube</a></p>
           <p>150 miles. 8k of elevation. Loved it.</p>
         </article>
         <article class="post">
           <h2>The Appalachian Gravel Growler</h2>
           <p class="date">June 03, 2019</p>
-          <p>My friends and I rode most of the bikepacking.com Appalachian Gravel Growler route at the end of May 2019.</p>
-          <div class="ph video"><span>Video &mdash; Appalachian Gravel Growler</span></div>
+          <p>My friends and I rode most of the <a href="https://bikepacking.com/routes/appalachian-gravel-growler/">bikepacking.com Appalachian Gravel Growler</a> route at the end of May 2019.</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=xDWEd6JJChE"><img src="https://i.ytimg.com/vi/xDWEd6JJChE/hqdefault.jpg" alt="The Appalachian Gravel Growler video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=xDWEd6JJChE">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>Fahnestock State park with NYCADV</h2>
           <p class="date">April 15, 2019</p>
-          <p>I joined the NYC ADV crew for another fab weekend in Fahnestock State park. It was a beautiful day / night / morning! We rode a route I designed.&nbsp; It was a lovely mix of farm lands, country clubs and back roads.</p>
-          <div class="ph video"><span>Video &mdash; Fahnestock State Park</span></div>
+          <p>I joined the NYC ADV crew for another fab weekend in Fahnestock State park. It was a beautiful day / night / morning! We rode a <a href="https://ridewithgps.com/routes/29659743">route</a> I designed.&nbsp; It was a lovely mix of farm lands, country clubs and back roads.</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=NndQ1WJZ1V8"><img src="https://i.ytimg.com/vi/NndQ1WJZ1V8/hqdefault.jpg" alt="Fahnestock State Park ride video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=NndQ1WJZ1V8">Watch on YouTube</a></p>
           <p>Yes - that was a sauna in the back of an ambulance. Check out <a href="https://instagram.com/redhotsauna">instagram.com/redhotsauna</a> Tune is Surface Tension by Tomos.</p>
         </article>
         <article class="post">
           <h2>Ninham mountain with NYCADV</h2>
           <p class="date">March 20, 2019</p>
-          <p>I joined the NYC ADV meetup crew and rode NYC up to Ninham mountain. It was hella cold but hella fun.</p>
-          <div class="ph video"><span>Video &mdash; Ninham mountain</span></div>
+          <p>I joined the <a href="https://www.meetup.com/NYC-Adventure-Cycling-Club/">NYC ADV</a> meetup crew and rode NYC up to Ninham mountain. It was hella cold but hella fun.</p>
+          <a class="yt" href="https://www.youtube.com/watch?v=ZhzWm5jiwDU"><img src="https://i.ytimg.com/vi/ZhzWm5jiwDU/hqdefault.jpg" alt="Ninham mountain ride video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=ZhzWm5jiwDU">Watch on YouTube</a></p>
         </article>
         <article class="post">
           <h2>Japan - Tokyo to Kyoto</h2>
           <p class="date">October 31, 2018</p>
           <p>I rode from Tokyo to Kyoto with two friends over 15 days in September 2018.</p>
-          <div class="ph video"><span>Video &mdash; Tokyo to Kyoto</span></div>
-          <p>Our route took us through the mountains (follow this at your own risk! We didn't really plan it.. there is probably a far better route with less crazy tunnels).</p>
-          <div class="ph map"><span>Route map embed</span></div>
+          <a class="yt" href="https://www.youtube.com/watch?v=blKHn7cbXmo"><img src="https://i.ytimg.com/vi/blKHn7cbXmo/hqdefault.jpg" alt="Japan Tokyo to Kyoto tour video" loading="lazy"></a>
+          <p class="ctas"><a class="cta" href="https://www.youtube.com/watch?v=blKHn7cbXmo">Watch on YouTube</a></p>
+          <p><a href="https://goo.gl/xkUJ8K">Our route</a> took us through the mountains (follow this at your own risk! We didn't really plan it.. there is probably a far better route with less crazy tunnels).</p>
         </article>
         <article class="post">
           <h2>NYC to Montreal</h2>
           <p class="date">August 23, 2017</p>
-          <p>Before I got my hands on a go pro I rode solo from NYC to Montreal back in July 2017. It took me 8 days and was absolutely brilliant. I documented the trip on google photos over <a href="#adventures">here</a>.</p>
-          <img class="photo" src="images/adventures/02-img.jpg" alt="Sunset camp on the way to Montreal">
+          <p>Before I got my hands on a go pro I rode solo from NYC to Montreal back in July 2017. It took me 8 days and was absolutely brilliant. I documented the trip on google photos over <a href="https://photos.google.com/u/0/share/AF1QipO60RPSpW_E_Fu8xbQf7qOXfNUDraHVittTcddEjYnfkxFGk6FyoI9sdBhVKfJ2_w?key=YjdGUko1clI5WVdUazF5Njh0eFVPeUFmUWpJc1BB">here</a>.</p>
+          <img class="photo wide" src="images/adventures/02-montreal.gif" alt="Sunset camp on the way to Montreal">
         </article>
       </div>
       <aside class="adv-side">
