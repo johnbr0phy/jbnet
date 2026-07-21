@@ -81,10 +81,10 @@
   #hello .hero{width:100%;aspect-ratio:3/2}
 
   /* ---------------- resume ---------------- */
-  .intro{display:flex;gap:44px;align-items:flex-start}
+  .intro{display:flow-root}
   .intro p{margin:0;font-size:21px;line-height:1.55;font-weight:400;color:var(--ink)}
   .intro p+p{margin-top:14px}
-  .intro .headshot{flex:0 0 158px;aspect-ratio:1/1}
+  .intro .headshot{float:right;margin:0 0 16px 44px;aspect-ratio:1/1}
   .job{display:flex;gap:36px;align-items:flex-start}
   .job .who{flex:0 0 220px}
   .job .who h2{margin:0;font-size:18px;font-weight:700}
@@ -186,8 +186,7 @@
     .socials{margin-top:20px}
     .gal-caption{margin-top:18px}
     .content{padding:26px 24px 70px}
-    .intro{flex-direction:column-reverse}
-    .intro .headshot{flex:none;width:158px}
+    .intro .headshot{float:none;margin:0 0 16px;width:158px}
     .job{flex-direction:column;gap:14px}
     .job .who{flex:none}
     #adventures,#ai{flex-direction:column}
@@ -252,11 +251,9 @@
     <!-- ============ RESUME ============ -->
     <section class="page" id="resume">
       <div class="intro">
-        <div>
-          <p>Hello! I'm John. For most of my career I was a design-led PM: I could see the product clearly, could tell you when a few pixels were off, but I needed a team to write the code and build it. Over the last year, everything about the PM role has changed. I now consider myself a builder.</p>
-          <p>Scrappy, hands-on, designing, coding, and PMing all at once, shipping daily, sometimes hourly. Have an idea in the morning, get it live by lunch. It's everything I ever dreamed this job could be. Grab a copy of my resume <a href="https://drive.google.com/file/d/1DP2hnZG-xbEuH10QsesM7zvLPMtekXFa/view?usp=sharing">here</a>.</p>
-        </div>
         <img class="headshot" src="images/resume/01-img.jpg" alt="John Brophy headshot">
+        <p>Hello! I'm John. For most of my career I was a design-led PM: I could see the product clearly, could tell you when a few pixels were off, but I needed a team to write the code and build it. Over the last year, everything about the PM role has changed. I now consider myself a builder.</p>
+        <p>Scrappy, hands-on, designing, coding, and PMing all at once, shipping daily, sometimes hourly. Have an idea in the morning, get it live by lunch. It's everything I ever dreamed this job could be. Grab a copy of my resume <a href="https://drive.google.com/file/d/1DP2hnZG-xbEuH10QsesM7zvLPMtekXFa/view?usp=sharing">here</a>.</p>
       </div>
       <hr class="rule">
       <div class="job">
