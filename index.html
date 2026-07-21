@@ -236,7 +236,7 @@
       <p class="t" id="capTitle">Ferry life</p>
       <p class="loc" id="capLoc">NYC, 2018</p>
       <p class="ctrls"><a id="prevBtn">PREV</a><span class="sep">/</span><a id="nextBtn">NEXT</a></p>
-      <a class="thumbs-link" id="thumbsBtn">SHOW THUMBNAILS</a>
+      <a class="thumbs-link" id="thumbsBtn">HIDE THUMBNAILS</a>
     </div>
   </aside>
 
@@ -651,7 +651,7 @@
     </section>
 
     <!-- ============ PHOTOS ============ -->
-    <section class="page wide gallery" id="photos" data-gallery>
+    <section class="page wide gallery thumbs" id="photos" data-gallery>
       <div class="slide on" data-title="Ferry life" data-loc="NYC, 2018"><img class="frame" src="images/photos/01-ferry-life.jpg" alt="Ferry life" loading="lazy"></div>
       <div class="slide" data-title="Beer time" data-loc="New Paltz, 2018"><img class="frame" src="images/photos/02-beer-time.jpg" alt="Beer time" loading="lazy"></div>
       <div class="slide" data-title="Bee happy" data-loc="New Paltz, 2018"><img class="frame" src="images/photos/03-bee-happy.jpg" alt="Bee happy" loading="lazy"></div>
@@ -721,7 +721,7 @@
     </section>
 
     <!-- ============ DOODLES ============ -->
-    <section class="page wide gallery" id="doodles" data-gallery>
+    <section class="page wide gallery thumbs" id="doodles" data-gallery>
       <div class="slide on" data-title="" data-loc=""><img class="frame" src="images/doodles/01-img.jpg" alt="" loading="lazy"></div>
       <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/02-img.jpg" alt="" loading="lazy"></div>
       <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/03-img.jpg" alt="" loading="lazy"></div>
@@ -841,6 +841,8 @@
     if(!isGal) return;
     var on = document.querySelector('#'+current+' .slide.on');
     if(on){ capTitle.textContent = on.dataset.title; capLoc.textContent = on.dataset.loc; }
+    var inThumbs = document.getElementById(current).classList.contains('thumbs');
+    document.getElementById('thumbsBtn').textContent = inThumbs ? 'HIDE THUMBNAILS' : 'SHOW THUMBNAILS';
   }
 
   function show(id){
@@ -906,6 +908,7 @@
       g.classList.remove('thumbs');
       document.getElementById('thumbsBtn').textContent = 'SHOW THUMBNAILS';
       syncCaption();
+      window.scrollTo(0,0);
     });
   });
 
