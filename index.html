@@ -9,11 +9,25 @@
 <body>
 <style>
   /* Faithful replica of johnbrophy.net (Squarespace) — deliberately light-only, like the original */
+  @font-face{
+    font-family:'Mulish';
+    src:url('fonts/mulish-var.woff2') format('woff2');
+    font-weight:200 1000;
+    font-style:normal;
+    font-display:swap;
+  }
+  @font-face{
+    font-family:'Mulish';
+    src:url('fonts/mulish-italic-var.woff2') format('woff2');
+    font-weight:200 1000;
+    font-style:italic;
+    font-display:swap;
+  }
   :root{
     color-scheme: light;
     --ink:#222222; --body:#666666; --soft:#999999; --faint:#b8b8b8;
     --line:#e8e8e8; --ph-bg:#f4f4f3; --ph-line:#dddddc; --btn:#1a1a1a;
-    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --sans:'Mulish',-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
