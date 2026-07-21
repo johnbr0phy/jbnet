@@ -88,8 +88,8 @@
   #ai .lede{font-size:23px;line-height:1.5;font-weight:400;margin:0 0 28px;color:var(--ink);text-wrap:balance}
   #ai .lede2{font-size:23px;line-height:1.5;margin:0;color:var(--ink)}
   .proj{display:flex;gap:44px;align-items:flex-start}
-  .proj .thumb{flex:0 0 220px;aspect-ratio:1/1}
-  .proj .thumb.wide{aspect-ratio:4/3}
+  .proj .thumb{flex:0 0 220px}
+  .proj .ph.thumb{aspect-ratio:1/1}
   .proj .desc{flex:1;min-width:0;font-size:13px;color:var(--body)}
   .proj .desc h3{margin:0 0 12px;font-size:15px;font-weight:700;color:var(--ink)}
   .proj .desc p{margin:0 0 14px}
@@ -154,9 +154,9 @@
 
   img{max-width:100%}
   img.hero,img.photo{aspect-ratio:auto;height:auto;display:block}
-  img.headshot,img.thumb{object-fit:cover;display:block;min-width:0}
-  img.headshot{width:158px;height:158px}
-  img.thumb{width:220px;height:220px}
+  img.headshot{object-fit:cover;display:block;min-width:0;width:158px;height:158px}
+  img.thumb{display:block;min-width:0;width:220px;height:auto}
+  video.thumb{display:block;min-width:0;width:220px;height:auto;background:#000}
   img.frame{object-fit:contain;display:block}
   .thumbgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;cursor:pointer;display:block}
   .thumbgrid img:hover{opacity:.85}
@@ -403,7 +403,7 @@
       </div>
       <hr class="rule">
       <div class="proj">
-        <div class="ph thumb wide"><span>Video — OpenClaw Q1 OKR presentation</span></div>
+        <video class="thumb" controls preload="none" poster="images/ai-creations/openclaw-poster.jpg" src="videos/openclaw-okr.mp4"></video>
         <div class="desc">
           <h3>OpenClaw Q1 OKRs</h3>
           <p>I gave my <a href="https://x.com/openclaw">@openclaw</a> OKRs in Q1.</p>
