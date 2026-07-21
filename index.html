@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>John Brophy — Builder &amp; Product Leader</title>
+<meta name="description" content="John Brophy — builder and product leader. 20 years of product from Spotify to Stensul, plus AI creations, bike adventures, photos and doodles.">
+</head>
+<body>
+<style>
+  /* Faithful replica of johnbrophy.net (Squarespace) — deliberately light-only, like the original */
+  :root{
+    color-scheme: light;
+    --ink:#222222; --body:#666666; --soft:#999999; --faint:#b8b8b8;
+    --line:#e8e8e8; --ph-bg:#f4f4f3; --ph-line:#dddddc; --btn:#1a1a1a;
+    --sans:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#fff;color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  a:focus-visible{outline:2px solid #222;outline-offset:2px}
+
+  .shell{display:flex;min-height:100vh;max-width:1240px}
+
+  /* ---------------- sidebar ---------------- */
+  .side{flex:0 0 248px;padding:42px 20px 40px 42px;position:sticky;top:0;align-self:flex-start;height:100vh;display:flex;flex-direction:column}
+  .brand{margin:0;font-size:23px;font-weight:700;letter-spacing:.01em;line-height:1.2}
+  .brand a{text-decoration:none;color:var(--ink)}
+  .tagline{margin:6px 0 0;font-size:11.5px;color:var(--faint);letter-spacing:.02em}
+  nav.main{margin-top:42px}
+  nav.main a{display:block;padding:6px 0;font-size:14.5px;color:var(--ink);text-decoration:none}
+  nav.main a:hover{color:var(--soft)}
+  nav.main a.active{color:var(--faint)}
+  .socials{margin-top:44px;display:flex;gap:16px;align-items:center}
+  .socials a{color:var(--ink);display:inline-flex}
+  .socials a:hover{color:var(--soft)}
+  .socials svg{width:17px;height:17px;fill:currentColor}
+  /* gallery caption block lives at the bottom of the sidebar, like Squarespace */
+  .gal-caption{margin-top:auto;padding-top:30px;font-size:12px;color:var(--body);display:none}
+  .gal-caption.visible{display:block}
+  .gal-caption .t{font-weight:700;color:var(--ink);margin:0 0 4px}
+  .gal-caption .loc{margin:0 0 14px;color:var(--body)}
+  .gal-caption .ctrls{font-size:11px;letter-spacing:.08em;color:var(--ink)}
+  .gal-caption .ctrls a{text-decoration:none;cursor:pointer}
+  .gal-caption .ctrls a:hover{color:var(--soft)}
+  .gal-caption .sep{color:var(--faint);margin:0 4px}
+  .gal-caption .thumbs-link{display:block;margin-top:8px;font-size:10.5px;letter-spacing:.08em;color:var(--body);text-decoration:none;cursor:pointer}
+  .gal-caption .thumbs-link:hover{color:var(--ink)}
+
+  /* ---------------- content ---------------- */
+  .content{flex:1;min-width:0;padding:42px 46px 90px 0}
+  .page{display:none;max-width:712px}
+  .page.on{display:block}
+  .page.wide{max-width:1030px}
+
+  /* image placeholders (real photos drop in during the build) */
+  .ph{background:var(--ph-bg);border:1px solid var(--ph-line);display:flex;align-items:center;justify-content:center;text-align:center;padding:10px}
+  .ph span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#b0b0ad;max-width:24ch;line-height:1.7}
+  .credit{font-size:12px;color:var(--body);text-align:right;margin-top:10px}
+  .credit a{color:var(--ink)}
+
+  hr.rule{border:0;border-top:1px solid var(--line);margin:44px 0}
+
+  /* ---------------- hello ---------------- */
+  #hello .hero{width:100%;aspect-ratio:3/2}
+
+  /* ---------------- resume ---------------- */
+  .intro{display:flex;gap:44px;align-items:flex-start}
+  .intro p{margin:0;font-size:21px;line-height:1.55;font-weight:400;color:var(--ink)}
+  .intro .headshot{flex:0 0 158px;aspect-ratio:1/1}
+  .job{display:flex;gap:36px;align-items:flex-start}
+  .job .who{flex:0 0 220px}
+  .job .who h2{margin:0;font-size:18px;font-weight:700}
+  .job .who .role{margin:10px 0 0;font-size:12.5px;color:var(--body)}
+  .job .who .dates{margin:8px 0 0;font-size:12.5px;font-weight:700;color:var(--body)}
+  .job ul{margin:0;padding:0;list-style:none;flex:1;min-width:0}
+  .job ul li{position:relative;padding-left:16px;margin:0 0 14px;font-size:13px;color:var(--body);line-height:1.65}
+  .job ul li::before{content:"·";position:absolute;left:2px;font-weight:700;color:var(--soft)}
+  .job ul li:last-child{margin-bottom:0}
+  .job .prose{flex:1;min-width:0;font-size:13px;color:var(--body)}
+  .job .prose p{margin:0 0 14px}
+  .job .prose p:last-child{margin-bottom:0}
+  .quote{font-size:13px;color:var(--body);margin:0 0 20px}
+  .quote b{color:var(--ink);font-weight:600}
+
+  /* ---------------- ai creations ---------------- */
+  #ai .lede{font-size:23px;line-height:1.5;font-weight:400;margin:0 0 28px;color:var(--ink);text-wrap:balance}
+  #ai .lede2{font-size:23px;line-height:1.5;margin:0;color:var(--ink)}
+  .proj{display:flex;gap:44px;align-items:flex-start}
+  .proj .thumb{flex:0 0 220px;aspect-ratio:1/1}
+  .proj .thumb.wide{aspect-ratio:4/3}
+  .proj .desc{flex:1;min-width:0;font-size:13px;color:var(--body)}
+  .proj .desc h3{margin:0 0 12px;font-size:15px;font-weight:700;color:var(--ink)}
+  .proj .desc p{margin:0 0 14px}
+  .proj .desc a{color:var(--ink)}
+  .cta{display:inline-block;margin-top:2px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+  .cta:hover{color:var(--soft);border-color:var(--soft)}
+
+  /* ---------------- adventures ---------------- */
+  #adventures{gap:52px;max-width:1030px}
+  #adventures.on{display:flex}
+  #adventures .posts{flex:1;min-width:0}
+  .post h2{margin:0;font-size:21px;font-weight:700}
+  .post .date{margin:8px 0 22px;font-size:12px;color:var(--soft)}
+  .post p{font-size:13px;color:var(--body);margin:0 0 18px}
+  .post .photo{width:88%;margin:6px auto 12px;aspect-ratio:3/4;max-width:430px}
+  .post .video{width:100%;aspect-ratio:16/9;margin:6px 0 12px}
+  .post .map{width:100%;aspect-ratio:4/3;max-width:520px;margin:6px 0 12px}
+  .post + .post{border-top:1px solid var(--line);margin-top:48px;padding-top:48px}
+  .adv-side{flex:0 0 218px}
+  .adv-side h2{margin:0 0 16px;font-size:21px;font-weight:700;line-height:1.3}
+  .adv-side p{font-size:13px;color:var(--body);margin:0 0 34px}
+  .adv-side h3{margin:0 0 14px;font-size:19px;font-weight:700}
+  .adv-side .bikes{list-style:none;margin:0 0 36px;padding:0;font-size:12.5px;color:var(--body)}
+  .adv-side .bikes li{margin-bottom:10px}
+  .adv-side .featured{list-style:none;margin:0;padding:0}
+  .adv-side .featured li{margin-bottom:22px}
+  .adv-side .featured a{display:block;font-size:14.5px;line-height:1.4;color:var(--ink);text-decoration:none}
+  .adv-side .featured a:hover{color:var(--soft)}
+  .adv-side .featured .d{font-size:11px;color:var(--soft);margin-top:4px}
+
+  /* ---------------- galleries ---------------- */
+  .gallery .slide{display:none}
+  .gallery .slide.on{display:block}
+  .gallery .frame{width:100%;height:min(78vh,640px)}
+  .gallery .thumbgrid{display:none;grid-template-columns:repeat(4,1fr);gap:10px}
+  .gallery.thumbs .thumbgrid{display:grid}
+  .gallery.thumbs .slide.on{display:none}
+  .thumbgrid .ph{aspect-ratio:1/1;cursor:pointer}
+  .thumbgrid .ph:hover{border-color:var(--soft)}
+
+  /* ---------------- contact ---------------- */
+  #contact h1{margin:0 0 18px;font-size:23px;font-weight:700}
+  #contact .say{font-size:13px;color:var(--body);margin:0 0 64px}
+  #contact .lead-in{font-size:14px;color:var(--ink);margin:0 0 26px}
+  .field{margin-bottom:26px;max-width:466px}
+  .field label{display:block;font-size:13px;color:var(--ink);margin-bottom:6px}
+  .field label em{font-style:normal;font-size:11px;color:var(--soft);margin-left:4px}
+  .field input,.field textarea{width:100%;border:1px solid #d6d6d6;background:#fbfbfb;padding:9px 10px;font:inherit;font-size:13px;color:var(--ink)}
+  .field input:focus,.field textarea:focus{outline:2px solid #222;outline-offset:1px}
+  .field textarea{height:96px;resize:vertical}
+  .name-row{display:flex;gap:12px;max-width:466px}
+  .name-row .half{flex:1}
+  .name-row .sub{font-size:11px;color:var(--soft);margin-top:4px}
+  .name-lbl{display:block;font-size:13px;margin-bottom:6px}
+  button.submit{background:var(--btn);color:#fff;border:0;font:inherit;font-size:11.5px;font-weight:600;letter-spacing:.14em;padding:14px 28px;cursor:pointer}
+  button.submit:hover{background:#444}
+  .sent{display:none;font-size:13px;color:var(--body);margin-top:14px}
+
+
+  img{max-width:100%}
+  img.hero,img.photo{aspect-ratio:auto;height:auto;display:block}
+  img.headshot,img.thumb{object-fit:cover;display:block;min-width:0}
+  img.headshot{width:158px;height:158px}
+  img.thumb{width:220px;height:220px}
+  img.frame{object-fit:contain;display:block}
+  .thumbgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;cursor:pointer;display:block}
+  .thumbgrid img:hover{opacity:.85}
+
+  /* ---------------- responsive ---------------- */
+  @media (max-width:820px){
+    .shell{flex-direction:column}
+    .side{position:static;height:auto;flex:none;padding:30px 24px 6px}
+    nav.main{margin-top:22px;display:flex;flex-wrap:wrap;gap:2px 20px}
+    nav.main a{padding:4px 0}
+    .socials{margin-top:20px}
+    .gal-caption{margin-top:18px}
+    .content{padding:26px 24px 70px}
+    .intro{flex-direction:column-reverse}
+    .intro .headshot{flex:none;width:158px}
+    .job{flex-direction:column;gap:14px}
+    .job .who{flex:none}
+    .proj{flex-direction:column;gap:18px}
+    .proj .thumb{flex:none;width:100%;max-width:320px}
+    #adventures{flex-direction:column}
+    .adv-side{flex:none}
+    .gallery .frame{height:60vh}
+    .thumbgrid{grid-template-columns:repeat(3,1fr)}
+  }
+</style>
+
+<div class="shell">
+  <aside class="side">
+    <h1 class="brand"><a href="#hello">John Brophy</a></h1>
+    <p class="tagline">Builder &amp; Product Leader</p>
+    <nav class="main" aria-label="Main">
+      <a href="#hello" data-nav="hello">Hello</a>
+      <a href="#resume" data-nav="resume">Resume</a>
+      <a href="#ai" data-nav="ai">AI Creations</a>
+      <a href="#adventures" data-nav="adventures">Adventures</a>
+      <a href="#photos" data-nav="photos">Photos</a>
+      <a href="#doodles" data-nav="doodles">Doodles</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </nav>
+    <div class="socials" aria-label="Social links">
+      <a href="https://www.instagram.com" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 1.8c-3.1 0-3.5 0-4.8.1-1.1.1-1.5.2-1.8.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.3-.3.8-.3 1.8-.1 1.2-.1 1.6-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.5.3 1.8.2.5.4.8.7 1.1.3.3.6.5 1.1.7.3.1.8.3 1.8.3 1.2.1 1.6.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.5-.2 1.8-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.3.3-.8.3-1.8.1-1.2.1-1.6.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.5-.3-1.8-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.3-.1-.8-.3-1.8-.3-1.2-.1-1.6-.1-4.8-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.2-8.3a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg></a>
+      <a href="https://www.youtube.com" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4L15.8 12l-6.3 3.6z"/></svg></a>
+      <a href="https://www.linkedin.com" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></svg></a>
+      <a href="https://open.spotify.com" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.5 17.3a.7.7 0 0 1-1 .3c-2.8-1.7-6.3-2.1-10.5-1.2a.8.8 0 0 1-.9-.6.8.8 0 0 1 .6-.9c4.6-1 8.5-.6 11.6 1.3.3.2.4.7.2 1.1zm1.5-3.3a.9.9 0 0 1-1.3.3c-3.2-2-8.1-2.6-11.9-1.4a.9.9 0 0 1-1.2-.6.9.9 0 0 1 .6-1.2c4.3-1.3 9.7-.7 13.4 1.6.5.3.6.9.4 1.3zm.1-3.4C15.3 8.3 9 8.1 5.4 9.2a1.1 1.1 0 0 1-1.4-.7 1.1 1.1 0 0 1 .8-1.4c4.2-1.3 11.1-1 15.4 1.5a1.1 1.1 0 0 1 .4 1.5c-.3.5-1 .7-1.5.5z"/></svg></a>
+      <a href="https://github.com" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg></a>
+    </div>
+    <div class="gal-caption" id="galCaption">
+      <p class="t" id="capTitle">Ferry life</p>
+      <p class="loc" id="capLoc">NYC, 2018</p>
+      <p class="ctrls"><a id="prevBtn">PREV</a><span class="sep">/</span><a id="nextBtn">NEXT</a></p>
+      <a class="thumbs-link" id="thumbsBtn">SHOW THUMBNAILS</a>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <!-- ============ HELLO ============ -->
+    <section class="page" id="hello">
+      <img class="hero" src="images/hello/01-img.jpg" alt="Three riders on a fall gravel trail">
+      <p class="credit">Photo by <a href="https://www.instagram.com/conanthai">@conanthai</a></p>
+    </section>
+
+    <!-- ============ RESUME ============ -->
+    <section class="page" id="resume">
+      <div class="intro">
+        <p>Hello! I'm John. I&rsquo;m an accomplished leader and love to work on interesting projects with creative, fun people. You can download a copy of my resume <a href="#contact">here</a>.</p>
+        <img class="headshot" src="images/resume/01-img.jpg" alt="John Brophy headshot">
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Stensul</h2><p class="role">Product Director</p><p class="dates">2024 - Present</p></div>
+        <ul>
+          <li>Led the build of a <b>Model Context Protocol (MCP) server</b>, positioning Stensul at the center of the emerging MCP ecosystem as the standard becomes table stakes for how marketers interact with their tools through AI.</li>
+          <li>Transformed a beta landing page builder into an enterprise-ready platform with brand books, custom modules, and user-level guardrails.</li>
+          <li>Conducted 50+ customer discovery calls to uncover root problems, then collaborated with Sales and Marketing to develop demos, refine pitch narratives, and enable go-to-market execution.</li>
+          <li>Reduced end-to-end creation time to ~1 hour, doubled landing pages created per customer, and added $XXXK+ ARR.</li>
+          <li>Drove AI integration across the product / engineering team, from prompt architecture and agentic workflows to a redesigned discovery process.</li>
+          <li>Expanded scope into an ecosystem PM role, owning cross-product integrations and partner relationships to extend Stensul's reach across enterprise martech stacks.</li>
+        </ul>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Whalar</h2><p class="role">Product Director (Platforms)</p><p class="dates">2022 - 2024</p></div>
+        <ul>
+          <li>Led the vision and strategy for creator platforms supporting large brand campaigns and talent management.</li>
+          <li>Decreased off-platform collaborations by 10% by expanding functionality that enabled TikTok creators to join and collaborate.</li>
+          <li>Launched Magic Profiles, an AI-powered system that aggregated creator data from connected social media accounts and used generative AI to synthesize unified profile information, reducing manual data entry and improving profile accuracy.</li>
+          <li>Launched an AI-driven brand safety tool for vetting creators, later expanded into a core Whalar product.</li>
+          <li>Led the deprecation of a legacy brand platform by analyzing usage and determining what to retire or rebuild into the modern stack.</li>
+          <li>Managed and mentored 3 PMs across global teams.</li>
+        </ul>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Hearst</h2><p class="role">Senior Product Manager</p><p class="dates">2020 - 2022</p></div>
+        <ul>
+          <li>Led a large-scale migration to a new REACT frontend framework for a CMS system supporting 60+ websites with over 500 million monthly impressions.</li>
+          <li>Developed and executed a clear vision and roadmap, ensuring accurate forecasting throughout the project while collaborating closely with Design, Data, Tech, SEO, Accessibility, and Content teams.</li>
+        </ul>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Kaplan</h2><p class="role">Senior Director of Product Development</p><p class="dates">2017 - 2020</p></div>
+        <ul>
+          <li>Established and led a new product development team dedicated to transforming learning experiences for professional certification exams.</li>
+          <li>Led and developed the website team at kaptest.com, mentoring a direct report from associate to senior PM and 2 senior designers.</li>
+          <li>Supervised the development of a new CMS and optimized product pages and user flows in collaboration with the growth marketing team.</li>
+        </ul>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Spotify</h2><p class="role">Product Manager (spotify.com)<br>Premium Manager (Subscriptions)</p><p class="dates">2010 &ndash; 2017</p></div>
+        <ul>
+          <li>Joined early at Spotify (employee #200+), playing a pivotal role in defining strategy and roadmaps for spotify.com, significantly driving platform growth.</li>
+          <li>Ran user research and rebuilt critical user flows, including sign-up, premium subscription, and download processes, leading to millions of new registrations and improved user retention.</li>
+          <li>Developed a mobile-optimized account management section and led cross-functional collaboration across brand, creative, and growth teams.</li>
+          <li>Managed a growing list of stakeholders by introducing a thoughtful execution model, ensuring clear communication and effective prioritization.</li>
+        </ul>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Don't Stay In</h2><p class="role">Co-Founder</p><p class="dates">2003 &ndash; 2009</p></div>
+        <ul>
+          <li>Co-founded dontstayin.com, scaling it to a top global social network with 2 million monthly unique visitors within six years.</li>
+          <li>Designed a viral loop that created a rich content ecosystem with over 12 million photos and 20 million forum posts, driving exponential platform growth.</li>
+          <li>Developed a backend enabling nightlife promoters to manage events, engage with communities, and purchase promotional banner ads and email campaigns.</li>
+          <li>Opened an office and grew the team to 15 staff members.</li>
+        </ul>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Education</h2></div>
+        <div class="prose">
+          <p>1998 &ndash; 2001: University of Plymouth (UK) - BA (Hons) Business Administration.</p>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Certifications</h2></div>
+        <div class="prose">
+          <p>Claude code for PMs - fullstackpm.com | 2025<br>
+          AI Product Management &ndash; Product Faculty (Miqdad Jaffer, OpenAI) | 2025<br>
+          Advanced PM Skills (Crystal Training) &ndash; Product Faculty | 2025</p>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Specialist Skills</h2></div>
+        <ul>
+          <li>AI/ML Product Development (LLMs, generative AI, prompt engineering)</li>
+          <li>Agentic Workflow Design</li>
+          <li>Product Vision &amp; Roadmap Strategy</li>
+          <li>Data-Driven Decision Making</li>
+          <li>Market Research &amp; Competitive Analysis</li>
+          <li>Agile/Scrum Methodologies</li>
+          <li>Cross-Functional Team Leadership</li>
+          <li>Stakeholder Management</li>
+          <li>Backlog Prioritization &amp; Sprint Planning</li>
+          <li>A/B Testing &amp; Experimentation</li>
+          <li>User Research &amp; Discovery</li>
+          <li>UX Design &amp; Prototyping</li>
+          <li>Growth Strategy &amp; GTM Execution</li>
+          <li>Analytics (GA, Databricks)</li>
+          <li>Jira / Linear / Figma / Miro</li>
+          <li>Claude Code / ChatGPT</li>
+        </ul>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Work Status</h2></div>
+        <div class="prose"><p>British citizen with a US Green Card.</p></div>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Hobbies and Interests</h2></div>
+        <div class="prose">
+          <p><b>Bicycles</b> - I'm a keen cyclist and ride to work whenever possible. I enjoy bicycle touring and regularly head out on adventures. Occasionally my love of bikes makes the news.</p>
+          <p><b>Camping</b> - I love the outdoors. You will normally find me up a mountain in a tent on summer weekends.</p>
+          <p><b>Technology</b> - I love technology and always try and stay one step ahead of the curve. Occasionally my use of tech makes the news.</p>
+          <p><b>Gaming</b> - I have a competitive mindset - I enjoy chess, poker, table tennis and online gaming. I like to win!</p>
+          <p><b>Music</b> - I love music, be it festivals, gigs or just listening at home. I have a Spotify playlist called 'Music like Daft Punk' with over 5000 followers.</p>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="job">
+        <div class="who"><h2>Recommendations</h2></div>
+        <div class="prose">
+          <p class="quote">John is one of the most talented product managers I've had the pleasure to work with. Extremely hard working, diligent and strategic. John is excellent at collaborating with other PMs, designers, engineers and stakeholders and is known as someone who gets things done. He's a pleasure to work with and a rare talent. <b>Niko Croskery, President, Moby Ventures at Whalar.</b></p>
+          <p class="quote">I've been really fortunate to work under John's leadership for several years, and I can't emphasize enough how much I recommend him. John has this incredible mix of strategic insight, analytical skill, and creative flair, all while genuinely caring about understanding and meeting the needs of our end-users. As a manager, John creates an atmosphere that's both collaborative and supportive. I've always felt valued and encouraged to give my best because of his leadership. Beyond that, he's a true team player, always ready to lend a hand, offer advice, or share insights whenever anyone needs it. I will forever be grateful to him for his support and guidance. <b>Shirley Lee, Senior Product Manager at Whalar.</b></p>
+          <p class="quote">I had the privilege to work with John for 5 years, first as a stakeholder of his team and then as a colleague. During that time John created a fantastic team and scalable processes. Thanks to that they were ready when the company (and thus their stakeholders) grew by 20x. The team recently pivoted towards a growth role. John stepped up again and led the efforts to instrument and optimize the new user funnels, finding ways to increase our MAU base by leveraging the website. <b>- Felix Bouleau, Product Owner at Spotify.</b></p>
+          <p class="quote">I have worked alongside John at Spotify for four years. Despite the fast pace and complexity of his team management responsibilities he is always happy to make the time to share his expertise and help solve complex challenges. His thoughtful insight, technical skills and manner makes working with him productive and fun. John will be an asset to any tech team that needs to move fast and deliver results and will contribute a positive team dynamic. <b>- Owen Parry, Business Development at Spotify.</b></p>
+          <p class="quote">John is an exuberant, welcoming, and incredibly smart individual, and I consider myself lucky for having the chance to work by his side. Not only is he a talented, data-driven, and user-centric Product Owner, but a daily positive force for every person that crosses his path. He's driven, kind, hilarious, and works extremely hard to ensure his teammates are inspired and delivering impactful work. Tl;dr: If you ever get the chance to work with him, take it. <b>- Grace Larosa, Product Design at Spotify.</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AI CREATIONS ============ -->
+    <section class="page" id="ai">
+      <p class="lede">I've been closely tracking AI advancements, especially tools that let product managers write code using natural language.</p>
+      <p class="lede2">Here are the tools and fun things I've created so far:</p>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/01-img.jpg" alt="Banksy Print Tracker" loading="lazy">
+        <div class="desc">
+          <h3>Banksy Print Tracker</h3>
+          <p>I built a <a href="#ai">Banksy Print Tracker site</a> that lists upcoming and completed auction lots for original Banksy prints, with search by print name and the option to view prices in different currencies.</p>
+          <p>It updates automatically every day by checking major auction houses and a realized feed, then refreshes the live site so the data stays current without manual work.</p>
+          <a class="cta" href="#ai">Visit the site</a>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/02-img.jpg" alt="Course Builder" loading="lazy">
+        <div class="desc">
+          <h3>Course Builder</h3>
+          <p>I built a course factory for Claude Code.</p>
+          <p>I learn by doing, not by reading. <a href="#ai">Course Builder</a> generates courses that work that way: every lesson is hands-on, every exercise runs on a real project you bring, and a Claude-powered instructor guides each session, checks your work, and grades your quizzes.</p>
+          <p>Give it a topic, source material, and an audience, and it builds the whole thing: lessons, quizzes, progress tracking, a deployable homepage. Learning by doing, on any subject, for anyone.</p>
+          <p>Try it: <a href="#ai">install</a> the skill, pick a topic, and ask Claude to build the course.</p>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/03-img.jpg" alt="Claude Code Workflows Course" loading="lazy">
+        <div class="desc">
+          <h3>Claude Code Workflows Course</h3>
+          <p>I built a hands-on course for learning Claude Code workflows by actually using them.</p>
+          <p>Instead of reading about agent orchestration in theory, you work inside Claude Code, trigger real workflows, inspect the JavaScript harness Claude writes, and watch subagents split up the work.</p>
+          <p>The course has 12 sessions, short quizzes, and a capstone where you turn one of your own recurring tasks into a reusable workflow.</p>
+          <p>Try it if you want to understand when a task has outgrown a single Claude session, and how to use workflows without wasting compute.</p>
+          <a class="cta" href="#ai">Find out more</a>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/04-img.jpg" alt="LLM-Wiki" loading="lazy">
+        <div class="desc">
+          <h3>LLM-Wiki</h3>
+          <p>Your call transcripts, emails, and docs contain more useful knowledge than you'll ever manually dig out. LLM-Wiki turns that raw material into a structured, queryable wiki &mdash; automatically.</p>
+          <p>Automate raw files in. Have Claude auto &ldquo;compile&rdquo; hourly. It updates articles, cross-links everything, and remembers what it's already processed. Ask questions, get sourced answers.</p>
+          <p>Inspired by Andrej Karpathy's LLM-as-compiler idea.</p>
+          <a class="cta" href="https://github.com">View on GitHub</a>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <div class="ph thumb wide"><span>Video — OpenClaw Q1 OKR presentation</span></div>
+        <div class="desc">
+          <h3>OpenClaw Q1 OKRs</h3>
+          <p>I gave my @openclaw OKRs in Q1.</p>
+          <p>His main goal was to optimize my little DMV test prep site (<a href="http://tigertest.io">tigertest.io</a>) and increase the amount of users that take a practice test - as those users are more likely to give me $10 a month. His long term goal is to make $100k for an Optimus body.</p>
+          <p>Here is his Q1 OKR presentation (he created the deck and the audio) &lt;3.</p>
+          <p>Imagine where this kind of thing will be in a year or two?</p>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/05-img.jpg" alt="AI PM Course" loading="lazy">
+        <div class="desc">
+          <h3>AI PM Course</h3>
+          <p>I built this course because I wanted to actually understand AI, not just use it. Most PM resources give you surface-level overviews, but I wanted to know how embeddings work, when to use RAG vs fine-tuning, and how to talk to engineers without faking it.</p>
+          <p>So I made a 25-session course that runs inside Claude Code. You learn by doing: Claude walks you through real exercises, and you bring your own product idea so every lesson applies to something you actually care about. By the end, you'll be able to prototype AI features yourself and have real technical conversations about architecture tradeoffs.</p>
+          <p>Try it: Install Claude Code, clone the repo, and say "Let's get started."</p>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/06-img.jpg" alt="Ace That Interview" loading="lazy">
+        <div class="desc">
+          <h3>Ace-that-interview.com</h3>
+          <p>I spent 2 days hacking with my brother and this is what fell out the other end.</p>
+          <p>Ace That Interview is an interview prep platform for job seekers targeting specific companies. Users search for roles like "Google PM interview prep" and land on tailored pages (e.g., /google/product-manager) with guided prep courses.</p>
+          <p>Key features: a modular content system (~20 modules combining to cover hundreds of company/role combinations), AI-generated content from public sources focused on interview psychology, and a story-based UX with progressive disclosure.</p>
+          <p>Business model: Testing freemium vs. ~$200 one-time paywall for company-specific content.</p>
+          <a class="cta" href="https://ace-that-interview.com">Play with the app</a>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/07-img.jpg" alt="TigerTest.io" loading="lazy">
+        <div class="desc">
+          <h3>Tigertest.io</h3>
+          <p>What started as a simple New Jersey DMV practice app for myself evolved into a full platform covering all 50 states.</p>
+          <p>Using Claude Code, I first updated and improved my original NJ app, then generated 2,000 state-specific questions to complement the existing question bank. From there, I built out TigerTest.io - a completely free practice test platform featuring mastery-based training, four practice tests per state, pass probability tracking, and full user accounts.</p>
+          <p>The entire product was built through AI-assisted development.</p>
+          <p>2 months after launch and the site has racked up over 50,000 questions being answered.</p>
+          <a class="cta" href="https://tigertest.io">Play with the app</a>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/08-img.jpg" alt="New Parent Qbank" loading="lazy">
+        <div class="desc">
+          <h3>New Parent Qbank</h3>
+          <p>A lightweight web app that presents a series of questions designed to help new or expecting parents reflect on their preferences, priorities, and readiness for parenthood. The interface guides users through each item in a simple, engaging format and then summarizes insights at the end to support self-reflection or discussion between partners.</p>
+          <p>I built this in a few hours with Claude Opus 4.5.</p>
+          <a class="cta" href="#ai">Play with the app</a>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/09-img.jpg" alt="Family Colouring Book" loading="lazy">
+        <div class="desc">
+          <h3>Family Colouring Book</h3>
+          <p>I decided to create my neice and nephews a coloring book using the latest gpt 4o image creation. With that you can upload a photo of a pesron - and then have it recreate them as a line drawing.</p>
+          <a class="cta" href="#ai">View book</a>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/10-img.jpg" alt="Turret.fun" loading="lazy">
+        <div class="desc">
+          <h3>Turret.fun</h3>
+          <p>A prototype for a website and an app for a game I am developing with my brother Pete.</p>
+          <p>I built all of this is 3-4 hours.</p>
+          <a class="cta" href="#ai">Play with the app</a>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/11-img.jpg" alt="NJ Driving Knowledge test Qbank" loading="lazy">
+        <div class="desc">
+          <h3>NJ Driving Knowledge test Qbank</h3>
+          <p>I moved to Jersey and decided to get my driving lisence. I just built this tool to help me pass the NJ Driving Knowledge test using bolt.new. It took me 4-5 hours.</p>
+          <p>I used ChatGPT and Claude to analyze the 223 page driving manual pdf and come up with 200 hard questions that I split into 4 practice tests. I then built this qbank app to help me master each question. I wrote 0 lines of code. Amazing!</p>
+          <p>UPDATE - I shared the app on reddit and it now has over 1200 users.</p>
+          <a class="cta" href="#ai">Play with the app</a>
+        </div>
+      </div>
+      <hr class="rule">
+      <div class="proj">
+        <img class="thumb" src="images/ai-creations/12-img.jpg" alt="Stensul interview prototype" loading="lazy">
+        <div class="desc">
+          <h3>A rapid prototype for an interview</h3>
+          <p>I interviewed with Stensul and as part of the prcoess - they asked me to show how I would think through building a new landing page creation system.</p>
+          <p>UPDATE - I got the job.</p>
+          <p>This took me around 2 hours to put together:</p>
+          <a class="cta" href="#ai">Play with the app</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ADVENTURES ============ -->
+    <section class="page" id="adventures">
+      <div class="posts">
+        <article class="post">
+          <h2>New Bike!</h2>
+          <p class="date">November 09, 2025</p>
+          <p>I bought a Brompton T-line for commuting in and out of the city.&nbsp; Currently on a journey to make it that little bit lighter. Check out the journey over <a href="#adventures">here</a> and my full weight weenie spreadsheet over <a href="#adventures">here</a> :)</p>
+          <img class="photo" src="images/adventures/01-img.jpg" alt="Titanium Brompton T-Line against a white brick wall">
+        </article>
+        <article class="post">
+          <h2>Bike touring the Pennsylvania Grand Canyon and Centralia.</h2>
+          <p class="date">January 20, 2025</p>
+          <p>A little video I put together of a tour I did last year with a friend. Watch till the end to find out what happened to the cat.</p>
+          <div class="ph video"><span>Video &mdash; Pennsylvania Grand Canyon tour</span></div>
+          <p>We roughly followed this route:</p>
+          <div class="ph map"><span>Route map embed</span></div>
+        </article>
+        <article class="post">
+          <h2>Road biking around Girona</h2>
+          <p class="date">May 07, 2024</p>
+          <p>I spent 4 days in Girona putting my new Enve Melee to the test. It really is absolutely beautiful out there. Below is the route of our most crazy day - at the top of the mountain - it was hailing!</p>
+          <div class="ph map"><span>Route map embed</span></div>
+          <p>Read more about our little adventure over <a href="#adventures">here</a>.</p>
+        </article>
+        <article class="post">
+          <h2>12 day bikepacking trip around New York State</h2>
+          <p class="date">September 24, 2020</p>
+          <p>I spent 12 days in September 2020 with 3 friends riding around New York State.&nbsp; We saw the Finger Lakes, the wilderness, Lake George and everything in between. This is hands down the best ride since Japan.</p>
+          <div class="ph video"><span>Video &mdash; NY State bikepacking trip</span></div>
+          <p>This was our <a href="#adventures">route</a>.</p>
+        </article>
+        <article class="post">
+          <h2>NYC to California Hill</h2>
+          <p class="date">August 29, 2020</p>
+          <p>Finally back on the bike and making videos. Feels good.</p>
+          <p>We jumped on the train from Grand Central and headed to White Plains. From there we rode the 53 miles or so to a primitive camping spot at California Hill.</p>
+          <div class="ph video"><span>Video &mdash; NYC to California Hill</span></div>
+          <p>Epic ride. Even with the rain in the morning.</p>
+          <p>Route here: <a href="https://ridewithgps.com/routes/33770105">ridewithgps.com/routes/33770105</a></p>
+        </article>
+        <article class="post">
+          <h2>Cuba - A Loop out of Havana</h2>
+          <p class="date">June 22, 2020</p>
+          <p>I managed to sneak in a week long trip to Cuba in the few weeks before the world went crazy with Covid with three friends - Mike, Eli and Sean.&nbsp; We flew from NYC, to Miami and then to Havana.</p>
+          <p>It was very easy - we applied for a visa and then ticked 'Support for the Cuban People'.&nbsp; We rode out along the north coast from Havana to Vinales (the tobacco growing region) and then came back along the south coast and then back up to Havana.</p>
+          <div class="ph video"><span>Video &mdash; Cuba loop out of Havana</span></div>
+          <p>We packed light - no tents and stayed in what the Cubans call 'Casa Particulares'.&nbsp; Which are basically lovely Cuban peoples houses - where they let you stay and cook you dinner.</p>
+        </article>
+        <article class="post">
+          <h2>Shirley Chisholm State Park</h2>
+          <p class="date">January 14, 2020</p>
+          <p>Absolutely loving this new park. We've been riding Greenpoint to Shirley Chisholm State Park a number of times over the last few months. After we go for the greatest Pizza in NYC at New Park Pizza, then we head to Finback brewery in Queens for a few beers on the way home.</p>
+          <div class="ph video"><span>Video &mdash; Shirley Chisholm State Park</span></div>
+        </article>
+        <article class="post">
+          <h2>The Nutmeg Nor'Easter</h2>
+          <p class="date">October 28, 2019</p>
+          <p>Blimey. What a ride. We joined Ultra Romance and his crew at the 3rd annual Nutmeg Nor'Easter in Colchester, Connecticut. We stayed on a little farm - camped Friday and Saturday night. It was absolutely epic. Amazing people, amazing weather, amazing bikes, amazing food and absolutely stunning scenery.</p>
+          <div class="ph video"><span>Video &mdash; The Nutmeg Nor'Easter</span></div>
+        </article>
+        <article class="post">
+          <h2>Harriman State Park with NYCADV</h2>
+          <p class="date">October 07, 2019</p>
+          <p>A beautiful ride with a great crew of NYC ADVers. Come join us sometime. Harriman is my second home in New York.</p>
+          <div class="ph video"><span>Video &mdash; Harriman State Park</span></div>
+        </article>
+        <article class="post">
+          <h2>Solo two day trip</h2>
+          <p class="date">August 12, 2019</p>
+          <p>I made the most of the weekend and put in 3 days of riding Friday / Sat / Sunday. Brooklyn to Harriman State Park on Friday Harriman to Shawangunk State Forest on Saturday Shawangunk to Beacon on Sunday.</p>
+          <div class="ph video"><span>Video &mdash; solo weekend trip</span></div>
+          <p>150 miles. 8k of elevation. Loved it.</p>
+        </article>
+        <article class="post">
+          <h2>The Appalachian Gravel Growler</h2>
+          <p class="date">June 03, 2019</p>
+          <p>My friends and I rode most of the bikepacking.com Appalachian Gravel Growler route at the end of May 2019.</p>
+          <div class="ph video"><span>Video &mdash; Appalachian Gravel Growler</span></div>
+        </article>
+        <article class="post">
+          <h2>Fahnestock State park with NYCADV</h2>
+          <p class="date">April 15, 2019</p>
+          <p>I joined the NYC ADV crew for another fab weekend in Fahnestock State park. It was a beautiful day / night / morning! We rode a route I designed.&nbsp; It was a lovely mix of farm lands, country clubs and back roads.</p>
+          <div class="ph video"><span>Video &mdash; Fahnestock State Park</span></div>
+          <p>Yes - that was a sauna in the back of an ambulance. Check out <a href="https://instagram.com/redhotsauna">instagram.com/redhotsauna</a> Tune is Surface Tension by Tomos.</p>
+        </article>
+        <article class="post">
+          <h2>Ninham mountain with NYCADV</h2>
+          <p class="date">March 20, 2019</p>
+          <p>I joined the NYC ADV meetup crew and rode NYC up to Ninham mountain. It was hella cold but hella fun.</p>
+          <div class="ph video"><span>Video &mdash; Ninham mountain</span></div>
+        </article>
+        <article class="post">
+          <h2>Japan - Tokyo to Kyoto</h2>
+          <p class="date">October 31, 2018</p>
+          <p>I rode from Tokyo to Kyoto with two friends over 15 days in September 2018.</p>
+          <div class="ph video"><span>Video &mdash; Tokyo to Kyoto</span></div>
+          <p>Our route took us through the mountains (follow this at your own risk! We didn't really plan it.. there is probably a far better route with less crazy tunnels).</p>
+          <div class="ph map"><span>Route map embed</span></div>
+        </article>
+        <article class="post">
+          <h2>NYC to Montreal</h2>
+          <p class="date">August 23, 2017</p>
+          <p>Before I got my hands on a go pro I rode solo from NYC to Montreal back in July 2017. It took me 8 days and was absolutely brilliant. I documented the trip on google photos over <a href="#adventures">here</a>.</p>
+          <img class="photo" src="images/adventures/02-img.jpg" alt="Sunset camp on the way to Montreal">
+        </article>
+      </div>
+      <aside class="adv-side">
+        <h2>Adventures by bicycle.</h2>
+        <p>I like to escape the skyscrapers, normally towards the mountains, normally on a bicycle and normally with all my camping gear in tow.</p>
+        <h3>Bikes</h3>
+        <ul class="bikes">
+          <li>Folding 1: <a href="#adventures">Brompton Superlight</a></li>
+          <li>Folding 2: <a href="#adventures">Brompton T-Line</a></li>
+          <li>Touring: <a href="#adventures">Lynskey Cooper CX</a></li>
+          <li>Road: <a href="#adventures">Enve Melee</a></li>
+        </ul>
+        <h3>Featured Posts</h3>
+        <ul class="featured">
+          <li><a href="#adventures">Bike touring the Pennsylvania Grand Canyon and Centralia.</a><div class="d">January 20, 2025</div></li>
+          <li><a href="#adventures">Road biking around Girona</a><div class="d">May 7, 2024</div></li>
+          <li><a href="#adventures">12 day bikepacking trip around New York State</a><div class="d">September 24, 2020</div></li>
+        </ul>
+      </aside>
+    </section>
+
+    <!-- ============ PHOTOS ============ -->
+    <section class="page wide gallery" id="photos" data-gallery>
+      <div class="slide on" data-title="Ferry life" data-loc="NYC, 2018"><img class="frame" src="images/photos/01-ferry-life.jpg" alt="Ferry life" loading="lazy"></div>
+      <div class="slide" data-title="Beer time" data-loc="New Paltz, 2018"><img class="frame" src="images/photos/02-beer-time.jpg" alt="Beer time" loading="lazy"></div>
+      <div class="slide" data-title="Bee happy" data-loc="New Paltz, 2018"><img class="frame" src="images/photos/03-bee-happy.jpg" alt="Bee happy" loading="lazy"></div>
+      <div class="slide" data-title="Toes on tour" data-loc="England, 2018"><img class="frame" src="images/photos/04-toes-on-tour.jpg" alt="Toes on tour" loading="lazy"></div>
+      <div class="slide" data-title="Midtown wildlife" data-loc="NYC, 2018"><img class="frame" src="images/photos/05-midtown-wildlife.jpg" alt="Midtown wildlife" loading="lazy"></div>
+      <div class="slide" data-title="Eric and a view" data-loc="Harriman State Park, 2018."><img class="frame" src="images/photos/06-eric-and-a-view.jpg" alt="Eric and a view" loading="lazy"></div>
+      <div class="slide" data-title="Toasty toes" data-loc="Black Creek State Forest - NY, 2018"><img class="frame" src="images/photos/07-toasty-toes.jpg" alt="Toasty toes" loading="lazy"></div>
+      <div class="slide" data-title="Bushwick Street jam" data-loc="Brooklyn, 2018."><img class="frame" src="images/photos/08-bushwick-street-jam.jpg" alt="Bushwick Street jam" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/photos/09-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/photos/10-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="Crane on a rock" data-loc="Fukui - Japan, 2018"><img class="frame" src="images/photos/11-crane-on-a-rock.jpg" alt="Crane on a rock" loading="lazy"></div>
+      <div class="slide" data-title="A beautiful lake" data-loc="Lake Biwa - Japan, 2018"><img class="frame" src="images/photos/12-a-beautiful-lake.jpg" alt="A beautiful lake" loading="lazy"></div>
+      <div class="slide" data-title="A close call" data-loc="Kyoto - Japan, 2018"><img class="frame" src="images/photos/13-a-close-call.jpg" alt="A close call" loading="lazy"></div>
+      <div class="slide" data-title="The land of the setting sun" data-loc="Takenami - Japan, 2018"><img class="frame" src="images/photos/14-the-land-of-the-setting-sun.jpg" alt="The land of the setting sun" loading="lazy"></div>
+      <div class="slide" data-title="The endless tunnels" data-loc="Nashigadaira - Japan, 2018"><img class="frame" src="images/photos/15-the-endless-tunnels.jpg" alt="The endless tunnels" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/photos/16-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="The fall" data-loc="Upstate somewhere, 2019"><img class="frame" src="images/photos/17-the-fall.jpg" alt="The fall" loading="lazy"></div>
+      <div class="slide" data-title="Who doesn't love a train museum?" data-loc="Danbury, 2019."><img class="frame" src="images/photos/18-who-doesn-t-love-a-train-museum.jpg" alt="Who doesn't love a train museum?" loading="lazy"></div>
+      <div class="slide" data-title="Hike-a-biking" data-loc="Upstate somewhere, 2020"><img class="frame" src="images/photos/19-hike-a-biking.jpg" alt="Hike-a-biking" loading="lazy"></div>
+      <div class="slide" data-title="The birds of Cuba" data-loc="Vinales - Cuba, 2020"><img class="frame" src="images/photos/20-the-birds-of-cuba.jpg" alt="The birds of Cuba" loading="lazy"></div>
+      <div class="slide" data-title="Out to sea" data-loc="Havana - Cuba, 2020"><img class="frame" src="images/photos/21-out-to-sea.jpg" alt="Out to sea" loading="lazy"></div>
+      <div class="slide" data-title="Meow!" data-loc="Havana - Cuba, 2020"><img class="frame" src="images/photos/22-meow.jpg" alt="Meow!" loading="lazy"></div>
+      <div class="slide" data-title="Wandering the streets" data-loc="Havana - Cuba, 2020"><img class="frame" src="images/photos/23-wandering-the-streets.jpg" alt="Wandering the streets" loading="lazy"></div>
+      <div class="slide" data-title="At the tobacco farm" data-loc="Vinales - Cuba, 2020"><img class="frame" src="images/photos/24-at-the-tobacco-farm.jpg" alt="At the tobacco farm" loading="lazy"></div>
+      <div class="slide" data-title="Fire an Ice" data-loc="Harriman, 2020"><img class="frame" src="images/photos/25-fire-an-ice.jpg" alt="Fire an Ice" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc="MyMy"><img class="frame" src="images/photos/26-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/photos/27-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/photos/28-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/photos/29-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/photos/30-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/photos/31-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/photos/32-img.jpg" alt="" loading="lazy"></div>
+      <div class="thumbgrid">
+        <img data-goto="0" src="images/photos/01-ferry-life.jpg" alt="Ferry life" loading="lazy">
+        <img data-goto="1" src="images/photos/02-beer-time.jpg" alt="Beer time" loading="lazy">
+        <img data-goto="2" src="images/photos/03-bee-happy.jpg" alt="Bee happy" loading="lazy">
+        <img data-goto="3" src="images/photos/04-toes-on-tour.jpg" alt="Toes on tour" loading="lazy">
+        <img data-goto="4" src="images/photos/05-midtown-wildlife.jpg" alt="Midtown wildlife" loading="lazy">
+        <img data-goto="5" src="images/photos/06-eric-and-a-view.jpg" alt="Eric and a view" loading="lazy">
+        <img data-goto="6" src="images/photos/07-toasty-toes.jpg" alt="Toasty toes" loading="lazy">
+        <img data-goto="7" src="images/photos/08-bushwick-street-jam.jpg" alt="Bushwick Street jam" loading="lazy">
+        <img data-goto="8" src="images/photos/09-img.jpg" alt="" loading="lazy">
+        <img data-goto="9" src="images/photos/10-img.jpg" alt="" loading="lazy">
+        <img data-goto="10" src="images/photos/11-crane-on-a-rock.jpg" alt="Crane on a rock" loading="lazy">
+        <img data-goto="11" src="images/photos/12-a-beautiful-lake.jpg" alt="A beautiful lake" loading="lazy">
+        <img data-goto="12" src="images/photos/13-a-close-call.jpg" alt="A close call" loading="lazy">
+        <img data-goto="13" src="images/photos/14-the-land-of-the-setting-sun.jpg" alt="The land of the setting sun" loading="lazy">
+        <img data-goto="14" src="images/photos/15-the-endless-tunnels.jpg" alt="The endless tunnels" loading="lazy">
+        <img data-goto="15" src="images/photos/16-img.jpg" alt="" loading="lazy">
+        <img data-goto="16" src="images/photos/17-the-fall.jpg" alt="The fall" loading="lazy">
+        <img data-goto="17" src="images/photos/18-who-doesn-t-love-a-train-museum.jpg" alt="Who doesn't love a train museum?" loading="lazy">
+        <img data-goto="18" src="images/photos/19-hike-a-biking.jpg" alt="Hike-a-biking" loading="lazy">
+        <img data-goto="19" src="images/photos/20-the-birds-of-cuba.jpg" alt="The birds of Cuba" loading="lazy">
+        <img data-goto="20" src="images/photos/21-out-to-sea.jpg" alt="Out to sea" loading="lazy">
+        <img data-goto="21" src="images/photos/22-meow.jpg" alt="Meow!" loading="lazy">
+        <img data-goto="22" src="images/photos/23-wandering-the-streets.jpg" alt="Wandering the streets" loading="lazy">
+        <img data-goto="23" src="images/photos/24-at-the-tobacco-farm.jpg" alt="At the tobacco farm" loading="lazy">
+        <img data-goto="24" src="images/photos/25-fire-an-ice.jpg" alt="Fire an Ice" loading="lazy">
+        <img data-goto="25" src="images/photos/26-img.jpg" alt="" loading="lazy">
+        <img data-goto="26" src="images/photos/27-img.jpg" alt="" loading="lazy">
+        <img data-goto="27" src="images/photos/28-img.jpg" alt="" loading="lazy">
+        <img data-goto="28" src="images/photos/29-img.jpg" alt="" loading="lazy">
+        <img data-goto="29" src="images/photos/30-img.jpg" alt="" loading="lazy">
+        <img data-goto="30" src="images/photos/31-img.jpg" alt="" loading="lazy">
+        <img data-goto="31" src="images/photos/32-img.jpg" alt="" loading="lazy">
+      </div>
+    </section>
+
+    <!-- ============ DOODLES ============ -->
+    <section class="page wide gallery" id="doodles" data-gallery>
+      <div class="slide on" data-title="" data-loc=""><img class="frame" src="images/doodles/01-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/02-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/03-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/04-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/05-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/06-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/07-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/08-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/09-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/10-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/11-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/12-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/13-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/14-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/15-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/16-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/17-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/18-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/19-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/20-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/21-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/22-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/23-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/24-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/25-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/26-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/27-img.jpg" alt="" loading="lazy"></div>
+      <div class="slide" data-title="" data-loc=""><img class="frame" src="images/doodles/28-img.jpg" alt="" loading="lazy"></div>
+      <div class="thumbgrid">
+        <img data-goto="0" src="images/doodles/01-img.jpg" alt="" loading="lazy">
+        <img data-goto="1" src="images/doodles/02-img.jpg" alt="" loading="lazy">
+        <img data-goto="2" src="images/doodles/03-img.jpg" alt="" loading="lazy">
+        <img data-goto="3" src="images/doodles/04-img.jpg" alt="" loading="lazy">
+        <img data-goto="4" src="images/doodles/05-img.jpg" alt="" loading="lazy">
+        <img data-goto="5" src="images/doodles/06-img.jpg" alt="" loading="lazy">
+        <img data-goto="6" src="images/doodles/07-img.jpg" alt="" loading="lazy">
+        <img data-goto="7" src="images/doodles/08-img.jpg" alt="" loading="lazy">
+        <img data-goto="8" src="images/doodles/09-img.jpg" alt="" loading="lazy">
+        <img data-goto="9" src="images/doodles/10-img.jpg" alt="" loading="lazy">
+        <img data-goto="10" src="images/doodles/11-img.jpg" alt="" loading="lazy">
+        <img data-goto="11" src="images/doodles/12-img.jpg" alt="" loading="lazy">
+        <img data-goto="12" src="images/doodles/13-img.jpg" alt="" loading="lazy">
+        <img data-goto="13" src="images/doodles/14-img.jpg" alt="" loading="lazy">
+        <img data-goto="14" src="images/doodles/15-img.jpg" alt="" loading="lazy">
+        <img data-goto="15" src="images/doodles/16-img.jpg" alt="" loading="lazy">
+        <img data-goto="16" src="images/doodles/17-img.jpg" alt="" loading="lazy">
+        <img data-goto="17" src="images/doodles/18-img.jpg" alt="" loading="lazy">
+        <img data-goto="18" src="images/doodles/19-img.jpg" alt="" loading="lazy">
+        <img data-goto="19" src="images/doodles/20-img.jpg" alt="" loading="lazy">
+        <img data-goto="20" src="images/doodles/21-img.jpg" alt="" loading="lazy">
+        <img data-goto="21" src="images/doodles/22-img.jpg" alt="" loading="lazy">
+        <img data-goto="22" src="images/doodles/23-img.jpg" alt="" loading="lazy">
+        <img data-goto="23" src="images/doodles/24-img.jpg" alt="" loading="lazy">
+        <img data-goto="24" src="images/doodles/25-img.jpg" alt="" loading="lazy">
+        <img data-goto="25" src="images/doodles/26-img.jpg" alt="" loading="lazy">
+        <img data-goto="26" src="images/doodles/27-img.jpg" alt="" loading="lazy">
+        <img data-goto="27" src="images/doodles/28-img.jpg" alt="" loading="lazy">
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="page" id="contact">
+      <h1>Contact Me</h1>
+      <p class="say">Say hello below..</p>
+      <p class="lead-in">Please complete the form below</p>
+      <form id="contactForm">
+        <span class="name-lbl">Name</span>
+        <div class="name-row">
+          <div class="half">
+            <input type="text" id="fname" aria-label="First Name" style="width:100%;border:1px solid #d6d6d6;background:#fbfbfb;padding:9px 10px;font:inherit;font-size:13px">
+            <div class="sub">First Name <em>(required)</em></div>
+          </div>
+          <div class="half">
+            <input type="text" id="lname" aria-label="Last Name" style="width:100%;border:1px solid #d6d6d6;background:#fbfbfb;padding:9px 10px;font:inherit;font-size:13px">
+            <div class="sub">Last Name <em>(required)</em></div>
+          </div>
+        </div>
+        <div class="field" style="margin-top:26px">
+          <label for="email">Email Address <em>(required)</em></label>
+          <input type="email" id="email">
+        </div>
+        <div class="field">
+          <label for="subject">Subject <em>(required)</em></label>
+          <input type="text" id="subject">
+        </div>
+        <div class="field">
+          <label for="message">Message <em>(required)</em></label>
+          <textarea id="message"></textarea>
+        </div>
+        <button class="submit" type="submit">SUBMIT</button>
+        <p class="sent" id="sentNote">This is a prototype &mdash; the form doesn't send yet. On the real site it will email john@johnbrophy.net.</p>
+      </form>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var pages = ['hello','resume','ai','adventures','photos','doodles','contact'];
+  var navLinks = document.querySelectorAll('nav.main a');
+  var galCaption = document.getElementById('galCaption');
+  var capTitle = document.getElementById('capTitle');
+  var capLoc = document.getElementById('capLoc');
+  var current = 'hello';
+
+  function slidesOf(id){ return document.querySelectorAll('#'+id+' .slide'); }
+
+  function syncCaption(){
+    var isGal = (current === 'photos' || current === 'doodles');
+    galCaption.classList.toggle('visible', isGal);
+    if(!isGal) return;
+    var on = document.querySelector('#'+current+' .slide.on');
+    if(on){ capTitle.textContent = on.dataset.title; capLoc.textContent = on.dataset.loc; }
+  }
+
+  function show(id){
+    if(pages.indexOf(id) === -1) id = 'hello';
+    current = id;
+    pages.forEach(function(p){
+      document.getElementById(p).classList.toggle('on', p === id);
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.dataset.nav === id);
+    });
+    syncCaption();
+    window.scrollTo(0,0);
+  }
+
+  function step(dir){
+    var slides = slidesOf(current);
+    if(!slides.length) return;
+    var idx = 0;
+    slides.forEach(function(s,i){ if(s.classList.contains('on')) idx = i; });
+    slides[idx].classList.remove('on');
+    idx = (idx + dir + slides.length) % slides.length;
+    slides[idx].classList.add('on');
+    document.getElementById(current).classList.remove('thumbs');
+    syncCaption();
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', function(){ step(-1); });
+  document.getElementById('nextBtn').addEventListener('click', function(){ step(1); });
+  document.getElementById('thumbsBtn').addEventListener('click', function(){
+    var g = document.getElementById(current);
+    if(g) g.classList.toggle('thumbs');
+    this.textContent = g && g.classList.contains('thumbs') ? 'HIDE THUMBNAILS' : 'SHOW THUMBNAILS';
+  });
+
+  document.querySelectorAll('.thumbgrid [data-goto]').forEach(function(t){
+    t.addEventListener('click', function(){
+      var g = t.closest('.gallery');
+      var slides = g.querySelectorAll('.slide');
+      slides.forEach(function(s){ s.classList.remove('on'); });
+      slides[+t.dataset.goto].classList.add('on');
+      g.classList.remove('thumbs');
+      document.getElementById('thumbsBtn').textContent = 'SHOW THUMBNAILS';
+      syncCaption();
+    });
+  });
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('sentNote').style.display = 'block';
+  });
+
+  window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
+  show(location.hash.slice(1) || 'hello');
+})();
+</script>
+</body>
+</html>
