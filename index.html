@@ -112,14 +112,14 @@
   .cta:hover{color:var(--soft);border-color:var(--soft)}
 
   /* ---------------- adventures ---------------- */
-  #adventures{gap:52px}
-  #adventures.on{display:flex}
+  #adventures,#ai2{gap:52px}
+  #adventures.on,#ai2.on{display:flex}
   #adventures .posts{flex:1;min-width:0}
   .post h2{margin:0;font-size:21px;font-weight:700}
   .post .date{margin:8px 0 22px;font-size:12px;color:var(--soft)}
   .post p{font-size:13px;color:var(--body);margin:0 0 18px}
-  .post img.photo{display:block;margin:6px auto 14px;width:auto;max-width:100%;max-height:70vh}
-  .post img.photo.wide{width:100%}
+  .post img.photo,.post video.photo{display:block;margin:6px auto 14px;width:auto;max-width:100%;max-height:70vh}
+  .post img.photo.wide,.post video.photo.wide{width:100%}
   .post .yt{display:block;margin:6px 0 10px}
   .post .yt img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
   .post .ctas{margin:0 0 18px}
@@ -198,7 +198,7 @@
     .job .who{flex:none}
     .proj{flex-direction:column;gap:18px}
     .proj .thumb{flex:none;width:100%;max-width:320px}
-    #adventures{flex-direction:column}
+    #adventures,#ai2{flex-direction:column}
     .adv-side{flex:none}
     .gallery .frame{height:60vh}
     .thumbgrid{grid-template-columns:repeat(3,1fr)}
@@ -804,6 +804,136 @@
       </div>
     </section>
 
+    <!-- ============ AI CREATIONS V2 (blog layout trial) ============ -->
+    <section class="page" id="ai2">
+      <div class="posts">
+        <article class="post">
+          <h2>Course Builder</h2>
+          <p class="date">June 3, 2026</p>
+          <p>I built a course factory for Claude Code.</p>
+          <p>I learn by doing, not by reading. <a href="https://johnbr0phy.github.io/course-builder/">Course Builder</a> generates courses that work that way: every lesson is hands-on, every exercise runs on a real project you bring, and a Claude-powered instructor guides each session, checks your work, and grades your quizzes.</p>
+          <img class="photo" src="images/ai-creations/02-img.jpg" alt="Course Builder">
+          <p>Give it a topic, source material, and an audience, and it builds the whole thing: lessons, quizzes, progress tracking, a deployable homepage. Learning by doing, on any subject, for anyone.</p>
+          <p>Try it: <a href="https://johnbr0phy.github.io/course-builder/#install">install</a> the skill, pick a topic, and ask Claude to build the course.</p>
+        </article>
+        <article class="post">
+          <h2>Claude Code Workflows Course</h2>
+          <p class="date">June 3, 2026</p>
+          <p>I built a hands-on course for learning Claude Code workflows by actually using them.</p>
+          <img class="photo" src="images/ai-creations/03-img.jpg" alt="Claude Code Workflows Course">
+          <p>Instead of reading about agent orchestration in theory, you work inside Claude Code, trigger real workflows, inspect the JavaScript harness Claude writes, and watch subagents split up the work.</p>
+          <p>The course has 12 sessions, short quizzes, and a capstone where you turn one of your own recurring tasks into a reusable workflow.</p>
+          <p>Try it if you want to understand when a task has outgrown a single Claude session, and how to use workflows without wasting compute.</p>
+          <p class="ctas"><a class="cta" href="https://johnbr0phy.github.io/Workflows/">Find out more</a></p>
+        </article>
+        <article class="post">
+          <h2>LLM-Wiki</h2>
+          <p class="date">April 5, 2026</p>
+          <p>Your call transcripts, emails, and docs contain more useful knowledge than you'll ever manually dig out. LLM-Wiki turns that raw material into a structured, queryable wiki &mdash; automatically.</p>
+          <img class="photo" src="images/ai-creations/04-img.jpg" alt="LLM-Wiki">
+          <p>Automate raw files in. Have Claude auto &ldquo;compile&rdquo; hourly. It updates articles, cross-links everything, and remembers what it's already processed. Ask questions, get sourced answers.</p>
+          <p>Inspired by <a href="https://x.com/karpathy/status/2039805659525644595">Andrej Karpathy's LLM-as-compiler idea</a>.</p>
+          <p class="ctas"><a class="cta" href="https://github.com/johnbr0phy/llm-wiki">View on GitHub</a></p>
+        </article>
+        <article class="post" id="post-banksy">
+          <h2>Banksy Print Tracker</h2>
+          <p class="date">March 27, 2026</p>
+          <p>I built a <a href="https://johnbr0phy.github.io/banksy">Banksy Print Tracker site</a> that lists upcoming and completed auction lots for original Banksy prints, with search by print name and the option to view prices in different currencies.</p>
+          <img class="photo" src="images/ai-creations/01-img.jpg" alt="Banksy Print Tracker">
+          <p>It updates automatically every day by checking major auction houses and a realized feed, then refreshes the live site so the data stays current without manual work.</p>
+          <p class="ctas"><a class="cta" href="https://johnbr0phy.github.io/banksy">Visit the site</a></p>
+        </article>
+        <article class="post">
+          <h2>AI PM Course</h2>
+          <p class="date">February 4, 2026</p>
+          <p>I built this course because I wanted to actually understand AI, not just use it. Most PM resources give you surface-level overviews, but I wanted to know how embeddings work, when to use RAG vs fine-tuning, and how to talk to engineers without faking it.</p>
+          <img class="photo" src="images/ai-creations/05-img.jpg" alt="AI PM Course">
+          <p>So I made a <a href="https://johnbr0phy.github.io/AIPM/">25-session course that runs inside Claude Code</a>. You learn by doing: Claude walks you through real exercises, and you bring your own product idea so every lesson applies to something you actually care about. By the end, you'll be able to prototype AI features yourself and have real technical conversations about architecture tradeoffs.</p>
+          <p>Try it: Install <a href="https://docs.anthropic.com/en/docs/claude-code/overview">Claude Code</a>, clone the <a href="https://github.com/johnbr0phy/AIPM">repo</a>, and say "Let's get started."</p>
+        </article>
+        <article class="post">
+          <h2>OpenClaw Q1 OKRs</h2>
+          <p class="date">January 31, 2026</p>
+          <p>I gave my <a href="https://x.com/openclaw">@openclaw</a> OKRs in Q1.</p>
+          <p>His main goal was to optimize my little DMV test prep site (<a href="https://tigertest.io">tigertest.io</a>) and increase the amount of users that take a practice test - as those users are more likely to give me $10 a month. His long term goal is to make $100k for an Optimus body.</p>
+          <video class="photo wide" controls preload="none" poster="images/ai-creations/openclaw-poster.jpg" src="videos/openclaw-okr.mp4"></video>
+          <p>Here is his Q1 OKR presentation (he created the deck and the audio) &lt;3.</p>
+          <p>Imagine where this kind of thing will be in a year or two?</p>
+        </article>
+        <article class="post" id="post-ace">
+          <h2>Ace-that-interview.com</h2>
+          <p class="date">January 18, 2026</p>
+          <p>I spent 2 days hacking with my brother and this is what fell out the other end.</p>
+          <img class="photo" src="images/ai-creations/06-img.jpg" alt="Ace That Interview">
+          <p>Ace That Interview is an interview prep platform for job seekers targeting specific companies. Users search for roles like "Google PM interview prep" and land on tailored pages (e.g., /google/product-manager) with guided prep courses.</p>
+          <p>Key features: a modular content system (~20 modules combining to cover hundreds of company/role combinations), AI-generated content from public sources focused on interview psychology, and a story-based UX with progressive disclosure.</p>
+          <p>Business model: Testing freemium vs. ~$200 one-time paywall for company-specific content.</p>
+          <p class="ctas"><a class="cta" href="https://ace-that-interview.com">Play with the app</a></p>
+        </article>
+        <article class="post" id="post-tigertest">
+          <h2>Tigertest.io</h2>
+          <p class="date">December 21, 2025</p>
+          <p>What started as a simple New Jersey DMV practice app for myself evolved into a full platform covering all 50 states.</p>
+          <img class="photo" src="images/ai-creations/07-img.jpg" alt="TigerTest.io">
+          <p>Using Claude Code, I first updated and improved my original NJ app, then generated 2,000 state-specific questions to complement the existing question bank. From there, I built out TigerTest.io - a completely free practice test platform featuring mastery-based training, four practice tests per state, pass probability tracking, and full user accounts.</p>
+          <p>The entire product was built through AI-assisted development.</p>
+          <p>2 months after launch and the site has racked up over 50,000 questions being answered.</p>
+          <p class="ctas"><a class="cta" href="https://tigertest.io">Play with the app</a></p>
+        </article>
+        <article class="post">
+          <h2>New Parent Qbank</h2>
+          <p class="date">December 15, 2025</p>
+          <p>A lightweight web app that presents a series of questions designed to help new or expecting parents reflect on their preferences, priorities, and readiness for parenthood. The interface guides users through each item in a simple, engaging format and then summarizes insights at the end to support self-reflection or discussion between partners.</p>
+          <img class="photo" src="images/ai-creations/08-img.jpg" alt="New Parent Qbank">
+          <p>I built this in a few hours with Claude Opus 4.5.</p>
+          <p class="ctas"><a class="cta" href="https://johnbr0phy.github.io/new-parent-quiz/">Play with the app</a></p>
+        </article>
+        <article class="post">
+          <h2>Family Colouring Book</h2>
+          <p class="date">April 2025</p>
+          <p>I decided to create my neice and nephews a coloring book using the latest gpt 4o image creation. With that you can upload a photo of a pesron - and then have it recreate them as a line drawing.</p>
+          <img class="photo" src="images/ai-creations/09-img.jpg" alt="Family Colouring Book">
+          <p class="ctas"><a class="cta" href="https://photos.google.com/u/0/share/AF1QipNNVhF9y9_i2KSmXy0yW-97QmP0-D1KidXZvazxUc_2ruhMxNYurr49nSFMKLlMVw?key=d0hfOFNDMHNDT185UjBnUnpDOVk3ajBEbk1kRHRB">View book</a></p>
+        </article>
+        <article class="post">
+          <h2>Turret.fun</h2>
+          <p class="date">March 2025</p>
+          <p>A prototype for a website and an app for a game I am developing with my brother Pete.</p>
+          <img class="photo" src="images/ai-creations/10-img.jpg" alt="Turret.fun">
+          <p>I built all of this is 3-4 hours.</p>
+          <p class="ctas"><a class="cta" href="https://chipper-starlight-c7e09b.netlify.app/">Play with the app</a></p>
+        </article>
+        <article class="post">
+          <h2>NJ Driving Knowledge test Qbank</h2>
+          <p class="date">February 2025</p>
+          <p>I moved to Jersey and decided to get my driving lisence. I just built this tool to help me pass the NJ Driving Knowledge test using <a href="https://bolt.new">bolt.new</a>. It took me 4-5 hours.</p>
+          <img class="photo" src="images/ai-creations/11-img.jpg" alt="NJ Driving Knowledge test Qbank">
+          <p>I used ChatGPT and Claude to analyze the 223 page driving manual pdf and come up with 200 hard questions that I split into 4 practice tests. I then built this qbank app to help me master each question. I wrote 0 lines of code. Amazing!</p>
+          <p>UPDATE - I shared the app on reddit and it now has over 1200 users.</p>
+          <p class="ctas"><a class="cta" href="https://delightful-truffle-b84725.netlify.app/">Play with the app</a></p>
+        </article>
+        <article class="post">
+          <h2>A rapid prototype for an interview</h2>
+          <p class="date">May 2024</p>
+          <p>I interviewed with <a href="https://stensul.com/">Stensul</a> and as part of the prcoess - they asked me to show how I would think through building a new landing page creation system.</p>
+          <img class="photo" src="images/ai-creations/12-img.jpg" alt="Stensul interview prototype">
+          <p>UPDATE - I got the job.</p>
+          <p>This took me around 2 hours to put together:</p>
+          <p class="ctas"><a class="cta" href="https://mellifluous-strudel-f69cd6.netlify.app/">Play with the app</a></p>
+        </article>
+      </div>
+      <aside class="adv-side">
+        <h2>Building with AI.</h2>
+        <p>I've been closely tracking AI advancements, especially tools that let product managers write code using natural language. Here are the tools and fun things I've created so far.</p>
+        <h3>Featured Posts</h3>
+        <ul class="featured">
+          <li><a href="#ai2" data-scrollto="post-tigertest" data-page="ai2">Tigertest.io &mdash; 50,000+ questions answered</a><div class="d">December 21, 2025</div></li>
+          <li><a href="#ai2" data-scrollto="post-ace" data-page="ai2">Ace-that-interview.com</a><div class="d">January 18, 2026</div></li>
+          <li><a href="#ai2" data-scrollto="post-banksy" data-page="ai2">Banksy Print Tracker</a><div class="d">March 27, 2026</div></li>
+        </ul>
+      </aside>
+    </section>
+
     <!-- ============ CONTACT ============ -->
     <section class="page" id="contact">
       <h1>Contact Me</h1>
@@ -843,7 +973,7 @@
 
 <script>
 (function(){
-  var pages = ['hello','resume','ai','adventures','photos','doodles','contact'];
+  var pages = ['hello','resume','ai','adventures','photos','doodles','contact','ai2'];
   var navLinks = document.querySelectorAll('nav.main a, #mobileNav a');
   var mobileNav = document.getElementById('mobileNav');
   document.getElementById('menuToggle').addEventListener('click', function(){
@@ -901,7 +1031,7 @@
   document.querySelectorAll('[data-scrollto]').forEach(function(a){
     a.addEventListener('click', function(e){
       e.preventDefault();
-      show('adventures');
+      show(a.dataset.page || 'adventures');
       var el = document.getElementById(a.dataset.scrollto);
       if(el) el.scrollIntoView({behavior:'smooth'});
     });
