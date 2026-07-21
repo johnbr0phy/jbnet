@@ -797,7 +797,7 @@
           <textarea id="message"></textarea>
         </div>
         <button class="submit" type="submit">SUBMIT</button>
-        <p class="sent" id="sentNote">This is a prototype &mdash; the form doesn't send yet. On the real site it will email john@johnbrophy.net.</p>
+        <p class="sent" id="sentNote"></p>
       </form>
     </section>
 
@@ -890,7 +890,35 @@
 
   document.getElementById('contactForm').addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('sentNote').style.display = 'block';
+    var note = document.getElementById('sentNote');
+    var btn = document.querySelector('#contactForm .submit');
+    var fields = {
+      'entry.910474074': document.getElementById('fname').value.trim(),
+      'entry.953674238': document.getElementById('lname').value.trim(),
+      'entry.648833233': document.getElementById('email').value.trim(),
+      'entry.1116742163': document.getElementById('subject').value.trim(),
+      'entry.1977585821': document.getElementById('message').value.trim()
+    };
+    note.style.display = 'block';
+    if (Object.values(fields).some(function(v){ return !v; })) {
+      note.textContent = 'Please fill in all the fields above.';
+      return;
+    }
+    btn.disabled = true;
+    note.textContent = 'Sending…';
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSeQM2STqdhr6bkO_Vv1jPgkC4Ac-B5-mdTFHcL4vuRMaTSnjg/formResponse', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(fields).toString()
+    }).then(function(){
+      note.textContent = 'Thanks — your message has been sent.';
+      document.getElementById('contactForm').reset();
+      btn.disabled = false;
+    }).catch(function(){
+      note.textContent = 'Something went wrong — please email john@johnbrophy.net directly.';
+      btn.disabled = false;
+    });
   });
 
   window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
