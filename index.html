@@ -21,7 +21,7 @@
   a{color:var(--ink)}
   a:focus-visible{outline:2px solid #222;outline-offset:2px}
 
-  .shell{display:flex;min-height:100vh;max-width:1240px}
+  .shell{display:flex;min-height:100vh}
 
   /* ---------------- sidebar ---------------- */
   .side{flex:0 0 248px;padding:42px 20px 40px 42px;position:sticky;top:0;align-self:flex-start;height:100vh;display:flex;flex-direction:column}
@@ -121,9 +121,10 @@
   .adv-side .featured .d{font-size:11px;color:var(--soft);margin-top:4px}
 
   /* ---------------- galleries ---------------- */
+  .page.gallery{max-width:none}
   .gallery .slide{display:none}
   .gallery .slide.on{display:block}
-  .gallery .frame{width:100%;height:min(78vh,640px)}
+  .gallery .frame{width:100%;height:calc(100vh - 88px)}
   .gallery .thumbgrid{display:none;grid-template-columns:repeat(4,1fr);gap:10px}
   .gallery.thumbs .thumbgrid{display:grid}
   .gallery.thumbs .slide.on{display:none}
@@ -154,7 +155,7 @@
   img.headshot,img.thumb{object-fit:cover;display:block;min-width:0}
   img.headshot{width:158px;height:158px}
   img.thumb{width:220px;height:220px}
-  img.frame{object-fit:contain;display:block}
+  img.frame{object-fit:cover;display:block}
   .thumbgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;cursor:pointer;display:block}
   .thumbgrid img:hover{opacity:.85}
 
@@ -841,6 +842,17 @@
     var g = document.getElementById(current);
     if(g) g.classList.toggle('thumbs');
     this.textContent = g && g.classList.contains('thumbs') ? 'HIDE THUMBNAILS' : 'SHOW THUMBNAILS';
+  });
+
+  document.querySelectorAll('.gallery .slide').forEach(function(s){
+    s.addEventListener('click', function(e){
+      var r = s.getBoundingClientRect();
+      step(e.clientX > r.left + r.width/2 ? 1 : -1);
+    });
+    s.addEventListener('mousemove', function(e){
+      var r = s.getBoundingClientRect();
+      s.style.cursor = e.clientX > r.left + r.width/2 ? 'e-resize' : 'w-resize';
+    });
   });
 
   document.querySelectorAll('.thumbgrid [data-goto]').forEach(function(t){
