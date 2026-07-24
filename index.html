@@ -926,6 +926,15 @@
     });
   });
 
+  navLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = a.dataset.nav;
+      if(location.hash === '#'+id){ show(id); }
+      else { location.hash = id; }
+    });
+  });
+
   window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
   show(location.hash.slice(1) || 'hello');
 })();
