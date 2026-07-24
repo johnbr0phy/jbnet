@@ -135,11 +135,20 @@
   .gallery .slide{display:none}
   .gallery .slide.on{display:block}
   .gallery .frame{width:100%;height:calc(100vh - 88px)}
-  .gallery .thumbgrid{display:none;grid-template-columns:repeat(4,1fr);gap:10px}
-  .gallery.thumbs .thumbgrid{display:grid}
+  /* loose editorial thumbnail layout — varied sizes, offsets and whitespace */
+  .gallery .thumbgrid{display:none;flex-wrap:wrap;align-items:flex-start;row-gap:clamp(48px,7vw,96px);max-width:1020px}
+  .gallery.thumbs .thumbgrid{display:flex}
   .gallery.thumbs .slide.on{display:none}
   .thumbgrid .ph{aspect-ratio:1/1;cursor:pointer}
   .thumbgrid .ph:hover{border-color:var(--soft)}
+  /* repeating 7-image cycle: two landscapes / portrait + small portrait + landscape / portrait + big landscape */
+  .thumbgrid img:nth-child(7n+1){width:40%;margin-left:2%;aspect-ratio:4/3}
+  .thumbgrid img:nth-child(7n+2){width:36%;margin-left:auto;margin-right:4%;margin-top:5%;aspect-ratio:4/3}
+  .thumbgrid img:nth-child(7n+3){width:20%;aspect-ratio:3/4}
+  .thumbgrid img:nth-child(7n+4){width:17%;margin-left:7%;margin-top:6%;aspect-ratio:3/4}
+  .thumbgrid img:nth-child(7n+5){width:34%;margin-left:auto;margin-top:2%;aspect-ratio:4/3}
+  .thumbgrid img:nth-child(7n+6){width:25%;margin-left:2%;aspect-ratio:3/4}
+  .thumbgrid img:nth-child(7n+7){width:50%;margin-left:auto;margin-right:3%;margin-top:7%;aspect-ratio:4/3}
 
   /* ---------------- contact ---------------- */
   #contact h1{margin:0 0 18px;font-size:23px;font-weight:700}
@@ -166,7 +175,7 @@
   img.thumb{display:block;min-width:0;width:220px;height:auto}
   video.thumb{display:block;min-width:0;width:220px;height:auto;background:#000}
   img.frame{object-fit:contain;display:block}
-  .thumbgrid img{width:100%;aspect-ratio:1/1;object-fit:cover;cursor:pointer;display:block}
+  .thumbgrid img{object-fit:cover;cursor:pointer;display:block;height:auto}
   .thumbgrid img:hover{opacity:.85}
 
   /* ---------------- mobile menu (Squarespace style) ---------------- */
@@ -193,7 +202,6 @@
     .adv-side{flex:none;margin-left:0}
     .post img.photo,.post video.photo,.post .yt{float:none;width:100%;margin:6px 0 14px}
     .gallery .frame{height:60vh}
-    .thumbgrid{grid-template-columns:repeat(3,1fr)}
   }
 </style>
 
