@@ -77,9 +77,6 @@
 
   hr.rule{border:0;border-top:1px solid var(--line);margin:44px 0}
 
-  /* ---------------- hello ---------------- */
-  #hello .hero{width:100%;aspect-ratio:3/2}
-
   /* ---------------- resume ---------------- */
   .intro{display:flow-root}
   .intro p{margin:0;font-size:21px;line-height:1.55;font-weight:400;color:var(--ink)}
@@ -221,7 +218,7 @@
 <div class="shell">
   <aside class="side">
     <a id="menuToggle">Menu</a>
-    <h1 class="brand"><a href="#hello">John Brophy</a></h1>
+    <h1 class="brand"><a href="#resume">John Brophy</a></h1>
     <p class="tagline">Builder &amp; Product Leader</p>
     <nav class="main" aria-label="Main">
       <a href="#resume" data-nav="resume">Resume</a>
@@ -247,12 +244,6 @@
   </aside>
 
   <main class="content">
-
-    <!-- ============ HELLO ============ -->
-    <section class="page" id="hello">
-      <img class="hero" src="images/hello/01-img.jpg" alt="Three riders on a fall gravel trail">
-      <p class="credit">Photo by <a href="https://www.instagram.com/conanthai/">@</a><a href="https://conanthai.com">conanthai</a></p>
-    </section>
 
     <!-- ============ RESUME ============ -->
     <section class="page" id="resume">
@@ -835,7 +826,7 @@
 
 <script>
 (function(){
-  var pages = ['hello','resume','ai','adventures','photos','doodles','contact'];
+  var pages = ['resume','ai','adventures','photos','doodles','contact'];
   var navLinks = document.querySelectorAll('nav.main a, #mobileNav a');
   var mobileNav = document.getElementById('mobileNav');
   document.getElementById('menuToggle').addEventListener('click', function(){
@@ -844,7 +835,7 @@
   var galCaption = document.getElementById('galCaption');
   var capTitle = document.getElementById('capTitle');
   var capLoc = document.getElementById('capLoc');
-  var current = 'hello';
+  var current = 'resume';
 
   function slidesOf(id){ return document.querySelectorAll('#'+id+' .slide'); }
 
@@ -859,7 +850,7 @@
   }
 
   function show(id){
-    if(pages.indexOf(id) === -1) id = 'hello';
+    if(pages.indexOf(id) === -1) id = 'resume';
     current = id;
     pages.forEach(function(p){
       document.getElementById(p).classList.toggle('on', p === id);
@@ -968,7 +959,7 @@
   });
 
   window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
-  show(location.hash.slice(1) || 'hello');
+  show(location.hash.slice(1) || 'resume');
 })();
 </script>
 </body>
