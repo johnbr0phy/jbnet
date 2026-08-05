@@ -30,16 +30,19 @@
     font-style:italic;
     font-display:swap;
   }
-  :root,[data-theme="light"]{
+  :root{
+    --sans:'Figtree',-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  /* Light tokens only when light (not on :root) so dark mode can't lose a cascade fight */
+  [data-theme="light"]{
     color-scheme: light;
     --bg:#ffffff; --ink:#222222; --body:#666666; --soft:#999999; --faint:#b8b8b8;
     --line:#e8e8e8; --ph-bg:#f4f4f3; --ph-line:#dddddc; --btn:#1a1a1a; --btn-hover:#444;
     --field-bg:#fbfbfb; --field-line:#d6d6d6; --face-ring:rgba(0,0,0,.08);
-    --sans:'Figtree',-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
   [data-theme="dark"]{
     color-scheme: dark;
-    --bg:#0B0C0D; --ink:#EDEFF0; --body:#B0B6B9; --soft:#8B9295; --faint:#7A8185;
+    --bg:#0B0C0D; --ink:#EDEFF0; --body:#C0C5C8; --soft:#A3A9AC; --faint:#9AA1A5;
     --line:#212527; --ph-bg:#181B1C; --ph-line:#2E3336; --btn:#EDEFF0; --btn-hover:#c8ccce;
     --field-bg:#121415; --field-line:#2E3336; --face-ring:rgba(255,255,255,.12);
   }
