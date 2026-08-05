@@ -254,8 +254,8 @@
       position:fixed;
       top:0;left:0;right:0;
       z-index:100;
-      background:var(--bg);
-      border-bottom:1px solid var(--line);
+      background:#a3a3a3; /* match menu panel */
+      border-bottom:0;
       transform:translateY(-110%);
       transition:transform .28s ease;
       pointer-events:none;
@@ -275,7 +275,7 @@
     }
     .mobile-bar .mobile-brand{
       font-size:16px;font-weight:700;letter-spacing:-.01em;
-      color:var(--ink);text-decoration:none;
+      color:#fff;text-decoration:none;
       opacity:0;pointer-events:none;
       transition:opacity .2s ease;
     }
@@ -283,6 +283,7 @@
     .mobile-chrome.is-shown .mobile-brand{
       opacity:1;pointer-events:auto;
     }
+    .mobile-chrome .menu-btn{color:#fff}
     #mobileNav{display:block}
 
     /* Menu at top of page (next to portrait) before sticky bar appears */
