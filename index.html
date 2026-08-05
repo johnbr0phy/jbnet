@@ -270,26 +270,38 @@
       <!-- white sweater (dark mode) -->
       <!-- black sweater (light mode) -->
       <img class="on" data-theme="light" data-dir="center" src="images/head-tracker/black-center.jpg" alt="">
-      <img data-theme="light" data-dir="funny"      src="images/head-tracker/black-funny.jpg" alt="">
-      <img data-theme="light" data-dir="up"         src="images/head-tracker/black-up.jpg" alt="">
-      <img data-theme="light" data-dir="up-right"   src="images/head-tracker/black-up-right.jpg" alt="">
-      <img data-theme="light" data-dir="right"      src="images/head-tracker/black-right.jpg" alt="">
-      <img data-theme="light" data-dir="down-right" src="images/head-tracker/black-down-right.jpg" alt="">
-      <img data-theme="light" data-dir="down"       src="images/head-tracker/black-down.jpg" alt="">
-      <img data-theme="light" data-dir="down-left"  src="images/head-tracker/black-down-left.jpg" alt="">
-      <img data-theme="light" data-dir="left"       src="images/head-tracker/black-left.jpg" alt="">
-      <img data-theme="light" data-dir="up-left"    src="images/head-tracker/black-up-left.jpg" alt="">
+      <img data-theme="light" data-dir="funny"           src="images/head-tracker/black-funny.jpg" alt="">
+      <img data-theme="light" data-dir="nav-resume"      src="images/head-tracker/black-nav-resume.jpg" alt="">
+      <img data-theme="light" data-dir="nav-ai"          src="images/head-tracker/black-nav-ai.jpg" alt="">
+      <img data-theme="light" data-dir="nav-adventures"  src="images/head-tracker/black-nav-adventures.jpg" alt="">
+      <img data-theme="light" data-dir="nav-photos"      src="images/head-tracker/black-nav-photos.jpg" alt="">
+      <img data-theme="light" data-dir="nav-doodles"     src="images/head-tracker/black-nav-doodles.jpg" alt="">
+      <img data-theme="light" data-dir="nav-contact"     src="images/head-tracker/black-nav-contact.jpg" alt="">
+      <img data-theme="light" data-dir="up"              src="images/head-tracker/black-up.jpg" alt="">
+      <img data-theme="light" data-dir="up-right"        src="images/head-tracker/black-up-right.jpg" alt="">
+      <img data-theme="light" data-dir="right"           src="images/head-tracker/black-right.jpg" alt="">
+      <img data-theme="light" data-dir="down-right"      src="images/head-tracker/black-down-right.jpg" alt="">
+      <img data-theme="light" data-dir="down"            src="images/head-tracker/black-down.jpg" alt="">
+      <img data-theme="light" data-dir="down-left"       src="images/head-tracker/black-down-left.jpg" alt="">
+      <img data-theme="light" data-dir="left"            src="images/head-tracker/black-left.jpg" alt="">
+      <img data-theme="light" data-dir="up-left"         src="images/head-tracker/black-up-left.jpg" alt="">
       <!-- white sweater (dark mode) -->
-      <img data-theme="dark" data-dir="center"     src="images/head-tracker/white-center.jpg" alt="">
-      <img data-theme="dark" data-dir="funny"      src="images/head-tracker/white-funny.jpg" alt="">
-      <img data-theme="dark" data-dir="up"         src="images/head-tracker/white-up.jpg" alt="">
-      <img data-theme="dark" data-dir="up-right"   src="images/head-tracker/white-up-right.jpg" alt="">
-      <img data-theme="dark" data-dir="right"      src="images/head-tracker/white-right.jpg" alt="">
-      <img data-theme="dark" data-dir="down-right" src="images/head-tracker/white-down-right.jpg" alt="">
-      <img data-theme="dark" data-dir="down"       src="images/head-tracker/white-down.jpg" alt="">
-      <img data-theme="dark" data-dir="down-left"  src="images/head-tracker/white-down-left.jpg" alt="">
-      <img data-theme="dark" data-dir="left"       src="images/head-tracker/white-left.jpg" alt="">
-      <img data-theme="dark" data-dir="up-left"    src="images/head-tracker/white-up-left.jpg" alt="">
+      <img data-theme="dark" data-dir="center"          src="images/head-tracker/white-center.jpg" alt="">
+      <img data-theme="dark" data-dir="funny"           src="images/head-tracker/white-funny.jpg" alt="">
+      <img data-theme="dark" data-dir="nav-resume"      src="images/head-tracker/white-nav-resume.jpg" alt="">
+      <img data-theme="dark" data-dir="nav-ai"          src="images/head-tracker/white-nav-ai.jpg" alt="">
+      <img data-theme="dark" data-dir="nav-adventures"  src="images/head-tracker/white-nav-adventures.jpg" alt="">
+      <img data-theme="dark" data-dir="nav-photos"      src="images/head-tracker/white-nav-photos.jpg" alt="">
+      <img data-theme="dark" data-dir="nav-doodles"     src="images/head-tracker/white-nav-doodles.jpg" alt="">
+      <img data-theme="dark" data-dir="nav-contact"     src="images/head-tracker/white-nav-contact.jpg" alt="">
+      <img data-theme="dark" data-dir="up"              src="images/head-tracker/white-up.jpg" alt="">
+      <img data-theme="dark" data-dir="up-right"        src="images/head-tracker/white-up-right.jpg" alt="">
+      <img data-theme="dark" data-dir="right"           src="images/head-tracker/white-right.jpg" alt="">
+      <img data-theme="dark" data-dir="down-right"      src="images/head-tracker/white-down-right.jpg" alt="">
+      <img data-theme="dark" data-dir="down"            src="images/head-tracker/white-down.jpg" alt="">
+      <img data-theme="dark" data-dir="down-left"       src="images/head-tracker/white-down-left.jpg" alt="">
+      <img data-theme="dark" data-dir="left"            src="images/head-tracker/white-left.jpg" alt="">
+      <img data-theme="dark" data-dir="up-left"         src="images/head-tracker/white-up-left.jpg" alt="">
     </div>
     <h1 class="brand"><a href="#resume">John Brophy</a></h1>
     <p class="tagline">Builder &amp; Product Leader</p>
@@ -1140,6 +1152,37 @@
         funnyLock = false;
       }, 280);
     }
+
+    // Brief themed reaction when a nav item is clicked
+    var NAV_FLASH = {
+      resume: 'nav-resume',
+      ai: 'nav-ai',
+      adventures: 'nav-adventures',
+      photos: 'nav-photos',
+      doodles: 'nav-doodles',
+      contact: 'nav-contact'
+    };
+
+    function flashNav(navId){
+      var dir = NAV_FLASH[navId];
+      if(!dir || !findFrame(dir, theme)) return;
+      if(funnyTimer) clearTimeout(funnyTimer);
+      funnyLock = true;
+      showFrame(dir, theme);
+      funnyTimer = setTimeout(function(){
+        funnyTimer = 0;
+        funnyLock = false;
+        // Resume tracking pose (center on mobile / after hover)
+        if(isMobile || hoverCenter) currentDir = 'center';
+        showFrame(currentDir, theme);
+      }, 420);
+    }
+
+    document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav]').forEach(function(a){
+      a.addEventListener('click', function(){
+        flashNav(a.getAttribute('data-nav'));
+      });
+    });
 
     showFrame(currentDir, theme);
 
