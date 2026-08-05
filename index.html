@@ -230,7 +230,8 @@
 
   /* ---------------- mobile menu (Squarespace style) ---------------- */
   .mobile-chrome{display:none}
-  #menuToggle{
+  .menu-local{display:none}
+  .menu-btn{
     font:inherit;font-size:15px;color:var(--ink);cursor:pointer;
     -webkit-tap-highlight-color:transparent;text-decoration:none;
     padding:10px 4px;margin:0;background:none;border:0;
@@ -247,14 +248,22 @@
     .face-wrap{width:112px;margin:0 0 14px}
     nav.main{display:none}
 
-    /* sticky top bar + collapsible nav */
+    /* fixed chrome: hidden until you scroll past the portrait */
     .mobile-chrome{
       display:block;
-      position:sticky;
-      top:0;
+      position:fixed;
+      top:0;left:0;right:0;
       z-index:100;
       background:var(--bg);
       border-bottom:1px solid var(--line);
+      transform:translateY(-110%);
+      transition:transform .28s ease;
+      pointer-events:none;
+    }
+    .mobile-chrome.is-shown,
+    .mobile-chrome.is-menu-open{
+      transform:translateY(0);
+      pointer-events:auto;
     }
     .mobile-bar{
       display:flex;
@@ -267,8 +276,27 @@
     .mobile-bar .mobile-brand{
       font-size:16px;font-weight:700;letter-spacing:-.01em;
       color:var(--ink);text-decoration:none;
+      opacity:0;pointer-events:none;
+      transition:opacity .2s ease;
+    }
+    /* name only once you've scrolled (sticky bar in use) */
+    .mobile-chrome.is-shown .mobile-brand{
+      opacity:1;pointer-events:auto;
     }
     #mobileNav{display:block}
+
+    /* Menu at top of page (next to portrait) before sticky bar appears */
+    .menu-local{
+      display:inline-block;
+      position:absolute;
+      top:10px;right:16px;
+      z-index:2;
+      transition:opacity .2s ease;
+    }
+    .mobile-chrome.is-shown ~ .shell .menu-local{
+      opacity:0;
+      pointer-events:none;
+    }
 
     .socials{margin-top:20px}
     .gal-caption{margin-top:18px}
@@ -283,10 +311,10 @@
   }
 </style>
 
-<div class="mobile-chrome">
+<div class="mobile-chrome" id="mobileChrome">
   <div class="mobile-bar">
     <a class="mobile-brand" href="#resume" data-nav="resume">John Brophy</a>
-    <a id="menuToggle" href="#" role="button" aria-expanded="false" aria-controls="mobileNav">Menu</a>
+    <a class="menu-btn" id="menuToggle" href="#" role="button" aria-expanded="false" aria-controls="mobileNav">Menu</a>
   </div>
   <div id="mobileNav">
     <nav aria-label="Mobile">
@@ -304,6 +332,7 @@
 
 <div class="shell">
   <aside class="side">
+    <a class="menu-btn menu-local" id="menuToggleTop" href="#" role="button" aria-expanded="false" aria-controls="mobileNav">Menu</a>
     <div class="face-wrap" id="face" role="button" tabindex="0"
          aria-label="John Brophy. Click to toggle light and dark mode."
          title="Click to toggle light / dark">
@@ -963,22 +992,44 @@
   var pages = ['resume','ai','adventures','photos','doodles','contact'];
   var navLinks = document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav], .mobile-brand[data-nav]');
   var mobileNav = document.getElementById('mobileNav');
-  var menuToggle = document.getElementById('menuToggle');
+  var mobileChrome = document.getElementById('mobileChrome');
+  var menuToggles = document.querySelectorAll('#menuToggle, #menuToggleTop');
+  var faceEl = document.getElementById('face');
+
   function setMobileNavOpen(open){
+    if(!mobileNav) return;
     if(open){
+      if(mobileChrome) mobileChrome.classList.add('is-menu-open');
       mobileNav.style.height = mobileNav.scrollHeight + 'px';
-      if(menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+      menuToggles.forEach(function(btn){ btn.setAttribute('aria-expanded', 'true'); });
     } else {
+      if(mobileChrome) mobileChrome.classList.remove('is-menu-open');
       mobileNav.style.height = '0px';
-      if(menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggles.forEach(function(btn){ btn.setAttribute('aria-expanded', 'false'); });
     }
   }
-  if(menuToggle){
-    menuToggle.addEventListener('click', function(e){
+  menuToggles.forEach(function(btn){
+    btn.addEventListener('click', function(e){
       e.preventDefault();
       setMobileNavOpen(mobileNav.offsetHeight === 0);
     });
+  });
+
+  // Sticky mobile chrome only after scrolling past the portrait
+  function updateMobileChrome(){
+    if(!mobileChrome || !faceEl) return;
+    if(window.matchMedia('(max-width:820px)').matches === false){
+      mobileChrome.classList.remove('is-shown');
+      return;
+    }
+    var faceBottom = faceEl.getBoundingClientRect().bottom;
+    // show once the face has mostly scrolled off the top
+    if(faceBottom < 8) mobileChrome.classList.add('is-shown');
+    else mobileChrome.classList.remove('is-shown');
   }
+  window.addEventListener('scroll', updateMobileChrome, { passive:true });
+  window.addEventListener('resize', updateMobileChrome);
+  updateMobileChrome();
   var galCaption = document.getElementById('galCaption');
   var capTitle = document.getElementById('capTitle');
   var capLoc = document.getElementById('capLoc');
@@ -1008,6 +1059,7 @@
     setMobileNavOpen(false);
     syncCaption();
     window.scrollTo(0,0);
+    updateMobileChrome();
   }
 
   function step(dir){
