@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -265,18 +265,8 @@
          aria-label="John Brophy. Move your mouse and I'll look. Click to toggle light and dark mode."
          title="Click to toggle light / dark">
       <!-- white sweater (dark mode) -->
-      <img class="on" data-theme="dark" data-dir="center" src="images/head-tracker/white-center.jpg" alt="">
-      <img data-theme="dark" data-dir="funny"      src="images/head-tracker/white-funny.jpg" alt="">
-      <img data-theme="dark" data-dir="up"         src="images/head-tracker/white-up.jpg" alt="">
-      <img data-theme="dark" data-dir="up-right"   src="images/head-tracker/white-up-right.jpg" alt="">
-      <img data-theme="dark" data-dir="right"      src="images/head-tracker/white-right.jpg" alt="">
-      <img data-theme="dark" data-dir="down-right" src="images/head-tracker/white-down-right.jpg" alt="">
-      <img data-theme="dark" data-dir="down"       src="images/head-tracker/white-down.jpg" alt="">
-      <img data-theme="dark" data-dir="down-left"  src="images/head-tracker/white-down-left.jpg" alt="">
-      <img data-theme="dark" data-dir="left"       src="images/head-tracker/white-left.jpg" alt="">
-      <img data-theme="dark" data-dir="up-left"    src="images/head-tracker/white-up-left.jpg" alt="">
       <!-- black sweater (light mode) -->
-      <img data-theme="light" data-dir="center"     src="images/head-tracker/black-center.jpg" alt="">
+      <img class="on" data-theme="light" data-dir="center" src="images/head-tracker/black-center.jpg" alt="">
       <img data-theme="light" data-dir="funny"      src="images/head-tracker/black-funny.jpg" alt="">
       <img data-theme="light" data-dir="up"         src="images/head-tracker/black-up.jpg" alt="">
       <img data-theme="light" data-dir="up-right"   src="images/head-tracker/black-up-right.jpg" alt="">
@@ -286,6 +276,17 @@
       <img data-theme="light" data-dir="down-left"  src="images/head-tracker/black-down-left.jpg" alt="">
       <img data-theme="light" data-dir="left"       src="images/head-tracker/black-left.jpg" alt="">
       <img data-theme="light" data-dir="up-left"    src="images/head-tracker/black-up-left.jpg" alt="">
+      <!-- white sweater (dark mode) -->
+      <img data-theme="dark" data-dir="center"     src="images/head-tracker/white-center.jpg" alt="">
+      <img data-theme="dark" data-dir="funny"      src="images/head-tracker/white-funny.jpg" alt="">
+      <img data-theme="dark" data-dir="up"         src="images/head-tracker/white-up.jpg" alt="">
+      <img data-theme="dark" data-dir="up-right"   src="images/head-tracker/white-up-right.jpg" alt="">
+      <img data-theme="dark" data-dir="right"      src="images/head-tracker/white-right.jpg" alt="">
+      <img data-theme="dark" data-dir="down-right" src="images/head-tracker/white-down-right.jpg" alt="">
+      <img data-theme="dark" data-dir="down"       src="images/head-tracker/white-down.jpg" alt="">
+      <img data-theme="dark" data-dir="down-left"  src="images/head-tracker/white-down-left.jpg" alt="">
+      <img data-theme="dark" data-dir="left"       src="images/head-tracker/white-left.jpg" alt="">
+      <img data-theme="dark" data-dir="up-left"    src="images/head-tracker/white-up-left.jpg" alt="">
     </div>
     <h1 class="brand"><a href="#resume">John Brophy</a></h1>
     <p class="tagline">Builder &amp; Product Leader</p>
@@ -317,7 +318,6 @@
     <!-- ============ RESUME ============ -->
     <section class="page" id="resume">
       <div class="intro">
-        <img class="headshot" src="images/resume/01-img.jpg" alt="John Brophy headshot">
         <p>For most of my career I was a design-led PM: I could see the product clearly, could tell you when a few pixels were off, but I needed a team to write the code and build it.</p>
         <p>Since Dec 2025, everything about the PM role has changed. I now consider myself, first and foremost a builder.</p>
         <p>Scrappy, hands-on, designing, coding, and PMing all at once, shipping daily, sometimes hourly. Have an idea in the morning, get it live by lunch. It's everything I ever dreamed this job could be. Grab a copy of my resume <a href="https://drive.google.com/file/d/1DP2hnZG-xbEuH10QsesM7zvLPMtekXFa/view?usp=sharing">here</a>.</p>
@@ -1052,7 +1052,7 @@
     if(!face) return;
     var root = document.documentElement;
     var imgs = Array.prototype.slice.call(face.querySelectorAll('img'));
-    var theme = root.getAttribute('data-theme') || 'dark';
+    var theme = root.getAttribute('data-theme') || 'light';
     var currentDir = 'center';
     var hoverCenter = false;
     var funnyLock = false;
