@@ -221,9 +221,14 @@
   .thumbgrid img:hover{opacity:.85}
 
   /* ---------------- mobile menu (Squarespace style) ---------------- */
-  #menuToggle{display:none}
-  #mobileNav{display:none;height:0;overflow:hidden;transition:height .35s ease;background:#a3a3a3}
-  #mobileNav ul{list-style:none;margin:0;padding:2em 0;text-align:center}
+  .mobile-chrome{display:none}
+  #menuToggle{
+    font:inherit;font-size:15px;color:var(--ink);cursor:pointer;
+    -webkit-tap-highlight-color:transparent;text-decoration:none;
+    padding:10px 4px;margin:0;background:none;border:0;
+  }
+  #mobileNav{height:0;overflow:hidden;transition:height .35s ease;background:#a3a3a3}
+  #mobileNav ul{list-style:none;margin:0;padding:1.4em 0;text-align:center}
   #mobileNav a{display:block;color:rgba(255,255,255,.7);font-size:18px;line-height:2.5em;text-decoration:none}
   #mobileNav a:hover,#mobileNav a.active{color:#fff}
 
@@ -233,8 +238,30 @@
     .side{position:relative;height:auto;flex:none;align-self:stretch;min-width:0;padding:24px 24px 6px}
     .face-wrap{width:112px;margin:0 0 14px}
     nav.main{display:none}
+
+    /* sticky top bar + collapsible nav */
+    .mobile-chrome{
+      display:block;
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:var(--bg);
+      border-bottom:1px solid var(--line);
+    }
+    .mobile-bar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:10px 20px;
+      min-height:48px;
+    }
+    .mobile-bar .mobile-brand{
+      font-size:16px;font-weight:700;letter-spacing:-.01em;
+      color:var(--ink);text-decoration:none;
+    }
     #mobileNav{display:block}
-    #menuToggle{display:inline-block;position:absolute;top:6px;right:4px;padding:20px;font-size:15px;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent}
+
     .socials{margin-top:20px}
     .gal-caption{margin-top:18px}
     .content{padding:26px 24px 70px}
@@ -248,22 +275,27 @@
   }
 </style>
 
-<div id="mobileNav">
-  <nav aria-label="Mobile">
-    <ul>
-      <li><a href="#resume" data-nav="resume">Resume</a></li>
-      <li><a href="#ai" data-nav="ai">AI Creations</a></li>
-      <li><a href="#adventures" data-nav="adventures">Adventures</a></li>
-      <li><a href="#photos" data-nav="photos">Photos</a></li>
-      <li><a href="#doodles" data-nav="doodles">Doodles</a></li>
-      <li><a href="#contact" data-nav="contact">Contact</a></li>
-    </ul>
-  </nav>
+<div class="mobile-chrome">
+  <div class="mobile-bar">
+    <a class="mobile-brand" href="#resume" data-nav="resume">John Brophy</a>
+    <a id="menuToggle" href="#" role="button" aria-expanded="false" aria-controls="mobileNav">Menu</a>
+  </div>
+  <div id="mobileNav">
+    <nav aria-label="Mobile">
+      <ul>
+        <li><a href="#resume" data-nav="resume">Resume</a></li>
+        <li><a href="#ai" data-nav="ai">AI Creations</a></li>
+        <li><a href="#adventures" data-nav="adventures">Adventures</a></li>
+        <li><a href="#photos" data-nav="photos">Photos</a></li>
+        <li><a href="#doodles" data-nav="doodles">Doodles</a></li>
+        <li><a href="#contact" data-nav="contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </div>
 
 <div class="shell">
   <aside class="side">
-    <a id="menuToggle">Menu</a>
     <div class="face-wrap" id="face" role="button" tabindex="0"
          aria-label="John Brophy. Click to toggle light and dark mode."
          title="Click to toggle light / dark">
@@ -921,11 +953,24 @@
 <script>
 (function(){
   var pages = ['resume','ai','adventures','photos','doodles','contact'];
-  var navLinks = document.querySelectorAll('nav.main a, #mobileNav a');
+  var navLinks = document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav], .mobile-brand[data-nav]');
   var mobileNav = document.getElementById('mobileNav');
-  document.getElementById('menuToggle').addEventListener('click', function(){
-    mobileNav.style.height = mobileNav.offsetHeight > 0 ? '0px' : mobileNav.scrollHeight + 'px';
-  });
+  var menuToggle = document.getElementById('menuToggle');
+  function setMobileNavOpen(open){
+    if(open){
+      mobileNav.style.height = mobileNav.scrollHeight + 'px';
+      if(menuToggle) menuToggle.setAttribute('aria-expanded', 'true');
+    } else {
+      mobileNav.style.height = '0px';
+      if(menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    }
+  }
+  if(menuToggle){
+    menuToggle.addEventListener('click', function(e){
+      e.preventDefault();
+      setMobileNavOpen(mobileNav.offsetHeight === 0);
+    });
+  }
   var galCaption = document.getElementById('galCaption');
   var capTitle = document.getElementById('capTitle');
   var capLoc = document.getElementById('capLoc');
@@ -952,7 +997,7 @@
     navLinks.forEach(function(a){
       a.classList.toggle('active', a.dataset.nav === id);
     });
-    mobileNav.style.height = '0px';
+    setMobileNavOpen(false);
     syncCaption();
     window.scrollTo(0,0);
   }
@@ -1178,7 +1223,7 @@
       }, 420);
     }
 
-    document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav]').forEach(function(a){
+    document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav], .mobile-brand[data-nav]').forEach(function(a){
       a.addEventListener('click', function(){
         flashNav(a.getAttribute('data-nav'));
       });
