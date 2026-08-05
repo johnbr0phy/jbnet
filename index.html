@@ -161,7 +161,8 @@
   .post .yt{text-decoration:none}
   .post .yt img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
   .post .yt .cta{margin-top:10px}
-  .post .ctas{margin:0 0 18px}
+  .post .ctas{margin:0 0 18px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline}
+  .post .ctas .cta{margin-top:0}
   .post + .post{border-top:1px solid var(--line);margin-top:48px;padding-top:48px}
   /* right rail — sticky on desktop so only the posts column scrolls away */
   .adv-side{
@@ -549,7 +550,10 @@
           <p>A hedgehog walks through an endless meadow. Tap where you want him to go and he wanders over. Thorns and the road cost him a heart. Find the burrow at the end of each leg and the next one starts, a little faster and a little thornier.</p>
           <p>Tapping also sows something, and what you get depends on where you are. A flower in the meadow, mushrooms in the mushroom garden, kicked-up leaves in the wood, bubbles on the shore, an egg that hatches in the hen run. Fireflies after dark. A snowman in deep winter. A lily pad on the lake. He crosses water in a little boat and goes under the road through a culvert.</p>
           <p>Weather, seasons and a day and night cycle all run on their own clocks, so the walk never repeats. Built with Claude Code: one HTML file, everything you see drawn in code.</p>
-          <p class="ctas"><a class="cta" href="https://johnbr0phy.github.io/hedgepig/">Play the game</a></p>
+          <p class="ctas">
+            <a class="cta" href="https://johnbr0phy.github.io/hedgepig/">Play the game</a>
+            <a class="cta" href="https://johnbr0phy.github.io/hedgepig/v2/">Play the game (in 3D WIP)</a>
+          </p>
         </article>
         <article class="post" id="post-llmwiki-stensul">
           <h2>LLM-Wiki at Work: Four Months In</h2>
