@@ -262,7 +262,7 @@
   <aside class="side">
     <a id="menuToggle">Menu</a>
     <div class="face-wrap" id="face" role="button" tabindex="0"
-         aria-label="John Brophy. Move your mouse or tilt your phone and I'll look. Click to toggle light and dark mode."
+         aria-label="John Brophy. Click to toggle light and dark mode."
          title="Click to toggle light / dark">
       <!-- white sweater (dark mode) -->
       <!-- black sweater (light mode) -->
@@ -1040,7 +1040,7 @@
   window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
   show(location.hash.slice(1) || 'resume');
 
-  /* ---------- cursor/gyro-following headshot + theme toggle ---------- */
+  /* ---------- cursor-following headshot + theme toggle ---------- */
   (function(){
     var DIRS = [
       { id:'right', angle:0 }, { id:'down-right', angle:45 },
@@ -1059,18 +1059,9 @@
     var funnyTimer = 0;
     var underClearTimer = 0;
     var lastX = 0, lastY = 0, pending = false;
-
-    // Mobile gyro (iPhone DeviceOrientation)
-    var isCoarse = window.matchMedia('(pointer: coarse)').matches ||
+    // Mobile: no tracking — always look at the camera
+    var isMobile = window.matchMedia('(pointer: coarse)').matches ||
       ('ontouchstart' in window && window.matchMedia('(max-width: 820px)').matches);
-    var gyroActive = false;
-    var gyroAsked = false;
-    var baseBeta = null;
-    var baseGamma = null;
-    // degrees of tilt from rest before leaving "center"
-    var GYRO_DEAD = 7;
-    // degrees of tilt that maps to full look direction
-    var GYRO_RANGE = 22;
 
     imgs.forEach(function(img){ var w = new Image(); w.src = img.src; });
 
@@ -1119,65 +1110,12 @@
     }
 
     function updateFromPoint(x, y){
-      // On phones, gyro owns the look once it's running
-      if(gyroActive) return;
+      if(isMobile) return;
       var rect = face.getBoundingClientRect();
       var cx = rect.left + rect.width / 2;
       var cy = rect.top + rect.height * 0.32;
       if(hoverCenter){ setDir('center'); return; }
       setDir(nearestDir(x - cx, y - cy));
-    }
-
-    function onDeviceOrientation(e){
-      if(funnyLock) return;
-      // beta: front/back (-180..180). ~90 = upright portrait
-      // gamma: left/right (-90..90). 0 = level
-      if(e.beta == null || e.gamma == null) return;
-
-      // Calibrate to how the phone is held when gyro first reports
-      if(baseBeta === null){
-        baseBeta = e.beta;
-        baseGamma = e.gamma;
-      }
-
-      // Relative tilt from rest. Screen coords: +x right, +y down
-      var dx = e.gamma - baseGamma;          // tilt right → look right
-      var dy = -(e.beta - baseBeta);         // tilt top away → look up
-
-      var mag = Math.sqrt(dx * dx + dy * dy);
-      if(mag < GYRO_DEAD){
-        setDir('center');
-        return;
-      }
-
-      // Soft clamp so small tilts still reach the outer sectors
-      var scale = Math.min(1, mag / GYRO_RANGE);
-      setDir(nearestDir(dx * scale, dy * scale));
-    }
-
-    function startGyro(){
-      if(gyroActive) return;
-      window.addEventListener('deviceorientation', onDeviceOrientation, true);
-      gyroActive = true;
-      face.setAttribute('title', 'Tilt your phone · click to toggle light / dark');
-      face.setAttribute('aria-label',
-        'John Brophy. Tilt your phone and I look around. Click to toggle light and dark mode.');
-    }
-
-    // iOS 13+ requires a user-gesture permission prompt
-    function requestGyro(){
-      if(gyroAsked || gyroActive) return;
-      gyroAsked = true;
-      try{
-        if(typeof DeviceOrientationEvent !== 'undefined' &&
-           typeof DeviceOrientationEvent.requestPermission === 'function'){
-          DeviceOrientationEvent.requestPermission().then(function(state){
-            if(state === 'granted') startGyro();
-          }).catch(function(){ /* denied / unavailable — keep pointer fallback */ });
-        } else if('DeviceOrientationEvent' in window){
-          startGyro();
-        }
-      }catch(err){ /* ignore */ }
     }
 
     function setTheme(next){
@@ -1202,54 +1140,35 @@
 
     showFrame(currentDir, theme);
 
-    // Desktop / mouse tracking
-    window.addEventListener('pointermove', function(e){
-      if(e.pointerType === 'touch' && gyroActive) return;
-      lastX = e.clientX; lastY = e.clientY;
-      if(pending) return;
-      pending = true;
-      requestAnimationFrame(function(){
-        pending = false;
-        updateFromPoint(lastX, lastY);
+    if(!isMobile){
+      window.addEventListener('pointermove', function(e){
+        lastX = e.clientX; lastY = e.clientY;
+        if(pending) return;
+        pending = true;
+        requestAnimationFrame(function(){
+          pending = false;
+          updateFromPoint(lastX, lastY);
+        });
+      }, { passive:true });
+
+      window.addEventListener('scroll', function(){
+        if(lastX || lastY) updateFromPoint(lastX, lastY);
+      }, { passive:true });
+      window.addEventListener('resize', function(){
+        if(lastX || lastY) updateFromPoint(lastX, lastY);
       });
-    }, { passive:true });
 
-    window.addEventListener('scroll', function(){
-      if(gyroActive) return;
-      if(lastX || lastY) updateFromPoint(lastX, lastY);
-    }, { passive:true });
-    window.addEventListener('resize', function(){
-      if(gyroActive) return;
-      if(lastX || lastY) updateFromPoint(lastX, lastY);
-    });
+      face.addEventListener('pointerenter', function(){ hoverCenter = true; setDir('center'); });
+      face.addEventListener('pointerleave', function(e){
+        hoverCenter = false;
+        updateFromPoint(e.clientX, e.clientY);
+      });
+    }
 
-    face.addEventListener('pointerenter', function(){
-      if(gyroActive) return;
-      hoverCenter = true; setDir('center');
-    });
-    face.addEventListener('pointerleave', function(e){
-      if(gyroActive) return;
-      hoverCenter = false;
-      updateFromPoint(e.clientX, e.clientY);
-    });
-    face.addEventListener('click', function(e){
-      e.preventDefault();
-      // First tap on iPhone: unlock motion sensors (must be user gesture)
-      if(isCoarse) requestGyro();
-      toggleTheme();
-    });
+    face.addEventListener('click', function(e){ e.preventDefault(); toggleTheme(); });
     face.addEventListener('keydown', function(e){
       if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleTheme(); }
     });
-
-    // Also ask on first touch anywhere so tracking can start before theme-click
-    if(isCoarse){
-      function firstTouch(){
-        requestGyro();
-        window.removeEventListener('touchstart', firstTouch, true);
-      }
-      window.addEventListener('touchstart', firstTouch, { capture:true, passive:true });
-    }
   })();
 })();
 </script>
