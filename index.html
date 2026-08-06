@@ -1157,11 +1157,22 @@
   });
 
   navLinks.forEach(function(a){
+    if(a.classList.contains('mobile-brand')) return; // see brand handler below
     a.addEventListener('click', function(e){
       e.preventDefault();
       var id = a.dataset.nav;
       if(location.hash === '#'+id){ show(id); }
       else { location.hash = id; }
+    });
+  });
+
+  // The name in the sticky bar behaves like loading the bare URL: resume, top
+  // of page. Dropping the fragment avoids the browser's jump to #resume.
+  document.querySelectorAll('.mobile-brand').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      if(location.hash) history.replaceState(null, '', location.pathname + location.search);
+      show('resume');
     });
   });
 
