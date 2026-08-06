@@ -12,9 +12,16 @@
     var t=localStorage.getItem('jb-theme');
     if(t==='light'||t==='dark') document.documentElement.setAttribute('data-theme',t);
   }catch(e){}
-  /* Hash routes use ids like #ai — stop the browser scrolling to those
-     elements on load (which leaves the main pane offset slightly). */
-  try{ if('scrollRestoration' in history) history.scrollRestoration = 'manual'; }catch(e){}
+  /* Direct loads of /#ai etc. make the browser scroll to the matching element
+     id, which offsets the main pane. Stash the hash and strip it before the
+     browser can jump; JS restores it after routing. */
+  try{
+    if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if(location.hash){
+      window.__jbHash = location.hash;
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }catch(e){}
 </script>
 </head>
 <body>
@@ -1193,7 +1200,18 @@
     // bfcache restore can re-apply a fragment offset
     if(e.persisted) pinScrollTop();
   });
-  show(location.hash.slice(1) || 'resume');
+
+  // Prefer the hash stashed in <head> (direct /#ai loads), then the URL.
+  var bootHash = '';
+  try{ bootHash = (window.__jbHash || location.hash || '').replace(/^#/, ''); }catch(e){}
+  show(bootHash || 'resume');
+  try{
+    if(window.__jbHash){
+      history.replaceState(null, '', window.__jbHash);
+      window.__jbHash = '';
+    }
+  }catch(e){}
+  pinScrollTop();
 
   /* ---------- cursor-following headshot + theme toggle ---------- */
   (function(){
