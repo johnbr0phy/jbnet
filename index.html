@@ -12,6 +12,9 @@
     var t=localStorage.getItem('jb-theme');
     if(t==='light'||t==='dark') document.documentElement.setAttribute('data-theme',t);
   }catch(e){}
+  /* Hash routes use ids like #ai — stop the browser scrolling to those
+     elements on load (which leaves the main pane offset slightly). */
+  try{ if('scrollRestoration' in history) history.scrollRestoration = 'manual'; }catch(e){}
 </script>
 </head>
 <body>
@@ -1056,7 +1059,13 @@
     document.getElementById('thumbsBtn').textContent = inThumbs ? 'HIDE THUMBNAILS' : 'SHOW THUMBNAILS';
   }
 
-  function show(id){
+  function pinScrollTop(){
+    window.scrollTo(0, 0);
+    if(document.documentElement) document.documentElement.scrollTop = 0;
+    if(document.body) document.body.scrollTop = 0;
+  }
+
+  function show(id, opts){
     if(pages.indexOf(id) === -1) id = 'resume';
     current = id;
     pages.forEach(function(p){
@@ -1067,7 +1076,19 @@
     });
     setMobileNavOpen(false);
     syncCaption();
-    window.scrollTo(0,0);
+    // Default: land at the top of the pane. opts.scrollTop === false when a
+    // featured-post link will scrollIntoView a specific article instead.
+    if(!opts || opts.scrollTop !== false){
+      pinScrollTop();
+      // Browser fragment scroll (e.g. #ai) often runs after the first paint —
+      // re-assert top on the next frames so the main column isn't offset.
+      requestAnimationFrame(function(){
+        pinScrollTop();
+        requestAnimationFrame(pinScrollTop);
+      });
+      setTimeout(pinScrollTop, 0);
+      setTimeout(pinScrollTop, 50);
+    }
     updateMobileChrome();
   }
 
@@ -1094,7 +1115,7 @@
   document.querySelectorAll('[data-scrollto]').forEach(function(a){
     a.addEventListener('click', function(e){
       e.preventDefault();
-      show(a.dataset.page || 'adventures');
+      show(a.dataset.page || 'adventures', { scrollTop: false });
       var el = document.getElementById(a.dataset.scrollto);
       if(el) el.scrollIntoView({behavior:'smooth'});
     });
@@ -1167,6 +1188,11 @@
   });
 
   window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
+  window.addEventListener('load', pinScrollTop);
+  window.addEventListener('pageshow', function(e){
+    // bfcache restore can re-apply a fragment offset
+    if(e.persisted) pinScrollTop();
+  });
   show(location.hash.slice(1) || 'resume');
 
   /* ---------- cursor-following headshot + theme toggle ---------- */
