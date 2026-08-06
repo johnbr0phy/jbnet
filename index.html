@@ -282,10 +282,12 @@
       color:#fff;text-decoration:none;
       opacity:0;pointer-events:none;
       transition:opacity .2s ease;
+      cursor:default;
+      user-select:none;
     }
-    /* name only once you've scrolled (sticky bar in use) */
+    /* name only once you've scrolled (sticky bar in use) — label only, not a link */
     .mobile-chrome.is-shown .mobile-brand{
-      opacity:1;pointer-events:auto;
+      opacity:1;
     }
     .mobile-chrome .menu-btn{color:#fff}
     #mobileNav{display:block}
@@ -318,7 +320,7 @@
 
 <div class="mobile-chrome" id="mobileChrome">
   <div class="mobile-bar">
-    <a class="mobile-brand" href="#resume" data-nav="resume">John Brophy</a>
+    <span class="mobile-brand">John Brophy</span>
     <a class="menu-btn" id="menuToggle" href="#" role="button" aria-expanded="false" aria-controls="mobileNav">Menu</a>
   </div>
   <div id="mobileNav">
@@ -998,7 +1000,7 @@
 <script>
 (function(){
   var pages = ['resume','ai','adventures','photos','doodles','contact'];
-  var navLinks = document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav], .mobile-brand[data-nav]');
+  var navLinks = document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav]');
   var mobileNav = document.getElementById('mobileNav');
   var mobileChrome = document.getElementById('mobileChrome');
   var menuToggles = document.querySelectorAll('#menuToggle, #menuToggleTop');
@@ -1157,22 +1159,11 @@
   });
 
   navLinks.forEach(function(a){
-    if(a.classList.contains('mobile-brand')) return; // see brand handler below
     a.addEventListener('click', function(e){
       e.preventDefault();
       var id = a.dataset.nav;
       if(location.hash === '#'+id){ show(id); }
       else { location.hash = id; }
-    });
-  });
-
-  // The name in the sticky bar behaves like loading the bare URL: resume, top
-  // of page. Dropping the fragment avoids the browser's jump to #resume.
-  document.querySelectorAll('.mobile-brand').forEach(function(a){
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      if(location.hash) history.replaceState(null, '', location.pathname + location.search);
-      show('resume');
     });
   });
 
@@ -1315,7 +1306,7 @@
       }, 420);
     }
 
-    document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav], .mobile-brand[data-nav]').forEach(function(a){
+    document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav]').forEach(function(a){
       a.addEventListener('click', function(){
         flashNav(a.getAttribute('data-nav'));
       });
