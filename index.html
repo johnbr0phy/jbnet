@@ -1271,7 +1271,9 @@
       showFrame('funny', theme);
       funnyTimer = setTimeout(function(){
         funnyTimer = 0;
-        currentDir = 'center';
+        // Desktop re-aims from the cursor straight away; mobile has no
+        // tracking, so keep the section pose through the theme swap.
+        if(!isMobile) currentDir = 'center';
         setTheme(theme === 'dark' ? 'light' : 'dark');
         funnyLock = false;
       }, 280);
