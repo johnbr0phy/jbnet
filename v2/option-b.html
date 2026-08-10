@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>John Brophy — My Story (Option B · The Ledger)</title>
+<meta name="description" content="John Brophy — a builder's log. Twenty-three years, the claims, the numbers, the artifacts.">
+<link rel="icon" href="../favicon.ico">
+</head>
+<body>
+<style>
+  /* ===========================================================
+     OPTION B — THE LEDGER
+     Builder's log. Sticky year rail, claim → numbers → artifact.
+     One sharp grotesque + mono for every number and date. No serif.
+     Dark by default; light theme is a first-class alternate.
+     =========================================================== */
+  @font-face{font-family:'Figtree';src:url('../fonts/figtree-var.woff2') format('woff2');font-weight:300 900;font-style:normal;font-display:swap}
+
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --bg:#0B0C0D; --panel:#121415; --panel-2:#181B1C; --ink:#EDEFF0; --body:#9DA3A6; --soft:#666D70;
+    --line:#212527; --line-2:#2E3336; --accent:#FF6B35; --good:#4ADE80;
+  }
+  :root[data-theme="light"]{
+    color-scheme:light;
+    --bg:#FCFCFB; --panel:#FFFFFF; --panel-2:#F4F5F4; --ink:#0E1011; --body:#585F62; --soft:#8B9295;
+    --line:#E4E6E5; --line-2:#D2D6D5; --accent:#D9400B; --good:#128A45;
+  }
+  :root{
+    --sans:'Figtree',-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
+    --rail:132px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:var(--ink)}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  /* the connective tissue: every number, everywhere */
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";letter-spacing:-.03em}
+  .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+
+  /* ---------------- top bar ---------------- */
+  .bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:20px;
+       padding:0 26px;height:56px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);
+       border-bottom:1px solid var(--line)}
+  .bar .me{font-size:15px;font-weight:700;letter-spacing:-.01em;text-decoration:none}
+  .bar .me span{color:var(--accent)}
+  .bar nav{display:flex;align-items:center;gap:6px}
+  .bar nav a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+             color:var(--body);padding:7px 11px;border:1px solid transparent;border-radius:4px}
+  .bar nav a:hover{color:var(--ink);border-color:var(--line-2)}
+  .bar nav a.active{color:var(--ink);border-color:var(--line-2);background:var(--panel-2)}
+  .tgl{background:none;border:1px solid var(--line-2);color:var(--body);border-radius:4px;font:inherit;font-family:var(--mono);
+       font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;cursor:pointer;margin-left:6px}
+  .tgl:hover{color:var(--ink)}
+
+  .page{display:none}
+  .page.on{display:block}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+
+  /* ---------------- masthead ---------------- */
+  .mast{padding:76px 0 46px;border-bottom:1px solid var(--line)}
+  .mast .lbl{display:block;margin-bottom:22px}
+  .mast h1{margin:0 0 20px;font-size:clamp(34px,5.4vw,60px);line-height:1.02;letter-spacing:-.035em;font-weight:700;max-width:19ch}
+  .mast h1 span{color:var(--accent)}
+  .mast p{margin:0;max-width:60ch;font-size:17px;line-height:1.65;color:var(--body)}
+  .mast p + p{margin-top:14px}
+  .mast .resume{display:inline-block;margin-top:24px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+                text-transform:uppercase;text-decoration:none;color:var(--ink);border:1px solid var(--line-2);padding:9px 14px;border-radius:4px}
+  .mast .resume:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* career totals strip */
+  .totals{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));border-bottom:1px solid var(--line)}
+  .totals .c{padding:22px 20px;border-left:1px solid var(--line)}
+  .totals .c:first-child{border-left:0;padding-left:0}
+  .totals .v{display:block;font-size:clamp(22px,2.8vw,30px);font-weight:600;letter-spacing:-.04em;line-height:1}
+  .totals .k{display:block;margin-top:9px}
+
+  /* ---------------- ledger body ---------------- */
+  .ledger{display:grid;grid-template-columns:var(--rail) 1fr;gap:0}
+  .rail{position:sticky;top:56px;align-self:start;height:calc(100vh - 56px);padding:34px 0 34px;border-right:1px solid var(--line)}
+  .rail ol{list-style:none;margin:0;padding:0}
+  .rail li{margin:0}
+  .rail a{display:block;padding:6px 0;text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--soft);
+          letter-spacing:.02em;position:relative;padding-left:18px;font-variant-numeric:tabular-nums}
+  .rail a::before{content:"";position:absolute;left:0;top:50%;width:8px;height:1px;background:var(--line-2)}
+  .rail a:hover{color:var(--body)}
+  .rail a.on{color:var(--accent)}
+  .rail a.on::before{background:var(--accent);width:12px}
+  .rail .now{margin-top:22px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);padding-left:18px}
+
+  .entries{min-width:0}
+  .entry{padding:52px 0 52px 40px;border-bottom:1px solid var(--line);scroll-margin-top:70px}
+  .entry:last-child{border-bottom:0}
+  .ehead{display:flex;align-items:baseline;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:6px}
+  .ehead .yr{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+  .entry h2{margin:0 0 4px;font-size:clamp(26px,3.4vw,36px);font-weight:700;letter-spacing:-.03em;line-height:1.08}
+  .entry .role{margin:0 0 26px;font-size:13.5px;color:var(--soft)}
+  .entry .claim{margin:0 0 22px;font-size:clamp(18px,2.1vw,22px);line-height:1.45;letter-spacing:-.015em;max-width:44ch;font-weight:500}
+
+  /* numbers block — the point of the page */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;background:var(--line);
+        border:1px solid var(--line);border-radius:6px;overflow:hidden;margin:0 0 26px}
+  .grid .m{background:var(--panel);padding:17px 16px 15px}
+  .grid .v{display:block;font-size:clamp(20px,2.4vw,26px);font-weight:600;letter-spacing:-.045em;line-height:1}
+  .grid .k{display:block;margin-top:9px;line-height:1.5}
+  .grid .m.hi .v{color:var(--accent)}
+
+  .body{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:start}
+  .body p{margin:0 0 15px;color:var(--body);font-size:15.5px;line-height:1.72;max-width:64ch}
+  .body p:last-child{margin-bottom:0}
+  .body a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-2)}
+  .body a:hover{color:var(--accent);border-color:var(--accent)}
+  .body b{color:var(--ink);font-weight:600}
+
+  /* artifact column */
+  .arts{display:flex;flex-direction:column;gap:12px}
+  .art{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:14px 15px}
+  .art .lbl{display:block;margin-bottom:8px}
+  .art p{margin:0;font-size:13.5px;line-height:1.6;color:var(--body)}
+  .art .q{color:var(--ink);font-size:14px;line-height:1.55}
+  .art .who{display:block;margin-top:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--soft);text-transform:uppercase}
+  .art a{color:var(--ink)}
+  .art .ph{aspect-ratio:3/2;margin:-15px -15px 12px;border:0;border-bottom:1px solid var(--line);border-radius:6px 6px 0 0}
+
+  /* ---------------- projects: dashboard + roster + changelog ---------------- */
+  .dash{padding:64px 0 0}
+  .dash h1{margin:0 0 12px;font-size:clamp(30px,4.4vw,46px);font-weight:700;letter-spacing:-.035em}
+  .dash .sub{margin:0 0 34px;color:var(--body);max-width:60ch;font-size:16.5px}
+  .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);
+         border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .board .cell{background:var(--panel);padding:24px 20px 20px}
+  .board .cell.big{grid-column:span 2}
+  .board .v{display:block;font-size:clamp(30px,4.6vw,50px);font-weight:600;letter-spacing:-.05em;line-height:.98}
+  .board .cell.big .v{color:var(--accent)}
+  .board .k{display:block;margin-top:12px}
+  .board .delta{display:block;margin-top:6px;font-family:var(--mono);font-size:11px;color:var(--good);letter-spacing:.02em}
+
+  .roster{margin:52px 0 0;border-top:1px solid var(--line)}
+  .prow{display:grid;grid-template-columns:210px minmax(0,1fr) 200px 120px;gap:24px;align-items:start;
+        padding:24px 0;border-bottom:1px solid var(--line);text-decoration:none}
+  .prow:hover{background:var(--panel)}
+  .prow .n{font-size:17px;font-weight:600;letter-spacing:-.01em}
+  .prow .n .st{display:block;margin-top:7px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--good)}
+  .prow .n .st.exp{color:var(--soft)}
+  .prow .d{color:var(--body);font-size:14.5px;line-height:1.6}
+  .prow .mets{display:flex;flex-direction:column;gap:5px}
+  .prow .mets span{font-family:var(--mono);font-size:12.5px;color:var(--ink);font-variant-numeric:tabular-nums}
+  .prow .mets em{font-style:normal;color:var(--soft)}
+  .prow .go{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--body);text-align:right}
+  .prow:hover .go{color:var(--accent)}
+
+  .two{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:48px;margin-top:62px;align-items:start}
+  .log h3,.shelf h3{margin:0 0 18px;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-family:var(--mono);color:var(--soft);font-weight:400}
+  .log ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .log li{display:grid;grid-template-columns:104px minmax(0,1fr);gap:18px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .log time{font-family:var(--mono);font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums}
+  .log .t{color:var(--body);line-height:1.55}
+  .log .t b{color:var(--ink);font-weight:600}
+  .log .t a{color:var(--ink)}
+  .shelf .card{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+  .shelf .card img,.shelf .card video{width:100%;display:block;border-bottom:1px solid var(--line)}
+  .shelf .card .in{padding:16px}
+  .shelf .card h4{margin:0 0 6px;font-size:15.5px}
+  .shelf .card p{margin:0;font-size:13.5px;color:var(--body);line-height:1.6}
+  .shelf ul{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--line)}
+  .shelf ul li{border-bottom:1px solid var(--line)}
+  .shelf ul a{display:flex;justify-content:space-between;gap:12px;padding:12px 0;text-decoration:none;font-size:14px}
+  .shelf ul a:hover{color:var(--accent)}
+  .shelf ul .y{font-family:var(--mono);font-size:11.5px;color:var(--soft);font-variant-numeric:tabular-nums}
+
+  /* ---------------- footer ---------------- */
+  footer{border-top:1px solid var(--line);margin-top:96px;padding:56px 0 40px;background:var(--panel)}
+  .fgrid{display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:56px;align-items:start}
+  footer h3{margin:0 0 8px;font-size:26px;font-weight:700;letter-spacing:-.03em}
+  footer .sub{margin:0 0 20px;color:var(--body)}
+  footer .sub a{color:var(--ink)}
+  .form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .form .full{grid-column:1/-1}
+  .form input,.form textarea{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--bg);
+       border:1px solid var(--line-2);border-radius:5px;padding:11px 12px}
+  .form textarea{height:96px;resize:vertical}
+  .form input:focus,.form textarea:focus{outline:2px solid var(--accent);outline-offset:-1px}
+  .form button{justify-self:start;background:var(--accent);color:#0B0C0D;border:0;border-radius:5px;font:inherit;
+       font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:12px 20px;cursor:pointer;font-weight:600}
+  .form button:hover{filter:brightness(1.12)}
+  .sent{grid-column:1/-1;font-size:13.5px;color:var(--body);margin:0;display:none}
+  .foot-end{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid var(--line)}
+  .socials{display:flex;gap:16px}
+  .socials a{color:var(--body);display:inline-flex}
+  .socials a:hover{color:var(--accent)}
+  .socials svg{width:18px;height:18px;fill:currentColor}
+  .colophon{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+  .colophon a{color:var(--soft)}
+
+  .ph{background:repeating-linear-gradient(45deg,var(--panel-2),var(--panel-2) 9px,var(--panel) 9px,var(--panel) 18px);
+      border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-align:center;padding:14px}
+  .ph i{font-style:normal;font-family:var(--mono);font-size:10px;line-height:1.7;color:var(--body);max-width:34ch}
+  .ph i b{display:block;color:var(--accent);letter-spacing:.16em;margin-bottom:5px;font-weight:400}
+
+  @media (max-width:1000px){
+    .body{grid-template-columns:1fr;gap:26px}
+    .two{grid-template-columns:1fr;gap:44px}
+    .fgrid{grid-template-columns:1fr;gap:32px}
+    .prow{grid-template-columns:1fr;gap:12px}
+    .prow .go{text-align:left}
+  }
+  @media (max-width:720px){
+    .ledger{grid-template-columns:1fr}
+    .rail{position:sticky;top:56px;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:10px 0;
+          background:var(--bg);z-index:40}
+    .rail ol{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+    .rail ol::-webkit-scrollbar{display:none}
+    .rail a{padding:6px 10px;padding-left:10px;white-space:nowrap}
+    .rail a::before{display:none}
+    .rail .now{display:none}
+    .entry{padding-left:0}
+    .form{grid-template-columns:1fr}
+    .bar nav a{padding:7px 8px;font-size:10px}
+  }
+</style>
+
+<header class="bar">
+  <a class="me" href="#story" data-nav="story">John Brophy<span>.</span></a>
+  <nav aria-label="Main">
+    <a href="#story" data-nav="story">My Story</a>
+    <a href="#projects" data-nav="projects">Current Projects</a>
+    <button class="tgl" id="tgl" type="button">Light</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ==================== MY STORY ==================== -->
+<section class="page" id="story">
+  <div class="wrap">
+    <div class="mast">
+      <span class="lbl">Builder's log · 2003 — 2026</span>
+      <h1>Twenty-three years of shipping, with the <span>receipts</span>.</h1>
+      <p>For most of my career I was a design-led PM: I could see the product clearly, could tell you when a few pixels were off, but I needed a team to write the code and build it.</p>
+      <p>Since December 2025 I consider myself, first and foremost, a builder — designing, coding and PMing at once, shipping daily and sometimes hourly. Below is every chapter, what I claimed, and what the numbers actually said.</p>
+      <a class="resume" href="https://drive.google.com/file/d/1DP2hnZG-xbEuH10QsesM7zvLPMtekXFa/view?usp=sharing">Resume PDF ↗</a>
+    </div>
+
+    <div class="totals">
+      <div class="c"><span class="v num">23</span><span class="k lbl">Years shipping</span></div>
+      <div class="c"><span class="v num">6</span><span class="k lbl">Companies</span></div>
+      <div class="c"><span class="v num">1</span><span class="k lbl">Co-founded &amp; sold</span></div>
+      <div class="c"><span class="v num">500M</span><span class="k lbl">Monthly impressions, peak</span></div>
+      <div class="c"><span class="v num">9</span><span class="k lbl">Products live now</span></div>
+    </div>
+
+    <div class="ledger">
+      <aside class="rail" aria-label="Years">
+        <ol id="rail">
+          <li><a href="#e-dsi" data-jump="e-dsi">2003</a></li>
+          <li><a href="#e-spotify" data-jump="e-spotify">2010</a></li>
+          <li><a href="#e-kaplan" data-jump="e-kaplan">2017</a></li>
+          <li><a href="#e-hearst" data-jump="e-hearst">2020</a></li>
+          <li><a href="#e-whalar" data-jump="e-whalar">2022</a></li>
+          <li><a href="#e-stensul" data-jump="e-stensul">2024</a></li>
+          <li><a href="#e-now" data-jump="e-now">2026</a></li>
+        </ol>
+        <p class="now">You are here ↓</p>
+      </aside>
+
+      <div class="entries">
+
+        <!-- DSI -->
+        <article class="entry" id="e-dsi">
+          <div class="ehead"><span class="yr">2003 — 2010 · London</span></div>
+          <h2>Don't Stay In</h2>
+          <p class="role">Co-founder</p>
+          <p class="claim">Co-founded a social network from a flat in London, built the viral loop, grew it to a top global site, sold it.</p>
+          <div class="grid">
+            <div class="m hi"><span class="v num">2M</span><span class="k lbl">Monthly uniques</span></div>
+            <div class="m"><span class="v num">12M</span><span class="k lbl">Photos</span></div>
+            <div class="m"><span class="v num">20M</span><span class="k lbl">Forum posts</span></div>
+            <div class="m"><span class="v num">15</span><span class="k lbl">Team hired</span></div>
+            <div class="m"><span class="v num">6</span><span class="k lbl">Years to exit</span></div>
+          </div>
+          <div class="body">
+            <div>
+              <p>The loop was the product: photographers shot the club night, the pictures went up by morning, and by lunchtime everyone was back tagging themselves and arguing in the forums. Go out, get photographed, come back to look. It is still the cleanest viral mechanic I have worked on.</p>
+              <p>Under it we built the business half — a back end where promoters ran events, engaged their communities, and bought banner ads and email campaigns. Six years in: two million people a month, an office, fifteen staff, and an exit.</p>
+            </div>
+            <div class="arts">
+              <div class="art">
+                <div class="ph"><i><b>Higgsfield · 3:2</b>Flat-lay of printed club flyers and a burnt CD-R on a scuffed desk, harsh daylight, documentary style</i></div>
+                <span class="lbl">Artifact</span>
+                <p><a href="https://grokipedia.com/page/dontstayin">dontstayin.com →</a></p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- SPOTIFY -->
+        <article class="entry" id="e-spotify">
+          <div class="ehead"><span class="yr">2010 — 2017 · London · Stockholm · NYC</span></div>
+          <h2>Spotify</h2>
+          <p class="role">Product Manager, spotify.com · Premium Manager, Subscriptions</p>
+          <p class="claim">Employee ~200. Rebuilt sign-up, premium and download through hypergrowth, and kept the team shippable while the company grew 20×.</p>
+          <div class="grid">
+            <div class="m hi"><span class="v num">20×</span><span class="k lbl">Company growth</span></div>
+            <div class="m"><span class="v num">7</span><span class="k lbl">Years</span></div>
+            <div class="m"><span class="v num">#200</span><span class="k lbl">Approx. employee no.</span></div>
+            <div class="m"><span class="v num">3</span><span class="k lbl">Core flows rebuilt</span></div>
+          </div>
+          <div class="body">
+            <div>
+              <p>I owned <a href="http://www.spotify.com">spotify.com</a> — sign-up, premium subscription, download. The flows everybody touches and nobody thinks about. We rebuilt them on real user research, then again for mobile, then again for a company that no longer looked like the one that hired me. Millions of new registrations came out of that work.</p>
+              <p>The harder problem was organisational. As the stakeholder list grew, I introduced a <a href="https://anninakoskinen.com/project/thoughtful-execution">thoughtful execution</a> model so prioritisation stayed honest and decisions did not turn into committees.</p>
+            </div>
+            <div class="arts">
+              <div class="art">
+                <span class="lbl">On the record</span>
+                <p class="q">“John created a fantastic team and scalable processes. Thanks to that they were ready when the company grew by 20×.”</p>
+                <span class="who">Felix Bouleau · Product Owner</span>
+              </div>
+              <div class="art">
+                <span class="lbl">On the record</span>
+                <p class="q">“Data-driven, user-centric, and a daily positive force for every person that crosses his path.”</p>
+                <span class="who">Grace Larosa · Product Design</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- KAPLAN -->
+        <article class="entry" id="e-kaplan">
+          <div class="ehead"><span class="yr">2017 — 2020 · New York</span></div>
+          <h2>Kaplan Test Prep</h2>
+          <p class="role">Senior Director of Product Development</p>
+          <p class="claim">Ran the kaptest.com team through a new CMS, stood up a product line for professional-certification exams, and grew the people.</p>
+          <div class="grid">
+            <div class="m hi"><span class="v num">1</span><span class="k lbl">New product line, from zero</span></div>
+            <div class="m"><span class="v num">1</span><span class="k lbl">Associate PM → senior</span></div>
+            <div class="m"><span class="v num">2</span><span class="k lbl">Senior designers grown</span></div>
+            <div class="m"><span class="v num">1</span><span class="k lbl">CMS replaced</span></div>
+          </div>
+          <div class="body">
+            <div>
+              <p>Two jobs at once. One: lead the website team, supervise a new CMS, and rebuild product pages and funnels alongside growth marketing. Two: establish a new product development team aimed at professional certification exams — a line that did not exist, for people retraining mid-career.</p>
+              <p>The thing I would put first is not on the org chart. I mentored a direct report from associate PM to senior, and grew two senior designers alongside them.</p>
+            </div>
+            <div class="arts">
+              <div class="art">
+                <span class="lbl">Note</span>
+                <p>Products get sunset. People keep going. This is the chapter that convinced me the management half of the job was worth being good at.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- HEARST -->
+        <article class="entry" id="e-hearst">
+          <div class="ehead"><span class="yr">2020 — 2022 · New York</span></div>
+          <h2>Hearst</h2>
+          <p class="role">Senior Product Manager</p>
+          <p class="claim">Migrated a CMS front end to React under 60+ live magazine sites, at 500M monthly impressions, without dropping traffic.</p>
+          <div class="grid">
+            <div class="m hi"><span class="v num">60+</span><span class="k lbl">Live sites migrated</span></div>
+            <div class="m"><span class="v num">500M</span><span class="k lbl">Monthly impressions</span></div>
+            <div class="m"><span class="v num">0</span><span class="k lbl">Traffic lost</span></div>
+            <div class="m"><span class="v num">6</span><span class="k lbl">Disciplines in the room</span></div>
+          </div>
+          <div class="body">
+            <div>
+              <p>Success in this job is defined by absence: traffic does not dip, SEO does not wobble, no editor's day gets worse. There is no launch moment to celebrate.</p>
+              <p>So we forecast it honestly and sequenced it with design, data, tech, SEO, accessibility and content in the room from the start. It landed, and nobody wrote about it — which was the point.</p>
+            </div>
+            <div class="arts">
+              <div class="art">
+                <span class="lbl">Artifact</span>
+                <p>Cosmopolitan, Esquire, Elle and 57 more, all on one CMS, all moved.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- WHALAR -->
+        <article class="entry" id="e-whalar">
+          <div class="ehead"><span class="yr">2022 — 2024 · Global</span></div>
+          <h2>Whalar</h2>
+          <p class="role">Product Director, Platforms</p>
+          <p class="claim">Shipped two AI products — AI Profiles and the ORCA brand-safety tool — and led three PMs across global teams.</p>
+          <div class="grid">
+            <div class="m hi"><span class="v num">−10%</span><span class="k lbl">Off-platform collabs</span></div>
+            <div class="m"><span class="v num">2</span><span class="k lbl">AI products shipped</span></div>
+            <div class="m"><span class="v num">3</span><span class="k lbl">PMs led</span></div>
+            <div class="m"><span class="v num">1</span><span class="k lbl">Legacy platform retired</span></div>
+          </div>
+          <div class="body">
+            <div>
+              <p>AI Profiles pulled a creator's connected accounts together and used generative AI to synthesise one clean profile, replacing hours of manual entry. ORCA vetted creators for brand safety, outgrew its host platform, and became a core Whalar product in its own right.</p>
+              <p>Commercially, opening up collaboration for TikTok creators pulled work back on-platform. And I retired a legacy brand platform by reading the usage data and deciding, feature by feature, what deserved rebuilding.</p>
+            </div>
+            <div class="arts">
+              <div class="art">
+                <span class="lbl">On the record</span>
+                <p class="q">“Strategic insight, analytical skill and creative flair — and a team atmosphere that is collaborative and supportive.”</p>
+                <span class="who">Shirley Lee · Senior PM</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- STENSUL -->
+        <article class="entry" id="e-stensul">
+          <div class="ehead"><span class="yr">2024 — now · Montclair, NJ</span></div>
+          <h2>Stensul</h2>
+          <p class="role">Product Director</p>
+          <p class="claim">Took a landing-page builder from beta to enterprise, led the build of an MCP server, and taught the organisation to build with AI.</p>
+          <div class="grid">
+            <div class="m hi"><span class="v num">$500K+</span><span class="k lbl">ARR added</span></div>
+            <div class="m"><span class="v num">~1 hr</span><span class="k lbl">Creation time, from days</span></div>
+            <div class="m"><span class="v num">2×</span><span class="k lbl">Pages per customer</span></div>
+            <div class="m"><span class="v num">50+</span><span class="k lbl">Discovery calls</span></div>
+          </div>
+          <div class="body">
+            <div>
+              <p>Brand books, custom modules, user-level guardrails — the unglamorous machinery that turns a beta into something an enterprise will actually adopt, all grounded in fifty-plus discovery calls and worked through with sales and marketing until the pitch matched the product.</p>
+              <p>We also led the build of a <a href="https://stensul.com/blog/governed-creation-is-now-open-to-ai/">Model Context Protocol server</a>, putting Stensul at the centre of how marketers reach their tools through AI. Then I expanded into an ecosystem PM role for cross-product integrations and partners.</p>
+              <p><b>And somewhere in here the job changed.</b> I stopped being the person who describes the product and became the person who builds it.</p>
+            </div>
+            <div class="arts">
+              <div class="art">
+                <span class="lbl">Artifact</span>
+                <p><a href="https://stensul.com/blog/governed-creation-is-now-open-to-ai/">Governed creation is now open to AI →</a></p>
+              </div>
+              <div class="art">
+                <span class="lbl">Certifications · 2025</span>
+                <p><a href="https://ccforpms.com/">Claude Code for PMs</a><br><a href="https://www.credential.net/b284f92c-5de2-4235-9823-3babb8617b28#acc.CQR4slZY">AI Product Management</a><br><a href="https://www.credential.net/cc4f32ad-d8c5-4039-a3ee-d0c51947aeb5#acc.wrAyXMTz">Advanced PM Skills</a></p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- NOW -->
+        <article class="entry" id="e-now">
+          <div class="ehead"><span class="yr">2026 · Now</span></div>
+          <h2>Nights and weekends</h2>
+          <p class="role">Everything else</p>
+          <p class="claim">Nine things live, built by describing what I want to Claude Code. The numbers are on the <a href="#projects" data-nav="projects">Current Projects</a> page.</p>
+          <div class="grid">
+            <div class="m hi"><span class="v num">9,480</span><span class="k lbl">TigerTest users</span></div>
+            <div class="m"><span class="v num">278,478</span><span class="k lbl">Questions answered</span></div>
+            <div class="m"><span class="v num">$829.17</span><span class="k lbl">Revenue, Stripe</span></div>
+            <div class="m"><span class="v num">9</span><span class="k lbl">Products shipped</span></div>
+          </div>
+          <div class="body">
+            <div>
+              <p>Off the clock I ride bikes to work and on tour, camp up mountains most summer weekends, and stay a step ahead on tech — occasionally to the point of <a href="https://www.dailymail.co.uk/news/article-2396274/Man-woken-6am-noise-low-flying-ABC-news-helicopter-managed-tweet-reporter-Dan-Rice.html">tweeting the reporter in the news helicopter</a> that woke me at 6am, which made the Daily Mail.</p>
+            </div>
+            <div class="arts">
+              <div class="art">
+                <span class="lbl">Also</span>
+                <p>British citizen, US green card. Based in Montclair, New Jersey.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CURRENT PROJECTS ==================== -->
+<section class="page" id="projects">
+  <div class="wrap">
+    <div class="dash">
+      <h1>Current projects</h1>
+      <p class="sub">Live things I am building outside work, all with Claude Code. Totals below are the real numbers, last checked <span class="num">21 Jul 2026</span>.</p>
+      <div class="board">
+        <div class="cell big"><span class="v num">278,478</span><span class="k lbl">Practice questions answered</span><span class="delta">+62,081 in June alone</span></div>
+        <div class="cell"><span class="v num">9,480</span><span class="k lbl">Users</span></div>
+        <div class="cell"><span class="v num">$829.17</span><span class="k lbl">Revenue, Stripe</span><span class="delta">83 × $9.99 unlocks</span></div>
+        <div class="cell"><span class="v num">9</span><span class="k lbl">Products live</span></div>
+      </div>
+
+      <div class="roster">
+        <a class="prow" href="https://tigertest.io">
+          <div class="n">TigerTest.io<span class="st">● Live · Dec 2025</span></div>
+          <div class="d">Free DMV practice tests for all 50 states. Mastery-based training, four tests per state, pass-probability tracking, full accounts. Started as a New Jersey app for myself.</div>
+          <div class="mets">
+            <span>9,480 <em>users</em></span>
+            <span>278,478 <em>answers</em></span>
+            <span>$829.17 <em>revenue</em></span>
+          </div>
+          <div class="go">Visit ↗</div>
+        </a>
+        <a class="prow" href="https://x.com/openclaw">
+          <div class="n">OpenClaw<span class="st">● Running · Jan 2026</span></div>
+          <div class="d">An agent with OKRs. Its job is to optimise TigerTest on its own and grow practice-test takers. It made its own Q1 deck, with its own audio.</div>
+          <div class="mets">
+            <span>$100,000 <em>its goal</em></span>
+            <span>1 <em>product owned</em></span>
+          </div>
+          <div class="go">Watch ↗</div>
+        </a>
+        <a class="prow" href="https://johnbr0phy.github.io/course-builder/">
+          <div class="n">Course Builder<span class="st">● Live · Jun 2026</span></div>
+          <div class="d">A course factory. Topic, source material, audience in; hands-on lessons, quizzes, progress tracking and a Claude instructor that grades your work out.</div>
+          <div class="mets"><span>∞ <em>topics</em></span><span>1 <em>skill install</em></span></div>
+          <div class="go">Install ↗</div>
+        </a>
+        <a class="prow" href="https://github.com/johnbr0phy/llm-wiki">
+          <div class="n">LLM-Wiki<span class="st">● Live · Apr 2026</span></div>
+          <div class="d">Transcripts, emails and docs in; a cross-linked wiki out. Recompiles hourly, remembers what it has processed, answers with sources.</div>
+          <div class="mets"><span>1 hr <em>compile loop</em></span><span>OSS <em>on GitHub</em></span></div>
+          <div class="go">Code ↗</div>
+        </a>
+        <a class="prow" href="https://ace-that-interview.com">
+          <div class="n">Ace That Interview<span class="st">● Live · Jan 2026</span></div>
+          <div class="d">Company-specific interview prep. /google/product-manager and hundreds more, from ~20 recombining modules. Two days of hacking with my brother.</div>
+          <div class="mets"><span>~20 <em>modules</em></span><span>100s <em>of pages</em></span></div>
+          <div class="go">Visit ↗</div>
+        </a>
+        <a class="prow" href="https://johnbr0phy.github.io/banksy">
+          <div class="n">Banksy Print Tracker<span class="st">● Live · Mar 2026</span></div>
+          <div class="d">Upcoming and completed auction lots for original Banksy prints, searchable, multi-currency, refreshed automatically every day.</div>
+          <div class="mets"><span>1× <em>daily refresh</em></span><span>0 <em>manual work</em></span></div>
+          <div class="go">Visit ↗</div>
+        </a>
+      </div>
+
+      <div class="two">
+        <div class="log">
+          <h3>Changelog</h3>
+          <ol>
+            <li><time datetime="2026-07-24">24 Jul 2026</time><span class="t"><b>johnbrophy.net</b> rebuilt as a chat-run CMS — one HTML file, GitHub Pages, no subscription.</span></li>
+            <li><time datetime="2026-07-21">21 Jul 2026</time><span class="t"><b>TigerTest</b> crossed <span class="num">278,478</span> questions answered and <span class="num">$829.17</span> in revenue.</span></li>
+            <li><time datetime="2026-06-30">30 Jun 2026</time><span class="t"><b>TigerTest</b> best month yet: <span class="num">62,081</span> questions in June.</span></li>
+            <li><time datetime="2026-06-03">3 Jun 2026</time><span class="t">Shipped <b>Course Builder</b> and the <a href="https://johnbr0phy.github.io/Workflows/">Claude Code Workflows</a> course.</span></li>
+            <li><time datetime="2026-04-05">5 Apr 2026</time><span class="t">Shipped <b>LLM-Wiki</b> — hourly compile, sourced answers.</span></li>
+            <li><time datetime="2026-03-27">27 Mar 2026</time><span class="t"><b>Banksy Print Tracker</b> went fully automatic, daily.</span></li>
+            <li><time datetime="2026-01-31">31 Jan 2026</time><span class="t"><b>OpenClaw</b> presented its Q1 OKRs. Deck and audio by the agent.</span></li>
+            <li><time datetime="2026-01-18">18 Jan 2026</time><span class="t">Launched <b>Ace That Interview</b> after two days of hacking.</span></li>
+            <li><time datetime="2025-12-21">21 Dec 2025</time><span class="t">Launched <b>TigerTest.io</b> across all 50 states.</span></li>
+            <li><time datetime="2025-12-15">15 Dec 2025</time><span class="t">Built <b>New Parent Qbank</b> in an afternoon.</span></li>
+          </ol>
+        </div>
+
+        <div class="shelf">
+          <h3>Latest</h3>
+          <div class="card">
+            <video controls preload="none" poster="../images/ai-creations/openclaw-poster.jpg" src="../videos/openclaw-okr.mp4"></video>
+            <div class="in">
+              <h4>OpenClaw · Q1 OKR review</h4>
+              <p>The agent presents its own quarter. Long-term goal: $100,000 for an Optimus body.</p>
+            </div>
+          </div>
+          <h3 style="margin-top:34px">Shelf</h3>
+          <ul>
+            <li><a href="https://johnbr0phy.github.io/AIPM/">AI PM Course<span class="y">2026</span></a></li>
+            <li><a href="https://johnbr0phy.github.io/Workflows/">Claude Code Workflows<span class="y">2026</span></a></li>
+            <li><a href="https://johnbr0phy.github.io/new-parent-quiz/">New Parent Qbank<span class="y">2025</span></a></li>
+            <li><a href="https://photos.google.com/u/0/share/AF1QipNNVhF9y9_i2KSmXy0yW-97QmP0-D1KidXZvazxUc_2ruhMxNYurr49nSFMKLlMVw?key=d0hfOFNDMHNDT185UjBnUnpDOVk3ajBEbk1kRHRB">Family Colouring Book<span class="y">2025</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <h3>Say hello.</h3>
+        <p class="sub">Or email <a href="mailto:john@johnbrophy.net">john@johnbrophy.net</a> directly. Montclair, New Jersey.</p>
+        <div class="socials" aria-label="Social links">
+          <a href="https://instagram.com/johnbr0" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 1.8c-3.1 0-3.5 0-4.8.1-1.1.1-1.5.2-1.8.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.3-.3.8-.3 1.8-.1 1.2-.1 1.6-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.5.3 1.8.2.5.4.8.7 1.1.3.3.6.5 1.1.7.3.1.8.3 1.8.3 1.2.1 1.6.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.5-.2 1.8-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.3.3-.8.3-1.8.1-1.2.1-1.6.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.5-.3-1.8-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.3-.1-.8-.3-1.8-.3-1.2-.1-1.6-.1-4.8-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.2-8.3a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg></a>
+          <a href="https://www.youtube.com/@JohnBr0" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4L15.8 12l-6.3 3.6z"/></svg></a>
+          <a href="https://www.linkedin.com/in/jbrophy" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></svg></a>
+          <a href="https://open.spotify.com/user/brophenator" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.5 17.3a.7.7 0 0 1-1 .3c-2.8-1.7-6.3-2.1-10.5-1.2a.8.8 0 0 1-.9-.6.8.8 0 0 1 .6-.9c4.6-1 8.5-.6 11.6 1.3.3.2.4.7.2 1.1zm1.5-3.3a.9.9 0 0 1-1.3.3c-3.2-2-8.1-2.6-11.9-1.4a.9.9 0 0 1-1.2-.6.9.9 0 0 1 .6-1.2c4.3-1.3 9.7-.7 13.4 1.6.5.3.6.9.4 1.3zm.1-3.4C15.3 8.3 9 8.1 5.4 9.2a1.1 1.1 0 0 1-1.4-.7 1.1 1.1 0 0 1 .8-1.4c4.2-1.3 11.1-1 15.4 1.5a1.1 1.1 0 0 1 .4 1.5c-.3.5-1 .7-1.5.5z"/></svg></a>
+          <a href="https://github.com/johnbr0phy" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg></a>
+        </div>
+      </div>
+      <form class="form" id="contactForm">
+        <input type="text" id="fname" placeholder="First name" aria-label="First name">
+        <input type="text" id="lname" placeholder="Last name" aria-label="Last name">
+        <input class="full" type="email" id="email" placeholder="Email address" aria-label="Email address">
+        <input class="full" type="text" id="subject" placeholder="Subject" aria-label="Subject">
+        <textarea class="full" id="message" placeholder="Message" aria-label="Message"></textarea>
+        <button type="submit">Send</button>
+        <p class="sent" id="sentNote"></p>
+      </form>
+    </div>
+    <div class="foot-end">
+      <p class="colophon">Built with Claude Code · one HTML file · GitHub Pages</p>
+      <p class="colophon">Option B — The Ledger · <a href="index.html">compare directions</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pages = ['story','projects'];
+  var navLinks = document.querySelectorAll('.bar nav a[data-nav], .bar .me');
+
+  function show(id){
+    if(pages.indexOf(id) === -1) id = 'story';
+    pages.forEach(function(p){ document.getElementById(p).classList.toggle('on', p === id); });
+    document.querySelectorAll('.bar nav a[data-nav]').forEach(function(a){
+      a.classList.toggle('active', a.dataset.nav === id);
+    });
+    window.scrollTo(0,0);
+    syncRail();
+  }
+
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = a.dataset.nav;
+      if(location.hash === '#'+id){ show(id); } else { location.hash = id; }
+    });
+  });
+  window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
+
+  /* year rail — click to jump, scroll to highlight */
+  var railLinks = Array.prototype.slice.call(document.querySelectorAll('[data-jump]'));
+  railLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var el = document.getElementById(a.dataset.jump);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  function syncRail(){
+    if(!document.getElementById('story').classList.contains('on')) return;
+    var best = railLinks[0], bestTop = -Infinity;
+    railLinks.forEach(function(a){
+      var el = document.getElementById(a.dataset.jump);
+      if(!el) return;
+      var t = el.getBoundingClientRect().top - 120;
+      if(t <= 0 && t > bestTop){ bestTop = t; best = a; }
+    });
+    railLinks.forEach(function(a){ a.classList.toggle('on', a === best); });
+  }
+  window.addEventListener('scroll', syncRail, {passive:true});
+
+  /* theme */
+  var tgl = document.getElementById('tgl');
+  var saved = localStorage.getItem('jb-theme-b');
+  if(saved) document.documentElement.setAttribute('data-theme', saved);
+  function syncTgl(){ tgl.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? 'Light' : 'Dark'; }
+  tgl.addEventListener('click', function(){
+    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('jb-theme-b', next);
+    syncTgl();
+  });
+  syncTgl();
+
+  /* contact — same Google Form endpoint as v1 */
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var note = document.getElementById('sentNote');
+    var btn = this.querySelector('button');
+    var fields = {
+      'entry.910474074': document.getElementById('fname').value.trim(),
+      'entry.953674238': document.getElementById('lname').value.trim(),
+      'entry.648833233': document.getElementById('email').value.trim(),
+      'entry.1116742163': document.getElementById('subject').value.trim(),
+      'entry.1977585821': document.getElementById('message').value.trim()
+    };
+    note.style.display = 'block';
+    if(Object.values(fields).some(function(v){ return !v; })){ note.textContent = 'Please fill in all the fields above.'; return; }
+    btn.disabled = true; note.textContent = 'Sending…';
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSeQM2STqdhr6bkO_Vv1jPgkC4Ac-B5-mdTFHcL4vuRMaTSnjg/formResponse', {
+      method:'POST', mode:'no-cors', headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(fields).toString()
+    }).then(function(){
+      note.textContent = 'Thanks — your message has been sent.';
+      document.getElementById('contactForm').reset(); btn.disabled = false;
+    }).catch(function(){
+      note.textContent = 'Something went wrong — please email john@johnbrophy.net directly.'; btn.disabled = false;
+    });
+  });
+
+  show(location.hash.slice(1) || 'story');
+})();
+</script>
+</body>
+</html>

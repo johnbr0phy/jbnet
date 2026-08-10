@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>John Brophy — My Story (Option C · The Gallery)</title>
+<meta name="description" content="John Brophy — an art-book walk through twenty-three years of building: one plate per era, one number each.">
+<link rel="icon" href="../favicon.ico">
+</head>
+<body>
+<style>
+  /* ===========================================================
+     OPTION C — THE GALLERY
+     Art book. One full-viewport plate per era, one number each.
+     Poster wall for the projects. One face, two extreme sizes.
+     Three colours only: paper, ink, cobalt.
+     =========================================================== */
+  @font-face{font-family:'Figtree';src:url('../fonts/figtree-var.woff2') format('woff2');font-weight:300 900;font-style:normal;font-display:swap}
+
+  :root{
+    color-scheme:light;
+    --paper:#FBFBFA; --ink:#0D0D0C; --body:#5E5E5A; --soft:#A2A29C; --line:#E2E2DE;
+    --cobalt:#2B3FD4; --wall:#F2F2EF;
+    --sans:'Figtree',-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  html[data-theme="dark"]{
+    color-scheme:dark;
+    --paper:#0B0B0B; --ink:#F5F5F2; --body:#A6A6A0; --soft:#6B6B66; --line:#232322;
+    --cobalt:#6E7CFF; --wall:#131313;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:var(--ink)}
+  a:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px}
+
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum";letter-spacing:-.04em}
+  .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+
+  /* ---------------- chrome ---------------- */
+  .bar{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;justify-content:space-between;
+       padding:22px 32px;mix-blend-mode:difference;color:#fff;pointer-events:none}
+  .bar > *{pointer-events:auto}
+  .bar a{color:#fff;text-decoration:none}
+  .bar .me{font-size:14px;font-weight:600;letter-spacing:.02em}
+  .bar nav{display:flex;align-items:center;gap:20px}
+  .bar nav a{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.55}
+  .bar nav a:hover{opacity:1}
+  .bar nav a.active{opacity:1}
+  .tgl{background:none;border:0;color:#fff;font:inherit;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;
+       text-transform:uppercase;opacity:.55;cursor:pointer;padding:0}
+  .tgl:hover{opacity:1}
+
+  .counter{position:fixed;left:32px;bottom:28px;z-index:55;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+           text-transform:uppercase;color:var(--soft);display:none}
+  .counter.show{display:block}
+  .counter b{color:var(--ink);font-weight:400}
+
+  .page{display:none}
+  .page.on{display:block}
+
+  /* ---------------- story: plates ---------------- */
+  .plates{scroll-snap-type:y proximity}
+  .plate{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:0;scroll-snap-align:start;
+         border-bottom:1px solid var(--line);position:relative}
+  .plate .art{height:100vh;padding:9vh 0 9vh 6vw;display:flex;align-items:center}
+  .plate .art .fig{width:100%;max-width:520px;aspect-ratio:4/5;overflow:hidden;background:var(--wall)}
+  .plate .art .fig img,.plate .art .fig .ph{width:100%;height:100%;object-fit:cover}
+  .plate .say{padding:9vh 6vw 9vh 5vw;max-width:640px}
+  .plate.flip .art{order:2;padding:9vh 6vw 9vh 0;justify-content:flex-end}
+  .plate.flip .say{order:1;padding-left:6vw;padding-right:3vw}
+
+  .plate .era{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
+  .plate .era .yr{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--soft);font-variant-numeric:tabular-nums}
+  .plate .era .cob{width:26px;height:1px;background:var(--cobalt)}
+  .plate h2{margin:0 0 18px;font-size:clamp(30px,4.2vw,52px);font-weight:600;letter-spacing:-.04em;line-height:1}
+  .plate .one{margin:0 0 40px;font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:var(--body);max-width:40ch}
+  .plate .one b{color:var(--ink);font-weight:600}
+
+  /* the single number */
+  .big{margin:0}
+  .big .v{display:block;font-size:clamp(64px,12vw,148px);font-weight:600;letter-spacing:-.06em;line-height:.86;color:var(--cobalt)}
+  .big .k{display:block;margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+  .also{margin:34px 0 0;display:flex;gap:26px;flex-wrap:wrap}
+  .also div{min-width:88px}
+  .also .v{display:block;font-family:var(--mono);font-size:17px;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+  .also .k{display:block;margin-top:5px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+  .plate .q{margin:34px 0 0;padding-top:18px;border-top:1px solid var(--line);font-size:14.5px;line-height:1.6;color:var(--body);max-width:44ch}
+  .plate .q span{display:block;margin-top:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+
+  /* opening plate */
+  .open{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 6vw;scroll-snap-align:start;border-bottom:1px solid var(--line)}
+  .open h1{margin:0;font-size:clamp(46px,10vw,152px);font-weight:600;letter-spacing:-.06em;line-height:.88;max-width:13ch}
+  .open h1 em{font-style:normal;color:var(--cobalt)}
+  .open .sub{margin:44px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:34px;max-width:1000px}
+  .open .sub p{margin:0;font-size:16px;line-height:1.65;color:var(--body)}
+  .open .sub p b{color:var(--ink);font-weight:600}
+  .open .sub a{color:var(--ink)}
+  .open .lbl{margin:0 0 30px}
+
+  /* closing plate */
+  .close{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:0 6vw;scroll-snap-align:start}
+  .close h2{margin:0 0 34px;font-size:clamp(30px,5vw,64px);font-weight:600;letter-spacing:-.045em;line-height:1;max-width:16ch}
+  .close .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:32px;max-width:1080px}
+  .close .cols h4{margin:0 0 8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--cobalt)}
+  .close .cols p{margin:0;font-size:15px;line-height:1.65;color:var(--body)}
+
+  /* ---------------- projects: poster wall ---------------- */
+  .wallhead{padding:150px 6vw 60px}
+  .wallhead h1{margin:0 0 22px;font-size:clamp(40px,8vw,110px);font-weight:600;letter-spacing:-.055em;line-height:.9;max-width:12ch}
+  .wallhead p{margin:0;font-size:17px;line-height:1.6;color:var(--body);max-width:52ch}
+  .wallhead .tots{display:flex;gap:44px;flex-wrap:wrap;margin-top:44px}
+  .wallhead .tots .v{display:block;font-size:clamp(24px,3vw,34px);font-weight:600;letter-spacing:-.045em}
+  .wallhead .tots .k{display:block;margin-top:8px}
+
+  .wall{background:var(--wall);padding:70px 6vw 80px;border-top:1px solid var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:44px 34px;max-width:1400px;margin:0 auto}
+  .poster{text-decoration:none;display:block}
+  .poster .art{aspect-ratio:4/5;background:var(--paper);border:1px solid var(--line);overflow:hidden;position:relative;
+               display:flex;align-items:center;justify-content:center;transition:transform .35s ease}
+  .poster:hover .art{transform:translateY(-6px)}
+  .poster .cap{margin-top:14px;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .poster .cap .t{font-size:16px;font-weight:600;letter-spacing:-.01em}
+  .poster .cap .y{font-family:var(--mono);font-size:11px;color:var(--soft);font-variant-numeric:tabular-nums}
+  .poster .d{margin:6px 0 0;font-size:13.5px;line-height:1.55;color:var(--body)}
+  .poster .met{margin:10px 0 0;font-family:var(--mono);font-size:12px;color:var(--cobalt);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+  /* posters drawn in the three-colour palette — the spec Higgsfield should match */
+  .p-art{width:100%;height:100%;position:relative;overflow:hidden}
+  .p-num{position:absolute;left:9%;bottom:7%;font-family:var(--mono);font-size:clamp(20px,3.4vw,30px);letter-spacing:-.05em;color:var(--ink)}
+  .p-ttl{position:absolute;left:9%;top:7%;font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--ink);
+         background:var(--paper);padding:3px 7px;margin:-3px 0 0 -7px}
+  .p-num{background:var(--paper);padding:2px 7px;margin-left:-7px}
+  .tiger{background:repeating-linear-gradient(102deg,var(--cobalt) 0 9px,transparent 9px 34px)}
+  .blocks::before,.blocks::after{content:"";position:absolute;background:var(--cobalt)}
+  .blocks::before{left:16%;top:24%;width:44%;height:14%}
+  .blocks::after{left:30%;top:44%;width:44%;height:14%;opacity:.55}
+  .blocks .b3{position:absolute;left:22%;top:64%;width:44%;height:14%;background:var(--ink);opacity:.85}
+  .wiki{background:radial-gradient(circle at 30% 34%,var(--cobalt) 0 6px,transparent 6px),
+                   radial-gradient(circle at 70% 30%,var(--cobalt) 0 6px,transparent 6px),
+                   radial-gradient(circle at 50% 58%,var(--cobalt) 0 6px,transparent 6px),
+                   radial-gradient(circle at 26% 72%,var(--ink) 0 6px,transparent 6px),
+                   radial-gradient(circle at 74% 68%,var(--ink) 0 6px,transparent 6px)}
+  .wiki .lines{position:absolute;inset:0}
+  .wiki .lines::before{content:"";position:absolute;left:30%;top:35%;width:40%;height:1px;background:var(--cobalt);transform:rotate(-4deg)}
+  .wiki .lines::after{content:"";position:absolute;left:26%;top:40%;width:48%;height:1px;background:var(--ink);opacity:.4;transform:rotate(28deg)}
+  .steps{background:linear-gradient(to bottom right,transparent 49.6%,var(--cobalt) 49.6% 50.4%,transparent 50.4%)}
+  .steps .st{position:absolute;background:var(--ink);opacity:.9}
+  .claw{background:conic-gradient(from 196deg at 50% 56%,var(--cobalt) 0 44deg,transparent 44deg 188deg,var(--cobalt) 188deg 196deg,transparent 196deg)}
+  .stripe{background:linear-gradient(180deg,var(--cobalt) 0 34%,transparent 34%)}
+  .dotgrid{background-image:radial-gradient(var(--cobalt) 1.4px,transparent 1.4px);background-size:16px 16px;background-position:8px 8px}
+
+  .filmstrip{padding:70px 6vw 0;max-width:1400px;margin:0 auto}
+  .filmstrip h3{margin:0 0 20px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);font-weight:400}
+  .filmstrip .row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:34px;align-items:center}
+  .filmstrip video,.filmstrip img{width:100%;border:1px solid var(--line)}
+  .filmstrip p{margin:0 0 14px;font-size:16px;line-height:1.65;color:var(--body)}
+  .filmstrip .v{font-size:clamp(30px,4vw,44px);font-weight:600;letter-spacing:-.05em;color:var(--cobalt);display:block;margin-bottom:8px}
+
+  /* ---------------- footer ---------------- */
+  footer{margin-top:100px;padding:74px 6vw 40px;border-top:1px solid var(--line)}
+  footer h3{margin:0 0 10px;font-size:clamp(28px,4vw,44px);font-weight:600;letter-spacing:-.04em}
+  footer .sub{margin:0 0 30px;color:var(--body)}
+  footer .sub a{color:var(--ink)}
+  .form{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px}
+  .form .full{grid-column:1/-1}
+  .form input,.form textarea{width:100%;font:inherit;font-size:15px;color:var(--ink);background:transparent;
+       border:0;border-bottom:1px solid var(--line);padding:12px 2px}
+  .form textarea{height:80px;resize:vertical}
+  .form input:focus,.form textarea:focus{outline:0;border-bottom-color:var(--cobalt)}
+  .form input::placeholder,.form textarea::placeholder{color:var(--soft)}
+  .form button{justify-self:start;margin-top:10px;background:var(--ink);color:var(--paper);border:0;font:inherit;
+       font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:14px 26px;cursor:pointer}
+  .form button:hover{background:var(--cobalt);color:#fff}
+  .sent{grid-column:1/-1;font-size:14px;color:var(--body);margin:0;display:none}
+  .foot-end{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:54px;padding-top:22px;border-top:1px solid var(--line)}
+  .socials{display:flex;gap:18px}
+  .socials a{color:var(--body);display:inline-flex}
+  .socials a:hover{color:var(--cobalt)}
+  .socials svg{width:18px;height:18px;fill:currentColor}
+  .colophon{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+  .colophon a{color:var(--soft)}
+
+  .ph{background:var(--wall);border:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px}
+  .ph i{font-style:normal;font-family:var(--mono);font-size:10.5px;line-height:1.8;color:var(--body);max-width:30ch}
+  .ph i b{display:block;color:var(--cobalt);letter-spacing:.18em;margin-bottom:7px;font-weight:400}
+
+  @media (max-width:900px){
+    .plate{grid-template-columns:1fr;min-height:auto}
+    .plate .art,.plate.flip .art{order:1;height:auto;padding:88px 6vw 0;justify-content:flex-start}
+    .plate .art .fig{max-width:none}
+    .plate .say,.plate.flip .say{order:2;padding:34px 6vw 88px}
+    .counter{display:none !important}
+    .filmstrip .row{grid-template-columns:1fr}
+    .form{grid-template-columns:1fr}
+    .bar{padding:16px 20px}
+    .bar nav{gap:14px}
+  }
+</style>
+
+<header class="bar">
+  <a class="me" href="#story" data-nav="story">John Brophy</a>
+  <nav aria-label="Main">
+    <a href="#story" data-nav="story">My Story</a>
+    <a href="#projects" data-nav="projects">Current Projects</a>
+    <button class="tgl" id="tgl" type="button">Dark</button>
+  </nav>
+</header>
+
+<p class="counter" id="counter"><b>01</b> / 06 &nbsp;·&nbsp; <span id="counterName">Don't Stay In</span></p>
+
+<main>
+
+<!-- ==================== MY STORY ==================== -->
+<section class="page" id="story">
+  <div class="plates">
+
+    <div class="open">
+      <p class="lbl">John Brophy · Builder &amp; Product Leader · 2003 — 2026</p>
+      <h1>Six rooms. <em>Twenty&#8209;three years</em> of building.</h1>
+      <div class="sub">
+        <p>For most of my career I was a design-led PM. I could see the product clearly, could tell you when a few pixels were off, but I needed a team to write the code.</p>
+        <p>Since December 2025 that stopped being true. I am, first and foremost, a builder — designing, coding and PMing at once. Idea in the morning, live by lunch.</p>
+        <p><b>Walk through.</b> One plate per era, one number each. The full record is in the <a href="https://drive.google.com/file/d/1DP2hnZG-xbEuH10QsesM7zvLPMtekXFa/view?usp=sharing">resume PDF</a>, and what I'm building now is on <a href="#projects" data-nav="projects">Current Projects</a>.</p>
+      </div>
+    </div>
+
+    <!-- 01 -->
+    <section class="plate" data-name="Don't Stay In" data-no="01">
+      <div class="art"><div class="fig">
+        <div class="ph"><i><b>Higgsfield 01 · 4:5</b>Painterly plate: club queue in the rain, 2003, umbrellas and neon, muted palette with one cobalt accent, no faces in focus</i></div>
+      </div></div>
+      <div class="say">
+        <div class="era"><span class="yr">2003 — 2010</span><span class="cob"></span><span class="yr">London</span></div>
+        <h2>Don't Stay In</h2>
+        <p class="one">Co-founded a social network from a flat. Photographers shot the club night, the pictures went up by morning, and everyone came back to tag themselves and argue in the forums. <b>That loop was the whole engine.</b></p>
+        <div class="big"><span class="v num">2M</span><span class="k">Monthly uniques, at peak</span></div>
+        <div class="also">
+          <div><span class="v">12M</span><span class="k">Photos</span></div>
+          <div><span class="v">20M</span><span class="k">Forum posts</span></div>
+          <div><span class="v">15</span><span class="k">Team hired</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section class="plate flip" data-name="Spotify" data-no="02">
+      <div class="art"><div class="fig">
+        <div class="ph"><i><b>Higgsfield 02 · 4:5</b>Painterly plate: a wall of gig posters half torn away, one green shape emerging, same muted palette, cobalt accent</i></div>
+      </div></div>
+      <div class="say">
+        <div class="era"><span class="yr">2010 — 2017</span><span class="cob"></span><span class="yr">London · Stockholm · NYC</span></div>
+        <h2>Spotify</h2>
+        <p class="one">Joined at around employee 200 and owned <a href="http://www.spotify.com">spotify.com</a> — sign-up, premium, download. Rebuilt them on research, then rebuilt them again for mobile, then again for a company that no longer looked like the one that hired me.</p>
+        <div class="big"><span class="v num">20×</span><span class="k">Company growth, while I was there</span></div>
+        <div class="also">
+          <div><span class="v">7</span><span class="k">Years</span></div>
+          <div><span class="v">#200</span><span class="k">Employee no.</span></div>
+          <div><span class="v">Millions</span><span class="k">Registrations</span></div>
+        </div>
+        <p class="q">“John created a fantastic team and scalable processes. Thanks to that they were ready when the company grew by 20×.”<span>Felix Bouleau · Product Owner, Spotify</span></p>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="plate" data-name="Kaplan" data-no="03">
+      <div class="art"><div class="fig">
+        <div class="ph"><i><b>Higgsfield 03 · 4:5</b>Painterly plate: a single stack of textbooks casting a long shadow across an empty desk, muted palette, cobalt accent</i></div>
+      </div></div>
+      <div class="say">
+        <div class="era"><span class="yr">2017 — 2020</span><span class="cob"></span><span class="yr">New York</span></div>
+        <h2>Kaplan Test Prep</h2>
+        <p class="one">Ran the kaptest.com team through a new CMS, and stood up a product line for professional-certification exams that did not exist before. <b>The part I am proudest of is not on the org chart.</b></p>
+        <div class="big"><span class="v num">1</span><span class="k">Associate PM mentored to senior</span></div>
+        <div class="also">
+          <div><span class="v">1</span><span class="k">New product line</span></div>
+          <div><span class="v">2</span><span class="k">Senior designers grown</span></div>
+          <div><span class="v">1</span><span class="k">CMS replaced</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="plate flip" data-name="Hearst" data-no="04">
+      <div class="art"><div class="fig">
+        <div class="ph"><i><b>Higgsfield 04 · 4:5</b>Painterly plate: sixty magazine covers stacked into a single tower, edges only, muted palette, cobalt accent</i></div>
+      </div></div>
+      <div class="say">
+        <div class="era"><span class="yr">2020 — 2022</span><span class="cob"></span><span class="yr">New York</span></div>
+        <h2>Hearst</h2>
+        <p class="one">Migrated a CMS front end to React underneath sixty-plus live magazine sites. Success in a job like this is defined by absence: traffic does not dip, SEO does not wobble, no editor's day gets worse.</p>
+        <div class="big"><span class="v num">500M</span><span class="k">Monthly impressions, kept intact</span></div>
+        <div class="also">
+          <div><span class="v">60+</span><span class="k">Sites migrated</span></div>
+          <div><span class="v">0</span><span class="k">Traffic lost</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section class="plate" data-name="Whalar" data-no="05">
+      <div class="art"><div class="fig">
+        <div class="ph"><i><b>Higgsfield 05 · 4:5</b>Painterly plate: a ring light glowing in an otherwise dark room, single silhouette, muted palette, cobalt accent</i></div>
+      </div></div>
+      <div class="say">
+        <div class="era"><span class="yr">2022 — 2024</span><span class="cob"></span><span class="yr">Global</span></div>
+        <h2>Whalar</h2>
+        <p class="one">Shipped AI Profiles, which synthesised a creator's connected accounts into one clean profile, and ORCA, a brand-safety vetting tool that outgrew its platform and became a product of its own. Led three PMs across time zones.</p>
+        <div class="big"><span class="v num">−10%</span><span class="k">Off-platform collaborations</span></div>
+        <div class="also">
+          <div><span class="v">2</span><span class="k">AI products</span></div>
+          <div><span class="v">3</span><span class="k">PMs led</span></div>
+        </div>
+        <p class="q">“Strategic insight, analytical skill and creative flair — and an atmosphere that is collaborative and supportive.”<span>Shirley Lee · Senior PM, Whalar</span></p>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section class="plate flip" data-name="Stensul" data-no="06">
+      <div class="art"><div class="fig">
+        <div class="ph"><i><b>Higgsfield 06 · 4:5</b>Painterly plate: a single desk lamp in the dark, 2026, laptop glow on the wall, muted palette, cobalt accent</i></div>
+      </div></div>
+      <div class="say">
+        <div class="era"><span class="yr">2024 — now</span><span class="cob"></span><span class="yr">Montclair, NJ</span></div>
+        <h2>Stensul</h2>
+        <p class="one">Took a beta landing-page builder to an enterprise platform, and led the build of a <a href="https://stensul.com/blog/governed-creation-is-now-open-to-ai/">Model Context Protocol server</a>. <b>Somewhere in this room the job changed:</b> I stopped describing products and started building them.</p>
+        <div class="big"><span class="v num">$500K+</span><span class="k">ARR added</span></div>
+        <div class="also">
+          <div><span class="v">~1 hr</span><span class="k">Creation time</span></div>
+          <div><span class="v">2×</span><span class="k">Pages / customer</span></div>
+          <div><span class="v">50+</span><span class="k">Discovery calls</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="close">
+      <h2>Off the wall.</h2>
+      <div class="cols">
+        <div><h4>Bikes</h4><p>Ride to work whenever possible, tour whenever I can. Occasionally my love of bikes <a href="https://www.instagram.com/p/BhEg3NOBt1i/">makes the news</a>.</p></div>
+        <div><h4>Camping</h4><p>Summer weekends, up a mountain, in a tent.</p></div>
+        <div><h4>Technology</h4><p>Woken at 6am by a news helicopter, I tweeted the reporter on board. That also <a href="https://www.dailymail.co.uk/news/article-2396274/Man-woken-6am-noise-low-flying-ABC-news-helicopter-managed-tweet-reporter-Dan-Rice.html">made the news</a>.</p></div>
+        <div><h4>Certifications, 2025</h4><p><a href="https://ccforpms.com/">Claude Code for PMs</a> · <a href="https://www.credential.net/b284f92c-5de2-4235-9823-3babb8617b28#acc.CQR4slZY">AI Product Management</a> · <a href="https://www.credential.net/cc4f32ad-d8c5-4039-a3ee-d0c51947aeb5#acc.wrAyXMTz">Advanced PM Skills</a></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CURRENT PROJECTS ==================== -->
+<section class="page" id="projects">
+  <div class="wallhead">
+    <h1>Nine things, running now.</h1>
+    <p>Built on nights and weekends by describing what I want to Claude Code. One poster each, one number each.</p>
+    <div class="tots">
+      <div><span class="v num">9,480</span><span class="k lbl">Users</span></div>
+      <div><span class="v num">278,478</span><span class="k lbl">Questions answered</span></div>
+      <div><span class="v num">$829.17</span><span class="k lbl">Revenue, Stripe</span></div>
+      <div><span class="v num">9</span><span class="k lbl">Live products</span></div>
+    </div>
+  </div>
+
+  <div class="wall">
+    <div class="grid">
+      <a class="poster" href="https://tigertest.io">
+        <div class="art"><div class="p-art tiger"><span class="p-ttl">TigerTest.io</span><span class="p-num">278,478</span></div></div>
+        <div class="cap"><span class="t">TigerTest.io</span><span class="y">2025</span></div>
+        <p class="d">Free DMV practice tests for all 50 states, with mastery training and pass-probability tracking.</p>
+        <p class="met">9,480 users · $829.17</p>
+      </a>
+
+      <a class="poster" href="https://x.com/openclaw">
+        <div class="art"><div class="p-art claw"><span class="p-ttl">OpenClaw</span><span class="p-num">$100,000</span></div></div>
+        <div class="cap"><span class="t">OpenClaw</span><span class="y">2026</span></div>
+        <p class="d">An agent with OKRs, optimising TigerTest on its own. Saving for an Optimus body.</p>
+        <p class="met">1 product owned</p>
+      </a>
+
+      <a class="poster" href="https://johnbr0phy.github.io/course-builder/">
+        <div class="art"><div class="p-art blocks"><span class="b3"></span><span class="p-ttl">Course Builder</span><span class="p-num">∞</span></div></div>
+        <div class="cap"><span class="t">Course Builder</span><span class="y">2026</span></div>
+        <p class="d">A course factory: topic in, hands-on lessons and a Claude instructor who grades you out.</p>
+        <p class="met">Any topic, any audience</p>
+      </a>
+
+      <a class="poster" href="https://github.com/johnbr0phy/llm-wiki">
+        <div class="art"><div class="p-art wiki"><span class="lines"></span><span class="p-ttl">LLM-Wiki</span><span class="p-num">1 hr</span></div></div>
+        <div class="cap"><span class="t">LLM-Wiki</span><span class="y">2026</span></div>
+        <p class="d">Transcripts, emails and docs compiled hourly into a cross-linked wiki with sourced answers.</p>
+        <p class="met">Recompiles every hour</p>
+      </a>
+
+      <a class="poster" href="https://ace-that-interview.com">
+        <div class="art"><div class="p-art steps"><span class="p-ttl">Ace That Interview</span><span class="p-num">~20</span></div></div>
+        <div class="cap"><span class="t">Ace That Interview</span><span class="y">2026</span></div>
+        <p class="d">Company-specific interview prep. Twenty modules recombining into hundreds of pages.</p>
+        <p class="met">100s of company/role pages</p>
+      </a>
+
+      <a class="poster" href="https://johnbr0phy.github.io/banksy">
+        <div class="art"><div class="p-art stripe"><span class="p-ttl">Banksy Tracker</span><span class="p-num">1×/day</span></div></div>
+        <div class="cap"><span class="t">Banksy Print Tracker</span><span class="y">2026</span></div>
+        <p class="d">Auction lots for original prints, searchable and multi-currency, refreshed automatically.</p>
+        <p class="met">Zero manual updates</p>
+      </a>
+
+      <a class="poster" href="https://johnbr0phy.github.io/AIPM/">
+        <div class="art"><div class="p-art dotgrid"><span class="p-ttl">AI PM Course</span><span class="p-num">25</span></div></div>
+        <div class="cap"><span class="t">AI PM Course</span><span class="y">2026</span></div>
+        <p class="d">Twenty-five sessions inside Claude Code, taught against your own product idea.</p>
+        <p class="met">25 sessions</p>
+      </a>
+
+      <a class="poster" href="https://johnbr0phy.github.io/Workflows/">
+        <div class="art"><div class="p-art blocks"><span class="b3"></span><span class="p-ttl">Workflows</span><span class="p-num">12</span></div></div>
+        <div class="cap"><span class="t">Claude Code Workflows</span><span class="y">2026</span></div>
+        <p class="d">Learn agent orchestration by running it, ending in a workflow built from your own work.</p>
+        <p class="met">12 sessions + capstone</p>
+      </a>
+
+      <a class="poster" href="https://johnbr0phy.github.io/new-parent-quiz/">
+        <div class="art"><div class="p-art dotgrid"><span class="p-ttl">New Parent Qbank</span><span class="p-num">1</span></div></div>
+        <div class="cap"><span class="t">New Parent Qbank</span><span class="y">2025</span></div>
+        <p class="d">A reflection quiz for new and expecting parents. Built in a single afternoon.</p>
+        <p class="met">One afternoon</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="filmstrip">
+    <h3>Moving picture</h3>
+    <div class="row">
+      <video controls preload="none" poster="../images/ai-creations/openclaw-poster.jpg" src="../videos/openclaw-okr.mp4"></video>
+      <div>
+        <span class="v num">Q1</span>
+        <p>OpenClaw presents its own quarterly review — the deck and the audio are both its work. Its objective was to grow the number of people taking a TigerTest practice test.</p>
+        <p>Its long-term goal is to earn $100,000 for an Optimus body. Imagine where this is in a year.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <h3>Say hello.</h3>
+  <p class="sub">Or email <a href="mailto:john@johnbrophy.net">john@johnbrophy.net</a> directly. Montclair, New Jersey.</p>
+  <form class="form" id="contactForm">
+    <input type="text" id="fname" placeholder="First name" aria-label="First name">
+    <input type="text" id="lname" placeholder="Last name" aria-label="Last name">
+    <input class="full" type="email" id="email" placeholder="Email address" aria-label="Email address">
+    <input class="full" type="text" id="subject" placeholder="Subject" aria-label="Subject">
+    <textarea class="full" id="message" placeholder="Message" aria-label="Message"></textarea>
+    <button type="submit">Send</button>
+    <p class="sent" id="sentNote"></p>
+  </form>
+  <div class="foot-end">
+    <div class="socials" aria-label="Social links">
+      <a href="https://instagram.com/johnbr0" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 1.8c-3.1 0-3.5 0-4.8.1-1.1.1-1.5.2-1.8.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.3-.3.8-.3 1.8-.1 1.2-.1 1.6-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.5.3 1.8.2.5.4.8.7 1.1.3.3.6.5 1.1.7.3.1.8.3 1.8.3 1.2.1 1.6.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.5-.2 1.8-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.3.3-.8.3-1.8.1-1.2.1-1.6.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.5-.3-1.8-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.3-.1-.8-.3-1.8-.3-1.2-.1-1.6-.1-4.8-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.2-8.3a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg></a>
+      <a href="https://www.youtube.com/@JohnBr0" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.6V8.4L15.8 12l-6.3 3.6z"/></svg></a>
+      <a href="https://www.linkedin.com/in/jbrophy" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.7-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.5V9h3.6v11.5z"/></svg></a>
+      <a href="https://open.spotify.com/user/brophenator" aria-label="Spotify"><svg viewBox="0 0 24 24"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24zm5.5 17.3a.7.7 0 0 1-1 .3c-2.8-1.7-6.3-2.1-10.5-1.2a.8.8 0 0 1-.9-.6.8.8 0 0 1 .6-.9c4.6-1 8.5-.6 11.6 1.3.3.2.4.7.2 1.1zm1.5-3.3a.9.9 0 0 1-1.3.3c-3.2-2-8.1-2.6-11.9-1.4a.9.9 0 0 1-1.2-.6.9.9 0 0 1 .6-1.2c4.3-1.3 9.7-.7 13.4 1.6.5.3.6.9.4 1.3zm.1-3.4C15.3 8.3 9 8.1 5.4 9.2a1.1 1.1 0 0 1-1.4-.7 1.1 1.1 0 0 1 .8-1.4c4.2-1.3 11.1-1 15.4 1.5a1.1 1.1 0 0 1 .4 1.5c-.3.5-1 .7-1.5.5z"/></svg></a>
+      <a href="https://github.com/johnbr0phy" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.6.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg></a>
+    </div>
+    <p class="colophon">Option C — The Gallery · <a href="index.html">compare directions</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var pages = ['story','projects'];
+  var counter = document.getElementById('counter');
+  var counterNo = counter.querySelector('b');
+  var counterName = document.getElementById('counterName');
+  var plates = Array.prototype.slice.call(document.querySelectorAll('.plate[data-no]'));
+
+  function show(id){
+    if(pages.indexOf(id) === -1) id = 'story';
+    pages.forEach(function(p){ document.getElementById(p).classList.toggle('on', p === id); });
+    document.querySelectorAll('.bar nav a[data-nav]').forEach(function(a){
+      a.classList.toggle('active', a.dataset.nav === id);
+    });
+    window.scrollTo(0,0);
+    syncCounter();
+  }
+
+  document.querySelectorAll('[data-nav]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = a.dataset.nav;
+      if(location.hash === '#'+id){ show(id); } else { location.hash = id; }
+    });
+  });
+  window.addEventListener('hashchange', function(){ show(location.hash.slice(1)); });
+
+  function syncCounter(){
+    if(!document.getElementById('story').classList.contains('on')){ counter.classList.remove('show'); return; }
+    var on = null;
+    plates.forEach(function(p){
+      var r = p.getBoundingClientRect();
+      if(r.top <= window.innerHeight * 0.5 && r.bottom >= window.innerHeight * 0.5) on = p;
+    });
+    counter.classList.toggle('show', !!on);
+    if(on){ counterNo.textContent = on.dataset.no; counterName.textContent = on.dataset.name; }
+  }
+  window.addEventListener('scroll', syncCounter, {passive:true});
+  window.addEventListener('resize', syncCounter);
+
+  /* theme */
+  var tgl = document.getElementById('tgl');
+  var saved = localStorage.getItem('jb-theme-c');
+  if(saved) document.documentElement.setAttribute('data-theme', saved);
+  else if(window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme','dark');
+  function syncTgl(){ tgl.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? 'Light' : 'Dark'; }
+  tgl.addEventListener('click', function(){
+    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('jb-theme-c', next);
+    syncTgl();
+  });
+  syncTgl();
+
+  /* contact — same Google Form endpoint as v1 */
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var note = document.getElementById('sentNote');
+    var btn = this.querySelector('button');
+    var fields = {
+      'entry.910474074': document.getElementById('fname').value.trim(),
+      'entry.953674238': document.getElementById('lname').value.trim(),
+      'entry.648833233': document.getElementById('email').value.trim(),
+      'entry.1116742163': document.getElementById('subject').value.trim(),
+      'entry.1977585821': document.getElementById('message').value.trim()
+    };
+    note.style.display = 'block';
+    if(Object.values(fields).some(function(v){ return !v; })){ note.textContent = 'Please fill in all the fields above.'; return; }
+    btn.disabled = true; note.textContent = 'Sending…';
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSeQM2STqdhr6bkO_Vv1jPgkC4Ac-B5-mdTFHcL4vuRMaTSnjg/formResponse', {
+      method:'POST', mode:'no-cors', headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams(fields).toString()
+    }).then(function(){
+      note.textContent = 'Thanks — your message has been sent.';
+      document.getElementById('contactForm').reset(); btn.disabled = false;
+    }).catch(function(){
+      note.textContent = 'Something went wrong — please email john@johnbrophy.net directly.'; btn.disabled = false;
+    });
+  });
+
+  show(location.hash.slice(1) || 'story');
+})();
+</script>
+</body>
+</html>
