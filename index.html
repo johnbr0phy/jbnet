@@ -335,8 +335,8 @@
   <div id="mobileNav">
     <nav aria-label="Mobile">
       <ul>
-        <li><a href="#resume" data-nav="resume">Resume</a></li>
         <li><a href="#ai" data-nav="ai">AI Lab</a></li>
+        <li><a href="#resume" data-nav="resume">Resume</a></li>
         <li><a href="#adventures" data-nav="adventures">Adventures</a></li>
         <li><a href="#photos" data-nav="photos">Photos</a></li>
         <li><a href="#doodles" data-nav="doodles">Doodles</a></li>
@@ -391,8 +391,8 @@
     <h1 class="brand">John Brophy</h1>
     <p class="tagline">Builder &amp; Product Leader</p>
     <nav class="main" aria-label="Main">
-      <a href="#resume" data-nav="resume">Resume</a>
       <a href="#ai" data-nav="ai">AI Lab</a>
+      <a href="#resume" data-nav="resume">Resume</a>
       <a href="#adventures" data-nav="adventures">Adventures</a>
       <a href="#photos" data-nav="photos">Photos</a>
       <a href="#doodles" data-nav="doodles">Doodles</a>
@@ -1034,7 +1034,7 @@
 
 <script>
 (function(){
-  var pages = ['resume','ai','adventures','photos','doodles','contact'];
+  var pages = ['ai','resume','adventures','photos','doodles','contact'];
   var navLinks = document.querySelectorAll('nav.main a[data-nav], #mobileNav a[data-nav]');
   var mobileNav = document.getElementById('mobileNav');
   var mobileChrome = document.getElementById('mobileChrome');
@@ -1078,7 +1078,7 @@
   var galCaption = document.getElementById('galCaption');
   var capTitle = document.getElementById('capTitle');
   var capLoc = document.getElementById('capLoc');
-  var current = 'resume';
+  var current = 'ai';
 
   function slidesOf(id){ return document.querySelectorAll('#'+id+' .slide'); }
 
@@ -1099,7 +1099,7 @@
   }
 
   function show(id, opts){
-    if(pages.indexOf(id) === -1) id = 'resume';
+    if(pages.indexOf(id) === -1) id = 'ai';
     current = id;
     pages.forEach(function(p){
       document.getElementById(p).classList.toggle('on', p === id);
@@ -1230,7 +1230,7 @@
   // Prefer the hash stashed in <head> (direct /#ai loads), then the URL.
   var bootHash = '';
   try{ bootHash = (window.__jbHash || location.hash || '').replace(/^#/, ''); }catch(e){}
-  show(bootHash || 'resume');
+  show(bootHash || 'ai');
   try{
     if(window.__jbHash){
       history.replaceState(null, '', window.__jbHash);
