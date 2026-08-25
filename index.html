@@ -168,6 +168,10 @@
   .post a.photo img{width:100%;height:auto;display:block;vertical-align:middle}
   .post a.photo:hover{opacity:.92}
   .post .yt{text-decoration:none}
+  .post .pair{float:right;width:min(45%,340px);margin:6px 0 16px 26px;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+  .post .pair a{display:block;text-decoration:none;color:inherit}
+  .post .pair img{width:100%;max-width:100%;height:auto;display:block}
+  .post .pair a:hover{opacity:.92}
   .post .yt img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
   .post .yt .cta{margin-top:10px}
   .post .ctas{margin:0 0 18px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline}
@@ -322,7 +326,7 @@
     .job .who{flex:none}
     #adventures,#ai{flex-direction:column}
     .adv-side{flex:none;margin-left:0;position:static;max-height:none;overflow:visible}
-    .post img.photo,.post video.photo,.post a.photo,.post .yt{float:none;width:100%;margin:6px 0 14px}
+    .post img.photo,.post video.photo,.post a.photo,.post .yt,.post .pair{float:none;width:100%;margin:6px 0 14px}
     .gallery .frame{height:60vh}
   }
 </style>
@@ -554,24 +558,19 @@
     <section class="page" id="ai">
       <div class="posts">
         <article class="post" id="post-orbital-yard">
-          <h2>4 billion spaceships before lunchtime. Mechs before dinner.</h2>
+          <h2>Two yards in one day</h2>
           <p class="date">August 25, 2026</p>
-          <a class="photo" href="https://johnbr0phy.github.io/orbital-yard/" target="_blank" rel="noopener"><img src="images/ai-creations/orbital-yard.jpg" alt="One generated sheet: a four-hull orbital tender in profile, plan, bow elevation and pictorial, with its title block and a 1.8 m figure beside the scale bar"></a>
-          <p>One page. Press N, get another ship.</p>
-          <p>After the <a href="#ai" data-scrollto="post-dude" data-page="ai">dudes</a>, I wanted to see if the same trick worked on technical drawings. Every ship arrives as a full sheet: profile, plan, bow elevation, and a pictorial you can drag to orbit, with a title block and a 1.8 m figure standing next to the scale bar.</p>
-          <p>Nothing is an image. Every line is computed from the hull number, so the same number always draws the same ship. There are 4,294,967,296 of them.</p>
-          <p>The rule that makes it work is one sentence: a hull publishes five sockets, and every part is cut to the same socket, so any combination mates.</p>
-          <p>Claude built it. One HTML file, no assets, everything drawn in code.</p>
-          <p class="ctas"><a class="cta" href="https://johnbr0phy.github.io/orbital-yard/" target="_blank" rel="noopener">Build a ship</a> <a class="cta" href="https://github.com/johnbr0phy/orbital-yard" target="_blank" rel="noopener">GitHub</a></p>
-          <a class="photo" href="https://johnbr0phy.github.io/mech-yard/" target="_blank" rel="noopener"><img src="images/ai-creations/mech-yard.jpg" alt="One generated mech sheet: a 15.2 m assault walker in front, side and plan views with a pictorial, title block and 1.8 m scale figure"></a>
-          <p><b>Then the mechs.</b> The ships were finished by lunch, so I forked the yard and pointed it at mechs. Same sheet, same 4,294,967,296 seeds, an entirely different machine.</p>
-          <p>A hull published five sockets. A chassis publishes eleven, and every one of them is a real parting line, the place the thing would actually come apart in a maintenance bay: neck, head, chest, backpack, a yoke and an arm and a forearm on each side, skirt, girdle, drive. Biped, reverse joint, quadruped, spider, tracked or hover, they all bolt to the same girdle.</p>
-          <p>The shoulders carry the width. Held to the torso&rsquo;s own half width you get something tall and narrow, which is not what a mech looks like. The yokes have to be the widest thing on it, with the arms coming down out from under them rather than off the sides of the ribs.</p>
-          <p>The arms are handed. Everything else is mirrored, but a mirror can only ever build a machine holding two of the same thing, and one close combat arm beside one gun is the whole point. So each arm rolls and locks on its own. They still match about two times in five, because a matched pair is a real machine too.</p>
-          <p>And nothing floats. Every part gets checked against whatever it hangs off and dragged back until it bites. Floating parts went from 0.90% to 0.06%, and arms that had quietly come away from their shoulders went to zero.</p>
-          <p>Then a last pass looks at the assembled machine and asks a question no single part can: what is near what. It runs conduit between the groups a real machine would plumb together, and it runs after the mirror, so the two arms come out wired differently. About a third of a finished mech is that rigging.</p>
-          <p>Each yard has a door through to the other one. Spaceships before lunch, mechs before dinner. What a day.</p>
-          <p class="ctas"><a class="cta" href="https://johnbr0phy.github.io/mech-yard/" target="_blank" rel="noopener">Build a mech</a> <a class="cta" href="https://github.com/johnbr0phy/mech-yard" target="_blank" rel="noopener">GitHub</a></p>
+          <div class="pair">
+            <a href="https://johnbr0phy.github.io/orbital-yard/" target="_blank" rel="noopener"><img src="images/ai-creations/orbital-yard.jpg" alt="One generated sheet: a four-hull orbital tender in profile, plan, bow elevation and pictorial, with its title block and a 1.8 m figure beside the scale bar"></a>
+            <a href="https://johnbr0phy.github.io/mech-yard/" target="_blank" rel="noopener"><img src="images/ai-creations/mech-yard.jpg" alt="One generated sheet: a 15.2 m assault walker in front, side and plan views with a pictorial, title block and 1.8 m scale figure"></a>
+          </div>
+          <p>One page. Press N, get another machine.</p>
+          <p>After the <a href="#ai" data-scrollto="post-dude" data-page="ai">dudes</a>, I wanted to see if the same trick worked on technical drawings. Spaceships before lunch, mechs before dinner.</p>
+          <p>Each one arrives as a full sheet: front, side, plan, and a pictorial you can drag to orbit. Nothing is an image. Every line is computed from the seed, so the same number always draws the same machine, and there are 4,294,967,296 of each.</p>
+          <p>One sentence makes it work: a frame publishes sockets, and every part is cut to the same socket, so any combination mates. A hull has five. A mech has eleven, and every one is a real parting line.</p>
+          <p>The mechs took the afternoon because a mech has opinions a ship does not. The shoulders have to carry the width. The two arms have to roll separately, or you never get one fist and one gun. And nothing may float.</p>
+          <p>Claude built both. One HTML file each, no assets, everything drawn in code. Each yard has a door through to the other.</p>
+          <p class="ctas"><a class="cta" href="https://johnbr0phy.github.io/orbital-yard/" target="_blank" rel="noopener">Build a ship</a> <a class="cta" href="https://johnbr0phy.github.io/mech-yard/" target="_blank" rel="noopener">Build a mech</a> <a class="cta" href="https://github.com/johnbr0phy/orbital-yard" target="_blank" rel="noopener">Ships on GitHub</a> <a class="cta" href="https://github.com/johnbr0phy/mech-yard" target="_blank" rel="noopener">Mechs on GitHub</a></p>
         </article>
         <article class="post" id="post-dude">
           <h2>Dudes made with code</h2>
@@ -735,7 +734,7 @@
         <p>I'm currently experimenting with all the AIs, regularly shipping products, experiments, tools, and occasionally completely pointless stuff, mostly made by describing what I want and figuring it out as I go.</p>
         <h3>Featured Posts</h3>
         <ul class="featured">
-          <li><a href="#ai" data-scrollto="post-orbital-yard" data-page="ai">4 billion spaceships before lunchtime. Mechs before dinner.</a><div class="d">August 25, 2026</div></li>
+          <li><a href="#ai" data-scrollto="post-orbital-yard" data-page="ai">Two yards in one day</a><div class="d">August 25, 2026</div></li>
           <li><a href="#ai" data-scrollto="post-llmwiki-stensul" data-page="ai">LLM-Wiki at Work: Four Months In</a><div class="d">July 25, 2026</div></li>
           <li><a href="#ai" data-scrollto="post-tigertest-7mo" data-page="ai">TigerTest: 7 months in</a><div class="d">July 21, 2026</div></li>
           <li><a href="#ai" data-scrollto="post-coursebuilder" data-page="ai">Learn Anything in Claude: Course Builder</a><div class="d">June 3, 2026</div></li>
