@@ -198,6 +198,19 @@
   .post .yt .cta{margin-top:10px}
   .post .ctas{margin:0 0 18px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline}
   .post .ctas .cta{margin-top:0}
+  .su-carousel{clear:both;margin:8px 0 26px}
+  .su-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding-bottom:6px;scrollbar-width:thin;align-items:flex-start}
+  .su-track:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+  .su-slide{flex:0 0 min(78%,300px);margin:0;scroll-snap-align:start}
+  .su-slide img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px}
+  .su-slide .su-dk{display:none}
+  [data-theme="dark"] .su-slide .su-dk{display:block}
+  [data-theme="dark"] .su-slide .su-lt{display:none}
+  .su-slide figcaption{font-size:12px;color:var(--soft);margin-top:8px;line-height:1.45}
+  .su-slide figcaption b{color:var(--ink);font-weight:600}
+  .su-nav{display:flex;align-items:center;gap:14px;margin-bottom:14px;font-size:12px;color:var(--soft)}
+  .su-nav button{background:none;border:1px solid var(--ink);color:var(--ink);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:15px;line-height:1}
+  .su-nav button:disabled{opacity:.3;cursor:default}
   .post + .post{border-top:1px solid var(--line);margin-top:48px;padding-top:48px}
   /* right rail — sticky on desktop so only the posts column scrolls away */
   .adv-side{
@@ -554,15 +567,82 @@
         <details class="featured-posts" id="aiFeatured" open>
         <summary>Featured posts</summary>
         <ul class="featured">
+          <li><a href="#ai" data-scrollto="post-signup-test" data-page="ai">I asked for 10 sign-up designs. Claude built the whole A/B test.</a><div class="d">November 14, 2026</div></li>
           <li><a href="#ai" data-scrollto="post-tigertest-212" data-page="ai">Weekly learners up 62% in one week</a><div class="d">November 1, 2026</div></li>
           <li><a href="#ai" data-scrollto="post-tigertest-30" data-page="ai">One exam from a train seat. Then 27 more overnight.</a><div class="d">October 9, 2026</div></li>
           <li><a href="#ai" data-scrollto="post-packrig" data-page="ai">Packrig: 702 bags, one improving loop</a><div class="d">August 12, 2026</div></li>
           <li><a href="#ai" data-scrollto="post-llmwiki-stensul" data-page="ai">LLM-Wiki at Work: Four Months In</a><div class="d">July 25, 2026</div></li>
-          <li><a href="#ai" data-scrollto="post-tigertest-7mo" data-page="ai">TigerTest: 7 months in</a><div class="d">July 21, 2026</div></li>
         </ul>
         </details>
       </aside>
       <div class="posts">
+        <article class="post" id="post-signup-test">
+          <h2>I asked for 10 sign-up designs. Claude built the whole A/B test.</h2>
+          <p class="date">November 14, 2026</p>
+          <p>On the train to work I realised <a href="https://www.tigertest.io/" target="_blank" rel="noopener">Tigertest</a> needs free users to sign up before we ever show them a paywall. So I asked Claude Code to A/B test 10 versions of sign-up. I didn&rsquo;t look at what it built. I deployed it.</p>
+          <p>On the train home I found it had also added tracking to my admin page: showings, taps and sign-ups per design, a p-value against the control, and a preview of every variant. Here they are.</p>
+          <div class="su-carousel" aria-roledescription="carousel" aria-label="The ten sign-up designs">
+            <div class="su-nav">
+              <button type="button" class="su-prev" aria-label="Previous design">&larr;</button>
+              <span class="su-count" aria-live="polite">1 / 10</span>
+              <button type="button" class="su-next" aria-label="Next design">&rarr;</button>
+            </div>
+            <div class="su-track" tabindex="0">
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v01.jpg" alt="Sign-up design 1 of 10, control: You&rsquo;re on a roll. Don&rsquo;t lose it." loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v01.jpg" alt="" loading="lazy">
+              <figcaption><b>01 Control.</b> You&rsquo;re on a roll. Don&rsquo;t lose it.</figcaption>
+            </figure>
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v02.jpg" alt="Sign-up design 2 of 10, big number: Your 14 answers could vanish" loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v02.jpg" alt="" loading="lazy">
+              <figcaption><b>02 Big number.</b> Your 14 answers could vanish</figcaption>
+            </figure>
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v03.jpg" alt="Sign-up design 3 of 10, one tap: A single big Google button" loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v03.jpg" alt="" loading="lazy">
+              <figcaption><b>03 One tap.</b> A single big Google button</figcaption>
+            </figure>
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v04.jpg" alt="Sign-up design 4 of 10, pass first time: Practice that counts" loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v04.jpg" alt="" loading="lazy">
+              <figcaption><b>04 Pass first time.</b> Practice that counts</figcaption>
+            </figure>
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v05.jpg" alt="Sign-up design 5 of 10, note from john: With my face on it" loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v05.jpg" alt="" loading="lazy">
+              <figcaption><b>05 Note from John.</b> With my face on it</figcaption>
+            </figure>
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v06.jpg" alt="Sign-up design 6 of 10, missed questions: A preview of what gets saved" loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v06.jpg" alt="" loading="lazy">
+              <figcaption><b>06 Missed questions.</b> A preview of what gets saved</figcaption>
+            </figure>
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v07.jpg" alt="Sign-up design 7 of 10, switch devices: Start here, finish on your phone" loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v07.jpg" alt="" loading="lazy">
+              <figcaption><b>07 Switch devices.</b> Start here, finish on your phone</figcaption>
+            </figure>
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v08.jpg" alt="Sign-up design 8 of 10, comparison: Guest vs free account" loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v08.jpg" alt="" loading="lazy">
+              <figcaption><b>08 Comparison.</b> Guest vs free account</figcaption>
+            </figure>
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v09.jpg" alt="Sign-up design 9 of 10, compact: One line, save or not now" loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v09.jpg" alt="" loading="lazy">
+              <figcaption><b>09 Compact.</b> One line, save or not now</figcaption>
+            </figure>
+            <figure class="su-slide">
+              <img class="su-lt" src="images/ai-creations/signup-test/light-v10.jpg" alt="Sign-up design 10 of 10, celebration: Claim your streak" loading="lazy">
+              <img class="su-dk" src="images/ai-creations/signup-test/dark-v10.jpg" alt="" loading="lazy">
+              <figcaption><b>10 Celebration.</b> Claim your streak</figcaption>
+            </figure>
+            </div>
+          </div>
+          <p>I didn&rsquo;t have to do anything. I think Tigertest will be fully automated by Christmas. I&rsquo;m not joking.</p>
+          <p class="ctas"><a class="cta" href="https://www.tigertest.io/" target="_blank" rel="noopener">Try Tigertest</a></p>
+        </article>
         <article class="post" id="post-tigertest-212">
           <h2>Weekly learners up 62% in one week</h2>
           <p class="date">November 1, 2026</p>
@@ -1561,6 +1641,17 @@
     });
   })();
 })();
+</script>
+<script>
+document.querySelectorAll('.su-carousel').forEach(function(c){
+  var t=c.querySelector('.su-track'),sl=t.querySelectorAll('.su-slide'),n=c.querySelector('.su-count'),pv=c.querySelector('.su-prev'),nx=c.querySelector('.su-next');
+  function idx(){var x=t.scrollLeft,b=0;sl.forEach(function(e,i){if(Math.abs(e.offsetLeft-t.offsetLeft-x)<Math.abs(sl[b].offsetLeft-t.offsetLeft-x))b=i});return b}
+  function upd(){var i=idx(),end=t.scrollLeft+t.clientWidth>=t.scrollWidth-4;n.textContent=(end?sl.length:i+1)+' / '+sl.length;pv.disabled=t.scrollLeft<=4;nx.disabled=end}
+  function go(d){var i=Math.max(0,Math.min(sl.length-1,idx()+d));t.scrollTo({left:sl[i].offsetLeft-t.offsetLeft})}
+  pv.addEventListener('click',function(){go(-1)});nx.addEventListener('click',function(){go(1)});
+  t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(1)}if(e.key==='ArrowLeft'){e.preventDefault();go(-1)}});
+  t.addEventListener('scroll',function(){requestAnimationFrame(upd)},{passive:true});upd();
+});
 </script>
 </body>
 </html>
