@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1 Million Questions Answered. 500 Exams. And AI Is Building Most of It. | John Brophy</title>
+<meta name="description" content="Tigertest passed 1,000,000 questions answered and 500 exams. How a workflow of Claude Code agents builds most of it, and three things I've learned.">
+<link rel="canonical" href="https://johnbrophy.net/ai-lab/tigertest-million/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1 Million Questions Answered. 500 Exams. And AI Is Building Most of It.">
+<meta property="og:description" content="How a workflow of Claude Code agents builds most of Tigertest, and three things I've learned.">
+<meta property="og:url" content="https://johnbrophy.net/ai-lab/tigertest-million/">
+<meta property="og:image" content="https://johnbrophy.net/images/ai-creations/tigertest-million.jpg">
+<meta property="og:image:alt" content="Tigertest tigers celebrating 1,000,000 questions answered, now with 500 tests">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@johnbr0">
+<meta name="twitter:creator" content="@johnbr0">
+<meta name="twitter:title" content="1 Million Questions Answered. 500 Exams. And AI Is Building Most of It.">
+<meta name="twitter:image" content="https://johnbrophy.net/images/ai-creations/tigertest-million.jpg">
+<link rel="icon" href="../../favicon.ico">
+<script>
+  try{
+    var t=localStorage.getItem('jb-theme');
+    if(t==='light'||t==='dark') document.documentElement.setAttribute('data-theme',t);
+  }catch(e){}
+</script>
+<style>
+  @font-face{font-family:'Figtree';src:url('../../fonts/figtree-var.woff2') format('woff2');font-weight:300 900;font-style:normal;font-display:swap}
+  :root{--sans:'Figtree',-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif}
+  [data-theme="light"]{color-scheme:light;--bg:#ffffff;--ink:#222222;--body:#666666;--soft:#999999;--line:#e8e8e8;--panel:#f4f4f3;--accent:#d9622b;--muted-bar:#c9c9c6}
+  [data-theme="dark"]{color-scheme:dark;--bg:#0B0C0D;--ink:#EDEFF0;--body:#C0C5C8;--soft:#A3A9AC;--line:#2E3336;--panel:#181B1C;--accent:#f0864f;--muted-bar:#4a5054}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 16px 80px}
+  .back{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);text-decoration:none}
+  .back:hover{color:var(--ink)}
+  h1{font-size:34px;line-height:1.2;letter-spacing:-.01em;margin:28px 0 10px;font-weight:800}
+  .date{font-size:13px;color:var(--soft);margin:0 0 28px}
+  h2{font-size:22px;line-height:1.3;margin:44px 0 14px;font-weight:700}
+  h3{font-size:16px;margin:28px 0 8px;font-weight:700}
+  p{color:var(--body);margin:0 0 18px}
+  strong{color:var(--ink)}
+  figure{margin:28px 0}
+  figure img{width:100%;height:auto;display:block;border-radius:6px}
+  figcaption{font-size:13px;color:var(--soft);margin-top:8px}
+  ol.steps{padding-left:22px;margin:0 0 18px;color:var(--body)}
+  ol.steps li{margin:0 0 10px}
+  .cta{display:inline-block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+  .cta:hover{color:var(--soft);border-color:var(--soft)}
+  .ctas{display:flex;flex-wrap:wrap;gap:10px 22px;margin:32px 0 0}
+  .chartfig{margin:32px 0;padding:18px 16px 14px;background:var(--panel);border-radius:8px}
+  .ctitle{margin:0 0 6px;font-size:14px;font-weight:700;color:var(--ink)}
+  .chart{width:100%;height:auto;display:block;font-family:var(--sans)}
+  .chart .bar{fill:var(--muted-bar)}
+  .chart .bar.hi{fill:var(--accent)}
+  .chart .bar.partial{opacity:.85}
+  .chart .val{font-size:13px;fill:var(--soft)}
+  .chart .val.strong{fill:var(--ink);font-weight:700}
+  .chart .lab{font-size:13px;fill:var(--soft)}
+  .chart .axis{stroke:var(--line);stroke-width:1}
+  .chart .marker{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:4 4}
+  .chart .mlab{font-size:13px;font-weight:700;fill:var(--accent)}
+  .chartfig figcaption{margin-top:10px}
+  @media (max-width:600px){.chart .val,.chart .lab,.chart .mlab{font-size:16px}}
+  footer{border-top:1px solid var(--line);margin-top:56px;padding-top:24px}
+  @media (max-width:600px){h1{font-size:28px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="../../#ai">&larr; AI Lab</a>
+
+  <h1>1 Million Questions Answered. 500 Exams. And AI Is Building Most of It.</h1>
+  <p class="date">November 20, 2026</p>
+
+  <figure>
+    <a href="https://www.tigertest.io/" target="_blank" rel="noopener"><img src="../../images/ai-creations/tigertest-million.jpg" width="1120" height="591" alt="Tigertest tigers celebrating 1,000,000 questions answered, now with 500 tests"></a>
+  </figure>
+
+  <p><a href="https://www.tigertest.io/" target="_blank" rel="noopener">Tigertest</a> just passed 1,000,000 questions answered. We&rsquo;ve also reached 500 different exams and qualifications to study for, each with its own bank of practice questions.</p>
+  <p>What started as a little side project to help me pass my DMV test has turned into something much bigger than I expected.</p>
+
+  <figure class="chartfig">
+    <p class="ctitle">Weekly active learners</p>
+<svg class="chart" viewBox="0 0 640 300" role="img" aria-labelledby="t38 d38"><title id="t38">Weekly active learners</title><desc id="d38">Weekly active learners on Tigertest, week ending Oct 2 to Nov 20 2026: 111, 90, 111, then after sign-up became optional 213, 391, 917, 1,664 and 1,845.</desc>
+<line class="axis" x1="8" x2="632" y1="252" y2="252"/>
+<rect class="bar" x="22.8" y="240.6" width="48.4" height="11.4" rx="3"/>
+<text class="val" x="47.0" y="233.6" text-anchor="middle">111</text>
+<text class="lab" x="47.0" y="272" text-anchor="middle">Oct 2</text>
+<rect class="bar" x="100.8" y="242.8" width="48.4" height="9.2" rx="3"/>
+<text class="val" x="125.0" y="235.8" text-anchor="middle">90</text>
+<text class="lab" x="125.0" y="272" text-anchor="middle">Oct 9</text>
+<rect class="bar" x="178.8" y="240.6" width="48.4" height="11.4" rx="3"/>
+<text class="val" x="203.0" y="233.6" text-anchor="middle">111</text>
+<text class="lab" x="203.0" y="272" text-anchor="middle">Oct 16</text>
+<rect class="bar hi" x="256.8" y="230.1" width="48.4" height="21.9" rx="3"/>
+<text class="val strong" x="281.0" y="223.1" text-anchor="middle">213</text>
+<text class="lab" x="281.0" y="272" text-anchor="middle">Oct 23</text>
+<rect class="bar hi" x="334.8" y="211.9" width="48.4" height="40.1" rx="3"/>
+<text class="val strong" x="359.0" y="204.9" text-anchor="middle">391</text>
+<text class="lab" x="359.0" y="272" text-anchor="middle">Oct 30</text>
+<rect class="bar hi" x="412.8" y="157.9" width="48.4" height="94.1" rx="3"/>
+<text class="val strong" x="437.0" y="150.9" text-anchor="middle">917</text>
+<text class="lab" x="437.0" y="272" text-anchor="middle">Nov 6</text>
+<rect class="bar hi" x="490.8" y="81.3" width="48.4" height="170.7" rx="3"/>
+<text class="val strong" x="515.0" y="74.3" text-anchor="middle">1,664</text>
+<text class="lab" x="515.0" y="272" text-anchor="middle">Nov 13</text>
+<rect class="bar hi" x="568.8" y="62.7" width="48.4" height="189.3" rx="3"/>
+<text class="val strong" x="593.0" y="55.7" text-anchor="middle">1,845</text>
+<text class="lab" x="593.0" y="272" text-anchor="middle">Nov 20</text>
+<line class="marker" x1="242.0" x2="242.0" y1="26" y2="252"/>
+<text class="mlab" x="248.0" y="36">No sign-up needed</text>
+</svg>
+    <figcaption>Each bar is the 7 days to that date. Once people could practise without signing up, weekly learners went from about 100 to 1,845 in five weeks.</figcaption>
+  </figure>
+
+  <p>This week, people visited Tigertest from 130 countries.</p>
+  <p>In Kyrgyzstan, future doctors cramming for their licensing exams. In Fiji, nurses preparing to work overseas. In Brunei, a new driver learning the rules of the road.</p>
+  <p>Teachers have started bringing entire classes too. They <a href="https://www.tigertest.io/teach" target="_blank" rel="noopener">create a class</a>, share a link, and see which questions their students are getting wrong.</p>
+
+  <figure class="chartfig">
+    <p class="ctitle">New sign-ups per month</p>
+<svg class="chart" viewBox="0 0 640 300" role="img" aria-labelledby="t1112 d1112"><title id="t1112">New sign-ups per month</title><desc id="d1112">New Tigertest sign-ups per month, Dec 2025 to Nov 2026: 61, 284, 305, 572, 495, 576, 637, 696, 565, 422, 436, and 1,205 in November so far.</desc>
+<line class="axis" x1="8" x2="632" y1="252" y2="252"/>
+<rect class="bar" x="17.9" y="242.4" width="32.2" height="9.6" rx="3"/>
+<text class="val" x="34.0" y="235.4" text-anchor="middle">61</text>
+<text class="lab" x="34.0" y="272" text-anchor="middle">Dec</text>
+<rect class="bar" x="69.9" y="207.4" width="32.2" height="44.6" rx="3"/>
+<text class="val" x="86.0" y="200.4" text-anchor="middle">284</text>
+<text class="lab" x="86.0" y="272" text-anchor="middle">Jan</text>
+<rect class="bar" x="121.9" y="204.1" width="32.2" height="47.9" rx="3"/>
+<text class="val" x="138.0" y="197.1" text-anchor="middle">305</text>
+<text class="lab" x="138.0" y="272" text-anchor="middle">Feb</text>
+<rect class="bar" x="173.9" y="162.1" width="32.2" height="89.9" rx="3"/>
+<text class="val" x="190.0" y="155.1" text-anchor="middle">572</text>
+<text class="lab" x="190.0" y="272" text-anchor="middle">Mar</text>
+<rect class="bar" x="225.9" y="174.2" width="32.2" height="77.8" rx="3"/>
+<text class="val" x="242.0" y="167.2" text-anchor="middle">495</text>
+<text class="lab" x="242.0" y="272" text-anchor="middle">Apr</text>
+<rect class="bar" x="277.9" y="161.5" width="32.2" height="90.5" rx="3"/>
+<text class="val" x="294.0" y="154.5" text-anchor="middle">576</text>
+<text class="lab" x="294.0" y="272" text-anchor="middle">May</text>
+<rect class="bar" x="329.9" y="151.9" width="32.2" height="100.1" rx="3"/>
+<text class="val" x="346.0" y="144.9" text-anchor="middle">637</text>
+<text class="lab" x="346.0" y="272" text-anchor="middle">Jun</text>
+<rect class="bar" x="381.9" y="142.7" width="32.2" height="109.3" rx="3"/>
+<text class="val" x="398.0" y="135.7" text-anchor="middle">696</text>
+<text class="lab" x="398.0" y="272" text-anchor="middle">Jul</text>
+<rect class="bar" x="433.9" y="163.2" width="32.2" height="88.8" rx="3"/>
+<text class="val" x="450.0" y="156.2" text-anchor="middle">565</text>
+<text class="lab" x="450.0" y="272" text-anchor="middle">Aug</text>
+<rect class="bar" x="485.9" y="185.7" width="32.2" height="66.3" rx="3"/>
+<text class="val" x="502.0" y="178.7" text-anchor="middle">422</text>
+<text class="lab" x="502.0" y="272" text-anchor="middle">Sep</text>
+<rect class="bar" x="537.9" y="183.5" width="32.2" height="68.5" rx="3"/>
+<text class="val" x="554.0" y="176.5" text-anchor="middle">436</text>
+<text class="lab" x="554.0" y="272" text-anchor="middle">Oct</text>
+<rect class="bar hi partial" x="589.9" y="62.7" width="32.2" height="189.3" rx="3"/>
+<text class="val strong" x="606.0" y="55.7" text-anchor="middle">1,205</text>
+<text class="lab" x="606.0" y="272" text-anchor="middle">Nov</text>
+</svg>
+    <figcaption>Dropping the sign-up wall didn&rsquo;t cost sign-ups. November has 1,205 so far (to Nov 20), nearly triple October.</figcaption>
+  </figure>
+
+  <p>I love seeing something I built being used by people all over the world.</p>
+
+  <h2>Claude builds Tigertest</h2>
+  <p>Most new exams now go from idea to live without me touching them.</p>
+  <p>I&rsquo;ve built an automated workflow of AI agents using Claude Code:</p>
+  <ol class="steps">
+    <li><strong>Find demand.</strong> One agent looks at what people are searching for on Tigertest.</li>
+    <li><strong>Pick what to build.</strong> Another looks at demand, usage, and which exams people value enough to pay for.</li>
+    <li><strong>Write the questions.</strong> A third builds the question bank, answers, and explanations.</li>
+    <li><strong>Check the answers.</strong> A fourth verifies everything against official sources.</li>
+  </ol>
+  <p>These aren&rsquo;t prompts I run manually. The agents work together, passing their output to the next stage.</p>
+  <p>When something goes wrong, I fix the workflow rather than just the individual output.</p>
+  <p>My job is increasingly just deciding what matters.</p>
+
+  <h2>Three things I&rsquo;ve learned</h2>
+  <h3>1. Ship the small version.</h3>
+  <p>Tigertest started as one DMV practice test. I built exactly what I wanted: something I could use to practise on my phone in bed, then sit down at my desktop and take a proper exam.</p>
+  <p>It turned out other people wanted the same thing.</p>
+  <h3>2. Feed the machine.</h3>
+  <p>When AI makes a mistake, don&rsquo;t just correct it. Feed the learning back into the workflow so it doesn&rsquo;t happen again.</p>
+  <p>A lesson that doesn&rsquo;t make it back into the machine is wasted.</p>
+  <h3>3. Automate the quality checks.</h3>
+  <p>AI makes generating thousands of questions easy. Making sure they&rsquo;re accurate is harder.</p>
+  <p>If you&rsquo;re automating creation, you need to automate verification too. Speed shouldn&rsquo;t come at the expense of accuracy.</p>
+
+  <h2>On to the next million</h2>
+  <p>The person who answered question 1,000,000 got Premium for life. Seemed like the least I could do.</p>
+  <p>Thanks to everyone who&rsquo;s used Tigertest, shared it, reported a mistake, or suggested something new.</p>
+  <p>It&rsquo;s pretty amazing seeing a little project I built for myself helping people prepare for exams all over the world.</p>
+  <p>On to the next million.</p>
+
+  <p class="ctas"><a class="cta" href="https://www.tigertest.io/" target="_blank" rel="noopener">Search for your test</a><a class="cta" href="https://www.tigertest.io/teach" target="_blank" rel="noopener">Set up a class</a></p>
+
+  <footer><a class="back" href="../../#ai">&larr; More from the AI Lab</a></footer>
+</main>
+</body>
+</html>
