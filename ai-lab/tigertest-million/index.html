@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>1 Million Questions Answered. 500 Exams. And AI Is Building Most of It. | John Brophy</title>
+<meta name="description" content="Tigertest passed 1,000,000 questions answered and 500 exams. How a workflow of Claude Code agents builds most of it, and three things I've learned.">
+<link rel="canonical" href="https://johnbrophy.net/ai-lab/tigertest-million/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1 Million Questions Answered. 500 Exams. And AI Is Building Most of It.">
+<meta property="og:description" content="How a workflow of Claude Code agents builds most of Tigertest, and three things I've learned.">
+<meta property="og:url" content="https://johnbrophy.net/ai-lab/tigertest-million/">
+<meta property="og:image" content="https://johnbrophy.net/images/ai-creations/tigertest-million.jpg">
+<meta property="og:image:alt" content="Tigertest tigers celebrating 1,000,000 questions answered, now with 500 tests">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@johnbr0">
+<meta name="twitter:creator" content="@johnbr0">
+<meta name="twitter:title" content="1 Million Questions Answered. 500 Exams. And AI Is Building Most of It.">
+<meta name="twitter:image" content="https://johnbrophy.net/images/ai-creations/tigertest-million.jpg">
+<link rel="icon" href="../../favicon.ico">
+<script>
+  try{
+    var t=localStorage.getItem('jb-theme');
+    if(t==='light'||t==='dark') document.documentElement.setAttribute('data-theme',t);
+  }catch(e){}
+</script>
+<style>
+  @font-face{font-family:'Figtree';src:url('../../fonts/figtree-var.woff2') format('woff2');font-weight:300 900;font-style:normal;font-display:swap}
+  :root{--sans:'Figtree',-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif}
+  [data-theme="light"]{color-scheme:light;--bg:#ffffff;--ink:#222222;--body:#666666;--soft:#999999;--line:#e8e8e8;--panel:#f4f4f3}
+  [data-theme="dark"]{color-scheme:dark;--bg:#0B0C0D;--ink:#EDEFF0;--body:#C0C5C8;--soft:#A3A9AC;--line:#212527;--panel:#181B1C}
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--ink)}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 16px 80px}
+  .back{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);text-decoration:none}
+  .back:hover{color:var(--ink)}
+  h1{font-size:34px;line-height:1.2;letter-spacing:-.01em;margin:28px 0 10px;font-weight:800}
+  .date{font-size:13px;color:var(--soft);margin:0 0 28px}
+  h2{font-size:22px;line-height:1.3;margin:44px 0 14px;font-weight:700}
+  h3{font-size:16px;margin:28px 0 8px;font-weight:700}
+  p{color:var(--body);margin:0 0 18px}
+  strong{color:var(--ink)}
+  figure{margin:28px 0}
+  figure img{width:100%;height:auto;display:block;border-radius:6px}
+  figcaption{font-size:13px;color:var(--soft);margin-top:8px}
+  ol.steps{padding-left:22px;margin:0 0 18px;color:var(--body)}
+  ol.steps li{margin:0 0 10px}
+  .cta{display:inline-block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+  .cta:hover{color:var(--soft);border-color:var(--soft)}
+  .ctas{display:flex;flex-wrap:wrap;gap:10px 22px;margin:32px 0 0}
+  footer{border-top:1px solid var(--line);margin-top:56px;padding-top:24px}
+  @media (max-width:600px){h1{font-size:28px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="../../#ai">&larr; AI Lab</a>
+
+  <h1>1 Million Questions Answered. 500 Exams. And AI Is Building Most of It.</h1>
+  <p class="date">November 20, 2026</p>
+
+  <figure>
+    <a href="https://www.tigertest.io/" target="_blank" rel="noopener"><img src="../../images/ai-creations/tigertest-million.jpg" width="1120" height="591" alt="Tigertest tigers celebrating 1,000,000 questions answered, now with 500 tests"></a>
+  </figure>
+
+  <p><a href="https://www.tigertest.io/" target="_blank" rel="noopener">Tigertest</a> just passed 1,000,000 questions answered. We&rsquo;ve also reached 500 different exams and qualifications to study for, each with its own bank of practice questions.</p>
+  <p>What started as a little side project to help me pass my DMV test has turned into something much bigger than I expected.</p>
+
+  <!-- GRAPH 1: questions answered per day, marked where Tigertest went free -->
+
+  <p>This week, people visited Tigertest from 130 countries.</p>
+  <p>In Kyrgyzstan, future doctors cramming for their licensing exams. In Fiji, nurses preparing to work overseas. In Brunei, a new driver learning the rules of the road.</p>
+  <p>Teachers have started bringing entire classes too. They <a href="https://www.tigertest.io/teach" target="_blank" rel="noopener">create a class</a>, share a link, and see which questions their students are getting wrong.</p>
+
+  <!-- GRAPH 2: weekly learners or sign-ups over time -->
+
+  <p>I love seeing something I built being used by people all over the world.</p>
+
+  <h2>Claude builds Tigertest</h2>
+  <p>Most new exams now go from idea to live without me touching them.</p>
+  <p>I&rsquo;ve built an automated workflow of AI agents using Claude Code:</p>
+  <ol class="steps">
+    <li><strong>Find demand.</strong> One agent looks at what people are searching for on Tigertest.</li>
+    <li><strong>Pick what to build.</strong> Another looks at demand, usage, and which exams people value enough to pay for.</li>
+    <li><strong>Write the questions.</strong> A third builds the question bank, answers, and explanations.</li>
+    <li><strong>Check the answers.</strong> A fourth verifies everything against official sources.</li>
+  </ol>
+  <p>These aren&rsquo;t prompts I run manually. The agents work together, passing their output to the next stage.</p>
+  <p>When something goes wrong, I fix the workflow rather than just the individual output.</p>
+  <p>My job is increasingly just deciding what matters.</p>
+
+  <h2>Three things I&rsquo;ve learned</h2>
+  <h3>1. Ship the small version.</h3>
+  <p>Tigertest started as one DMV practice test. I built exactly what I wanted: something I could use to practise on my phone in bed, then sit down at my desktop and take a proper exam.</p>
+  <p>It turned out other people wanted the same thing.</p>
+  <h3>2. Feed the machine.</h3>
+  <p>When AI makes a mistake, don&rsquo;t just correct it. Feed the learning back into the workflow so it doesn&rsquo;t happen again.</p>
+  <p>A lesson that doesn&rsquo;t make it back into the machine is wasted.</p>
+  <h3>3. Automate the quality checks.</h3>
+  <p>AI makes generating thousands of questions easy. Making sure they&rsquo;re accurate is harder.</p>
+  <p>If you&rsquo;re automating creation, you need to automate verification too. Speed shouldn&rsquo;t come at the expense of accuracy.</p>
+
+  <h2>On to the next million</h2>
+  <p>The person who answered question 1,000,000 got Premium for life. Seemed like the least I could do.</p>
+  <p>Thanks to everyone who&rsquo;s used Tigertest, shared it, reported a mistake, or suggested something new.</p>
+  <p>It&rsquo;s pretty amazing seeing a little project I built for myself helping people prepare for exams all over the world.</p>
+  <p>On to the next million.</p>
+
+  <p class="ctas"><a class="cta" href="https://www.tigertest.io/" target="_blank" rel="noopener">Search for your test</a><a class="cta" href="https://www.tigertest.io/teach" target="_blank" rel="noopener">Set up a class</a></p>
+
+  <footer><a class="back" href="../../#ai">&larr; More from the AI Lab</a></footer>
+</main>
+</body>
+</html>
